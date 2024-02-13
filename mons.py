@@ -49,7 +49,7 @@ class Form:
 
 
 class Species:
-    def __init__(self, name: str, forms: list[Form], gender_ratio: str = "1:1", **kwargs):
+    def __init__(self, name: str, forms: list[Form], gender_ratio: str = "1:1"):
         self.name = name
         self.forms = {g.name: g for g in forms}
         self.gender_ratio = gender_ratio
@@ -191,13 +191,20 @@ nature_table = [
 
 
 class MiniMon:
-    def __init__(self, species: Species | str, form: Form | str | None = None, **kwargs):
+    def __init__(self, species_and_form: str = None, **kwargs):
         self.nickname = kwargs.get("nickname")
-        if isinstance(species, str):
+        if species_and_form:
+            species, form = fixed_species_and_forms[fix(species_and_form)]
             self.species = all_species[species]
+            self.form = self.species.get_form(form)
+        elif species := kwargs.get("species"):
+            if isinstance(species, Species):
+                self.species = species
+            else:
+                self.species = all_species[species]
+            self.form = self.species.get_form(kwargs.get("form"))
         else:
-            self.species = species
-        self.form = self.species.get_form(form)
+            raise ValueError("Species must be provided.")
         self.level = kwargs.get("level", 100)
         self.gender = self.set_gender(kwargs.get("gender"))
         self.nature = "Quirky" if kwargs.get("nature") not in nature_table \
@@ -211,10 +218,6 @@ class MiniMon:
         self.tera_type = self.form.type1 if kwargs.get("tera_type") not in types \
             else kwargs.get("tera_type")
         self.move_names = [g for g in kwargs.get("move_names", []) if g in all_moves][:4]
-
-    @staticmethod
-    def build(species_and_form: str, **kwargs):
-        return MiniMon(*fixed_species_and_forms[fix(species_and_form)], **kwargs)
 
     def set_gender(self, gender: str = "random") -> str:
         if self.species.gender_ratio in genders:
@@ -367,11 +370,60 @@ class MiniMon:
                 move_names.append(match.group("name") + (f" [{match.group('type')}]" if match.group("type") else ""))
 
         ret["move_names"] = move_names
-        return MiniMon.build(**ret)
+        return MiniMon(**ret)
+
+    def mini_pack(self, include_move_names: bool = True):
+        return {
+            "species_and_form": self.species_and_form, "level": self.level, "gender": self.gender,
+            "nature": self.nature, "ivs": self.ivs, "evs": self.evs, "ability": self.ability,
+            "held_item": self.held_item, "tera_type": self.tera_type
+        } | ({"move_names": self.move_names} if include_move_names else {})
+
+    def build(self):
+        return FieldMon(**self.mini_pack())
 
 
 all_species = {k: Species.from_json(v) for k, v in json.load(open("data/mons.json")).items()}
 fixed_species_and_forms = {fix(g): (g, "") for g in all_species} | {
-    fix(MiniMon(sp, form=fm).species_and_form): (sp, fm.name)
+    fix(MiniMon(species=sp, form=fm).species_and_form): (sp, fm.name)
     for sp, v in all_species.items() for fm in v.forms.values()
 }
+
+
+class FieldMon(MiniMon):
+    def __init__(self, **kwargs):  # should never be called directly; use other functions to build
+        super().__init__(**kwargs)
+
+        if moves := kwargs.pop("moves"):
+            self.moves = {g["name"]: Move.from_pack(**g) for g in moves}
+            self.move_names = list(self.moves.keys())
+        else:
+            self.moves = {g: Move.from_pack(g, -1) for g in self.move_names}
+
+        if self.gender not in genders:  # set_gender call should be unnecessary but it can't hurt
+            self.gender = self.set_gender(self.species.random_gender())
+
+        self.remaining_hp = self.hp - kwargs.pop("damage", 0)
+        self.status_condition = kwargs.pop("status_condition")
+        self.status_timer = kwargs.pop("status_timer", 0)
+        self.terastallized = kwargs.pop("terastallized", False)
+
+        self.other_data = kwargs
+
+    def __getitem__(self, item):
+        return self.other_data.get(item)
+
+    def __setitem__(self, key, value):
+        self.other_data[key] = value
+
+    @staticmethod
+    def from_json(js: dict):
+        return FieldMon(**js)
+
+    def json(self):
+        return {**self.mini_pack(False), "moves": [g.pack() for g in self.moves.values()]} | \
+            ({"nickname": self.nickname} if self.nickname else {}) | \
+            ({"damage": round(self.hp - self.remaining_hp)} if self.hp != self.remaining_hp else {}) | \
+            ({"status_condition": self.status_condition} if self.status_condition else {}) | \
+            ({"status_timer": self.status_timer} if self.status_timer else {}) | \
+            ({"terastallized": True} if self.terastallized else {})

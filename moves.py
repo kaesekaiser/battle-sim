@@ -33,6 +33,9 @@ class Move:
 
         self.attributes = kwargs
 
+    def __copy__(self):
+        return Move.from_json(self.json())
+
     def __getitem__(self, item):
         return self.attributes.get(item)
 
@@ -50,6 +53,17 @@ class Move:
         return "\n".join(ret)
 
     @staticmethod
+    def from_pack(name: str, remaining_pp: int = None):
+        if remaining_pp == -1:
+            remaining_pp = all_moves[name].pp
+        return Move.from_json(
+            all_moves[name].json() | ({"remaining_pp": remaining_pp} if remaining_pp is not None else {})
+        )
+
+    def pack(self):
+        return {"name": self.name} | ({"remaining_pp": self.remaining_pp} if self.remaining_pp != self.pp else {})
+
+    @staticmethod
     def from_json(js: dict):
         return Move(**js)
 
@@ -57,9 +71,6 @@ class Move:
         return {"name": self.name, "type": self.type, "category": self.category, "pp": self.pp,
                 "remaining_pp": self.remaining_pp, "power": self.power, "accuracy": self.accuracy,
                 "priority": self.priority, **self.attributes}
-
-    def __copy__(self):
-        return Move.from_json(self.json())
 
     @property
     def accuracy_str(self):
