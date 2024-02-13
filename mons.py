@@ -394,7 +394,7 @@ class FieldMon(MiniMon):
     def __init__(self, **kwargs):  # should never be called directly; use other functions to build
         super().__init__(**kwargs)
 
-        if moves := kwargs.pop("moves"):
+        if moves := kwargs.pop("moves", None):
             self.moves = {g["name"]: Move.from_pack(**g) for g in moves}
             self.move_names = list(self.moves.keys())
         else:
@@ -404,7 +404,7 @@ class FieldMon(MiniMon):
             self.gender = self.set_gender(self.species.random_gender())
 
         self.remaining_hp = self.hp - kwargs.pop("damage", 0)
-        self.status_condition = kwargs.pop("status_condition")
+        self.status_condition = kwargs.pop("status_condition", None)
         self.status_timer = kwargs.pop("status_timer", 0)
         self.terastallized = kwargs.pop("terastallized", False)
 
