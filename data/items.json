@@ -1,0 +1,1739 @@
+{
+    "Aguav Berry": {
+        "name": "Aguav Berry",
+        "category": "berries"
+    },
+    "Apicot Berry": {
+        "name": "Apicot Berry",
+        "category": "berries"
+    },
+    "Aspear Berry": {
+        "name": "Aspear Berry",
+        "category": "berries"
+    },
+    "Babiri Berry": {
+        "name": "Babiri Berry",
+        "category": "berries"
+    },
+    "Belue Berry": {
+        "name": "Belue Berry",
+        "category": "berries"
+    },
+    "Bluk Berry": {
+        "name": "Bluk Berry",
+        "category": "berries"
+    },
+    "Charti Berry": {
+        "name": "Charti Berry",
+        "category": "berries"
+    },
+    "Cheri Berry": {
+        "name": "Cheri Berry",
+        "category": "berries"
+    },
+    "Chesto Berry": {
+        "name": "Chesto Berry",
+        "category": "berries"
+    },
+    "Chilan Berry": {
+        "name": "Chilan Berry",
+        "category": "berries"
+    },
+    "Chople Berry": {
+        "name": "Chople Berry",
+        "category": "berries"
+    },
+    "Coba Berry": {
+        "name": "Coba Berry",
+        "category": "berries"
+    },
+    "Colbur Berry": {
+        "name": "Colbur Berry",
+        "category": "berries"
+    },
+    "Cornn Berry": {
+        "name": "Cornn Berry",
+        "category": "berries"
+    },
+    "Custap Berry": {
+        "name": "Custap Berry",
+        "category": "berries"
+    },
+    "Durin Berry": {
+        "name": "Durin Berry",
+        "category": "berries"
+    },
+    "Enigma Berry": {
+        "name": "Enigma Berry",
+        "category": "berries"
+    },
+    "Figy Berry": {
+        "name": "Figy Berry",
+        "category": "berries"
+    },
+    "Ganlon Berry": {
+        "name": "Ganlon Berry",
+        "category": "berries"
+    },
+    "Grepa Berry": {
+        "name": "Grepa Berry",
+        "category": "berries"
+    },
+    "Haban Berry": {
+        "name": "Haban Berry",
+        "category": "berries"
+    },
+    "Hondew Berry": {
+        "name": "Hondew Berry",
+        "category": "berries"
+    },
+    "Iapapa Berry": {
+        "name": "Iapapa Berry",
+        "category": "berries"
+    },
+    "Jaboca Berry": {
+        "name": "Jaboca Berry",
+        "category": "berries"
+    },
+    "Kasib Berry": {
+        "name": "Kasib Berry",
+        "category": "berries"
+    },
+    "Kebia Berry": {
+        "name": "Kebia Berry",
+        "category": "berries"
+    },
+    "Kee Berry": {
+        "name": "Kee Berry",
+        "category": "berries"
+    },
+    "Kelpsy Berry": {
+        "name": "Kelpsy Berry",
+        "category": "berries"
+    },
+    "Lansat Berry": {
+        "name": "Lansat Berry",
+        "category": "berries"
+    },
+    "Leppa Berry": {
+        "name": "Leppa Berry",
+        "category": "berries"
+    },
+    "Liechi Berry": {
+        "name": "Liechi Berry",
+        "category": "berries"
+    },
+    "Lum Berry": {
+        "name": "Lum Berry",
+        "category": "berries"
+    },
+    "Mago Berry": {
+        "name": "Mago Berry",
+        "category": "berries"
+    },
+    "Magost Berry": {
+        "name": "Magost Berry",
+        "category": "berries"
+    },
+    "Maranga Berry": {
+        "name": "Maranga Berry",
+        "category": "berries"
+    },
+    "Micle Berry": {
+        "name": "Micle Berry",
+        "category": "berries"
+    },
+    "Nanab Berry": {
+        "name": "Nanab Berry",
+        "category": "berries"
+    },
+    "Nomel Berry": {
+        "name": "Nomel Berry",
+        "category": "berries"
+    },
+    "Occa Berry": {
+        "name": "Occa Berry",
+        "category": "berries"
+    },
+    "Oran Berry": {
+        "name": "Oran Berry",
+        "category": "berries"
+    },
+    "Pamtre Berry": {
+        "name": "Pamtre Berry",
+        "category": "berries"
+    },
+    "Passho Berry": {
+        "name": "Passho Berry",
+        "category": "berries"
+    },
+    "Payapa Berry": {
+        "name": "Payapa Berry",
+        "category": "berries"
+    },
+    "Pecha Berry": {
+        "name": "Pecha Berry",
+        "category": "berries"
+    },
+    "Persim Berry": {
+        "name": "Persim Berry",
+        "category": "berries"
+    },
+    "Petaya Berry": {
+        "name": "Petaya Berry",
+        "category": "berries"
+    },
+    "Pinap Berry": {
+        "name": "Pinap Berry",
+        "category": "berries"
+    },
+    "Pomeg Berry": {
+        "name": "Pomeg Berry",
+        "category": "berries"
+    },
+    "Qualot Berry": {
+        "name": "Qualot Berry",
+        "category": "berries"
+    },
+    "Rabuta Berry": {
+        "name": "Rabuta Berry",
+        "category": "berries"
+    },
+    "Rawst Berry": {
+        "name": "Rawst Berry",
+        "category": "berries"
+    },
+    "Razz Berry": {
+        "name": "Razz Berry",
+        "category": "berries"
+    },
+    "Rindo Berry": {
+        "name": "Rindo Berry",
+        "category": "berries"
+    },
+    "Roseli Berry": {
+        "name": "Roseli Berry",
+        "category": "berries"
+    },
+    "Rowap Berry": {
+        "name": "Rowap Berry",
+        "category": "berries"
+    },
+    "Salac Berry": {
+        "name": "Salac Berry",
+        "category": "berries"
+    },
+    "Shuca Berry": {
+        "name": "Shuca Berry",
+        "category": "berries"
+    },
+    "Silver Razz Berry": {
+        "name": "Silver Razz Berry",
+        "category": "berries"
+    },
+    "Sitrus Berry": {
+        "name": "Sitrus Berry",
+        "category": "berries"
+    },
+    "Spelon Berry": {
+        "name": "Spelon Berry",
+        "category": "berries"
+    },
+    "Starf Berry": {
+        "name": "Starf Berry",
+        "category": "berries"
+    },
+    "Tamato Berry": {
+        "name": "Tamato Berry",
+        "category": "berries"
+    },
+    "Tanga Berry": {
+        "name": "Tanga Berry",
+        "category": "berries"
+    },
+    "Wacan Berry": {
+        "name": "Wacan Berry",
+        "category": "berries"
+    },
+    "Watmel Berry": {
+        "name": "Watmel Berry",
+        "category": "berries"
+    },
+    "Wepear Berry": {
+        "name": "Wepear Berry",
+        "category": "berries"
+    },
+    "Wiki Berry": {
+        "name": "Wiki Berry",
+        "category": "berries"
+    },
+    "Yache Berry": {
+        "name": "Yache Berry",
+        "category": "berries"
+    },
+    "Burn Drive": {
+        "name": "Burn Drive",
+        "category": "drives"
+    },
+    "Chill Drive": {
+        "name": "Chill Drive",
+        "category": "drives"
+    },
+    "Douse Drive": {
+        "name": "Douse Drive",
+        "category": "drives"
+    },
+    "Shock Drive": {
+        "name": "Shock Drive",
+        "category": "drives"
+    },
+    "Normal Gem": {
+        "name": "Normal Gem",
+        "category": "gems",
+        "type": "Normal"
+    },
+    "Fire Gem": {
+        "name": "Fire Gem",
+        "category": "gems",
+        "type": "Fire"
+    },
+    "Water Gem": {
+        "name": "Water Gem",
+        "category": "gems",
+        "type": "Water"
+    },
+    "Electric Gem": {
+        "name": "Electric Gem",
+        "category": "gems",
+        "type": "Electric"
+    },
+    "Grass Gem": {
+        "name": "Grass Gem",
+        "category": "gems",
+        "type": "Grass"
+    },
+    "Ice Gem": {
+        "name": "Ice Gem",
+        "category": "gems",
+        "type": "Ice"
+    },
+    "Fighting Gem": {
+        "name": "Fighting Gem",
+        "category": "gems",
+        "type": "Fighting"
+    },
+    "Poison Gem": {
+        "name": "Poison Gem",
+        "category": "gems",
+        "type": "Poison"
+    },
+    "Ground Gem": {
+        "name": "Ground Gem",
+        "category": "gems",
+        "type": "Ground"
+    },
+    "Flying Gem": {
+        "name": "Flying Gem",
+        "category": "gems",
+        "type": "Flying"
+    },
+    "Psychic Gem": {
+        "name": "Psychic Gem",
+        "category": "gems",
+        "type": "Psychic"
+    },
+    "Bug Gem": {
+        "name": "Bug Gem",
+        "category": "gems",
+        "type": "Bug"
+    },
+    "Rock Gem": {
+        "name": "Rock Gem",
+        "category": "gems",
+        "type": "Rock"
+    },
+    "Ghost Gem": {
+        "name": "Ghost Gem",
+        "category": "gems",
+        "type": "Ghost"
+    },
+    "Dragon Gem": {
+        "name": "Dragon Gem",
+        "category": "gems",
+        "type": "Dragon"
+    },
+    "Dark Gem": {
+        "name": "Dark Gem",
+        "category": "gems",
+        "type": "Dark"
+    },
+    "Steel Gem": {
+        "name": "Steel Gem",
+        "category": "gems",
+        "type": "Steel"
+    },
+    "Fairy Gem": {
+        "name": "Fairy Gem",
+        "category": "gems",
+        "type": "Fairy"
+    },
+    "Abomasite": {
+        "name": "Abomasite",
+        "category": "mega-stones",
+        "species": "Abomasnow"
+    },
+    "Absolite": {
+        "name": "Absolite",
+        "category": "mega-stones",
+        "species": "Absol"
+    },
+    "Aerodactylite": {
+        "name": "Aerodactylite",
+        "category": "mega-stones",
+        "species": "Aerodactyl"
+    },
+    "Aggronite": {
+        "name": "Aggronite",
+        "category": "mega-stones",
+        "species": "Aggron"
+    },
+    "Alakazite": {
+        "name": "Alakazite",
+        "category": "mega-stones",
+        "species": "Alakazam"
+    },
+    "Altarianite": {
+        "name": "Altarianite",
+        "category": "mega-stones",
+        "species": "Altaria"
+    },
+    "Ampharosite": {
+        "name": "Ampharosite",
+        "category": "mega-stones",
+        "species": "Ampharos"
+    },
+    "Audinite": {
+        "name": "Audinite",
+        "category": "mega-stones",
+        "species": "Audino"
+    },
+    "Banettite": {
+        "name": "Banettite",
+        "category": "mega-stones",
+        "species": "Bannette"
+    },
+    "Beedrillite": {
+        "name": "Beedrillite",
+        "category": "mega-stones",
+        "species": "Beedrill"
+    },
+    "Blastoisinite": {
+        "name": "Blastoisinite",
+        "category": "mega-stones",
+        "species": "Blastoise"
+    },
+    "Blazikenite": {
+        "name": "Blazikenite",
+        "category": "mega-stones",
+        "species": "Blaziken"
+    },
+    "Cameruptite": {
+        "name": "Cameruptite",
+        "category": "mega-stones",
+        "species": "Camerupt"
+    },
+    "Charizardite X": {
+        "name": "Charizardite X",
+        "category": "mega-stones",
+        "species": "Charizard",
+        "form": "Mega X"
+    },
+    "Charizardite Y": {
+        "name": "Charizardite Y",
+        "category": "mega-stones",
+        "species": "Charizard",
+        "form": "Mega Y"
+    },
+    "Diancite": {
+        "name": "Diancite",
+        "category": "mega-stones",
+        "species": "Diancie"
+    },
+    "Galladite": {
+        "name": "Galladite",
+        "category": "mega-stones",
+        "species": "Gallade"
+    },
+    "Garchompite": {
+        "name": "Garchompite",
+        "category": "mega-stones",
+        "species": "Garchomp"
+    },
+    "Gardevoirite": {
+        "name": "Gardevoirite",
+        "category": "mega-stones",
+        "species": "Gardevoir"
+    },
+    "Gengarite": {
+        "name": "Gengarite",
+        "category": "mega-stones",
+        "species": "Gengar"
+    },
+    "Glalitite": {
+        "name": "Glalitite",
+        "category": "mega-stones",
+        "species": "Glalie"
+    },
+    "Gyaradosite": {
+        "name": "Gyaradosite",
+        "category": "mega-stones",
+        "species": "Gyarados"
+    },
+    "Heracronite": {
+        "name": "Heracronite",
+        "category": "mega-stones",
+        "species": "Heracross"
+    },
+    "Houndoominite": {
+        "name": "Houndoominite",
+        "category": "mega-stones",
+        "species": "Houndoom"
+    },
+    "Kangaskhanite": {
+        "name": "Kangaskhanite",
+        "category": "mega-stones",
+        "species": "Kangaskhan"
+    },
+    "Latiasite": {
+        "name": "Latiasite",
+        "category": "mega-stones",
+        "species": "Latias"
+    },
+    "Latiosite": {
+        "name": "Latiosite",
+        "category": "mega-stones",
+        "species": "Latios"
+    },
+    "Lopunnite": {
+        "name": "Lopunnite",
+        "category": "mega-stones",
+        "species": "Lopunny"
+    },
+    "Lucarionite": {
+        "name": "Lucarionite",
+        "category": "mega-stones",
+        "species": "Lucario"
+    },
+    "Manectite": {
+        "name": "Manectite",
+        "category": "mega-stones",
+        "species": "Manectric"
+    },
+    "Mawilite": {
+        "name": "Mawilite",
+        "category": "mega-stones",
+        "species": "Mawile"
+    },
+    "Medichamite": {
+        "name": "Medichamite",
+        "category": "mega-stones",
+        "species": "Medicham"
+    },
+    "Metagrossite": {
+        "name": "Metagrossite",
+        "category": "mega-stones",
+        "species": "Metagross"
+    },
+    "Mewtwonite X": {
+        "name": "Mewtwonite X",
+        "category": "mega-stones",
+        "species": "Mewtwo",
+        "form": "Mega X"
+    },
+    "Mewtwonite Y": {
+        "name": "Mewtwonite Y",
+        "category": "mega-stones",
+        "species": "Mewtwo",
+        "form": "Mega Y"
+    },
+    "Pidgeotite": {
+        "name": "Pidgeotite",
+        "category": "mega-stones",
+        "species": "Pidgeot"
+    },
+    "Pinsirite": {
+        "name": "Pinsirite",
+        "category": "mega-stones",
+        "species": "Pinsir"
+    },
+    "Sablenite": {
+        "name": "Sablenite",
+        "category": "mega-stones",
+        "species": "Sableye"
+    },
+    "Salamencite": {
+        "name": "Salamencite",
+        "category": "mega-stones",
+        "species": "Salamence"
+    },
+    "Sceptilite": {
+        "name": "Sceptilite",
+        "category": "mega-stones",
+        "species": "Sceptile"
+    },
+    "Scizorite": {
+        "name": "Scizorite",
+        "category": "mega-stones",
+        "species": "Scizor"
+    },
+    "Sharpedonite": {
+        "name": "Sharpedonite",
+        "category": "mega-stones",
+        "species": "Sharpedo"
+    },
+    "Slowbronite": {
+        "name": "Slowbronite",
+        "category": "mega-stones",
+        "species": "Slowbro"
+    },
+    "Steelixite": {
+        "name": "Steelixite",
+        "category": "mega-stones",
+        "species": "Steelix"
+    },
+    "Swampertite": {
+        "name": "Swampertite",
+        "category": "mega-stones",
+        "species": "Swampert"
+    },
+    "Tyranitarite": {
+        "name": "Tyranitarite",
+        "category": "mega-stones",
+        "species": "Tyranitar"
+    },
+    "Venusaurite": {
+        "name": "Venusaurite",
+        "category": "mega-stones",
+        "species": "Venusaur"
+    },
+    "Normal Memory": {
+        "name": "Normal Memory",
+        "category": "memories",
+        "type": "Normal"
+    },
+    "Fire Memory": {
+        "name": "Fire Memory",
+        "category": "memories",
+        "type": "Fire"
+    },
+    "Water Memory": {
+        "name": "Water Memory",
+        "category": "memories",
+        "type": "Water"
+    },
+    "Electric Memory": {
+        "name": "Electric Memory",
+        "category": "memories",
+        "type": "Electric"
+    },
+    "Grass Memory": {
+        "name": "Grass Memory",
+        "category": "memories",
+        "type": "Grass"
+    },
+    "Ice Memory": {
+        "name": "Ice Memory",
+        "category": "memories",
+        "type": "Ice"
+    },
+    "Fighting Memory": {
+        "name": "Fighting Memory",
+        "category": "memories",
+        "type": "Fighting"
+    },
+    "Poison Memory": {
+        "name": "Poison Memory",
+        "category": "memories",
+        "type": "Poison"
+    },
+    "Ground Memory": {
+        "name": "Ground Memory",
+        "category": "memories",
+        "type": "Ground"
+    },
+    "Flying Memory": {
+        "name": "Flying Memory",
+        "category": "memories",
+        "type": "Flying"
+    },
+    "Psychic Memory": {
+        "name": "Psychic Memory",
+        "category": "memories",
+        "type": "Psychic"
+    },
+    "Bug Memory": {
+        "name": "Bug Memory",
+        "category": "memories",
+        "type": "Bug"
+    },
+    "Rock Memory": {
+        "name": "Rock Memory",
+        "category": "memories",
+        "type": "Rock"
+    },
+    "Ghost Memory": {
+        "name": "Ghost Memory",
+        "category": "memories",
+        "type": "Ghost"
+    },
+    "Dragon Memory": {
+        "name": "Dragon Memory",
+        "category": "memories",
+        "type": "Dragon"
+    },
+    "Dark Memory": {
+        "name": "Dark Memory",
+        "category": "memories",
+        "type": "Dark"
+    },
+    "Steel Memory": {
+        "name": "Steel Memory",
+        "category": "memories",
+        "type": "Steel"
+    },
+    "Fairy Memory": {
+        "name": "Fairy Memory",
+        "category": "memories",
+        "type": "Fairy"
+    },
+    "Draco Plate": {
+        "name": "Draco Plate",
+        "category": "plates",
+        "type": "Dragon"
+    },
+    "Dread Plate": {
+        "name": "Dread Plate",
+        "category": "plates",
+        "type": "Dark"
+    },
+    "Earth Plate": {
+        "name": "Earth Plate",
+        "category": "plates",
+        "type": "Ground"
+    },
+    "Fist Plate": {
+        "name": "Fist Plate",
+        "category": "plates",
+        "type": "Fighting"
+    },
+    "Flame Plate": {
+        "name": "Flame Plate",
+        "category": "plates",
+        "type": "Fire"
+    },
+    "Icicle Plate": {
+        "name": "Icicle Plate",
+        "category": "plates",
+        "type": "Ice"
+    },
+    "Insect Plate": {
+        "name": "Insect Plate",
+        "category": "plates",
+        "type": "Bug"
+    },
+    "Iron Plate": {
+        "name": "Iron Plate",
+        "category": "plates",
+        "type": "Steel"
+    },
+    "Meadow Plate": {
+        "name": "Meadow Plate",
+        "category": "plates",
+        "type": "Grass"
+    },
+    "Mind Plate": {
+        "name": "Mind Plate",
+        "category": "plates",
+        "type": "Psychic"
+    },
+    "Pixie Plate": {
+        "name": "Pixie Plate",
+        "category": "plates",
+        "type": "Fairy"
+    },
+    "Sky Plate": {
+        "name": "Sky Plate",
+        "category": "plates",
+        "type": "Flying"
+    },
+    "Splash Plate": {
+        "name": "Splash Plate",
+        "category": "plates",
+        "type": "Water"
+    },
+    "Spooky Plate": {
+        "name": "Spooky Plate",
+        "category": "plates",
+        "type": "Ghost"
+    },
+    "Stone Plate": {
+        "name": "Stone Plate",
+        "category": "plates",
+        "type": "Rock"
+    },
+    "Toxic Plate": {
+        "name": "Toxic Plate",
+        "category": "plates",
+        "type": "Poison"
+    },
+    "Zap Plate": {
+        "name": "Zap Plate",
+        "category": "plates",
+        "type": "Electric"
+    },
+    "Black Belt": {
+        "name": "Black Belt",
+        "category": "type-boosters",
+        "type": "Fighting"
+    },
+    "Black Glasses": {
+        "name": "Black Glasses",
+        "category": "type-boosters",
+        "type": "Dark"
+    },
+    "Charcoal": {
+        "name": "Charcoal",
+        "category": "type-boosters",
+        "type": "Fire"
+    },
+    "Dragon Fang": {
+        "name": "Dragon Fang",
+        "category": "type-boosters",
+        "type": "Dragon"
+    },
+    "Fairy Feather": {
+        "name": "Fairy Feather",
+        "category": "type-boosters",
+        "type": "Fairy"
+    },
+    "Hard Stone": {
+        "name": "Hard Stone",
+        "category": "type-boosters",
+        "type": "Rock"
+    },
+    "Magnet": {
+        "name": "Magnet",
+        "category": "type-boosters",
+        "type": "Electric"
+    },
+    "Metal Coat": {
+        "name": "Metal Coat",
+        "category": "type-boosters",
+        "type": "Steel"
+    },
+    "Miracle Seed": {
+        "name": "Miracle Seed",
+        "category": "type-boosters",
+        "type": "Grass"
+    },
+    "Mystic Water": {
+        "name": "Mystic Water",
+        "category": "type-boosters",
+        "type": "Water"
+    },
+    "Never-Melt Ice": {
+        "name": "Never-Melt Ice",
+        "category": "type-boosters",
+        "type": "Ice"
+    },
+    "Poison Barb": {
+        "name": "Poison Barb",
+        "category": "type-boosters",
+        "type": "Poison"
+    },
+    "Sharp Beak": {
+        "name": "Sharp Beak",
+        "category": "type-boosters",
+        "type": "Flying"
+    },
+    "Silk Scarf": {
+        "name": "Silk Scarf",
+        "category": "type-boosters",
+        "type": "Normal"
+    },
+    "Silver Powder": {
+        "name": "Silver Powder",
+        "category": "type-boosters",
+        "type": "Bug"
+    },
+    "Soft Sand": {
+        "name": "Soft Sand",
+        "category": "type-boosters",
+        "type": "Ground"
+    },
+    "Spell Tag": {
+        "name": "Spell Tag",
+        "category": "type-boosters",
+        "type": "Ghost"
+    },
+    "Twisted Spoon": {
+        "name": "Twisted Spoon",
+        "category": "type-boosters",
+        "type": "Psychic"
+    },
+    "Buginium Z": {
+        "name": "Buginium Z",
+        "category": "z-crystals",
+        "type": "Bug",
+        "z-move": "Savage Spin-Out"
+    },
+    "Darkinium Z": {
+        "name": "Darkinium Z",
+        "category": "z-crystals",
+        "type": "Dark",
+        "z-move": "Black Hole Eclipse"
+    },
+    "Dragonium Z": {
+        "name": "Dragonium Z",
+        "category": "z-crystals",
+        "type": "Dragon",
+        "z-move": "Devastating Drake"
+    },
+    "Electrium Z": {
+        "name": "Electrium Z",
+        "category": "z-crystals",
+        "type": "Electric",
+        "z-move": "Gigavolt Havoc"
+    },
+    "Fairium Z": {
+        "name": "Fairium Z",
+        "category": "z-crystals",
+        "type": "Fairy",
+        "z-move": "Twinkle Tackle"
+    },
+    "Fightinium Z": {
+        "name": "Fightinium Z",
+        "category": "z-crystals",
+        "type": "Fighting",
+        "z-move": "All-Out Pummeling"
+    },
+    "Firium Z": {
+        "name": "Firium Z",
+        "category": "z-crystals",
+        "type": "Fire",
+        "z-move": "Inferno Overdrive"
+    },
+    "Flyinium Z": {
+        "name": "Flyinium Z",
+        "category": "z-crystals",
+        "type": "Flying",
+        "z-move": "Supersonic Skystrike"
+    },
+    "Ghostium Z": {
+        "name": "Ghostium Z",
+        "category": "z-crystals",
+        "type": "Ghost",
+        "z-move": "Never-Ending Nightmare"
+    },
+    "Grassium Z": {
+        "name": "Grassium Z",
+        "category": "z-crystals",
+        "type": "Grass",
+        "z-move": "Bloom Doom"
+    },
+    "Groundium Z": {
+        "name": "Groundium Z",
+        "category": "z-crystals",
+        "type": "Ground",
+        "z-move": "Tectonic Rage"
+    },
+    "Icium Z": {
+        "name": "Icium Z",
+        "category": "z-crystals",
+        "type": "Ice",
+        "z-move": "Subzero Slammer"
+    },
+    "Normalium Z": {
+        "name": "Normalium Z",
+        "category": "z-crystals",
+        "type": "Normal",
+        "z-move": "Breakneck Blitz"
+    },
+    "Poisonium Z": {
+        "name": "Poisonium Z",
+        "category": "z-crystals",
+        "type": "Poison",
+        "z-move": "Acid Downpour"
+    },
+    "Psychium Z": {
+        "name": "Psychium Z",
+        "category": "z-crystals",
+        "type": "Psychic",
+        "z-move": "Shattered Psyche"
+    },
+    "Rockium Z": {
+        "name": "Rockium Z",
+        "category": "z-crystals",
+        "type": "Rock",
+        "z-move": "Continental Crush"
+    },
+    "Steelium Z": {
+        "name": "Steelium Z",
+        "category": "z-crystals",
+        "type": "Steel",
+        "z-move": "Corkscrew Crash"
+    },
+    "Waterium Z": {
+        "name": "Waterium Z",
+        "category": "z-crystals",
+        "type": "Water",
+        "z-move": "Hydro Vortex"
+    },
+    "Aloraichium Z": {
+        "name": "Aloraichium Z",
+        "category": "z-crystals",
+        "species": "Raichu-Alola",
+        "base-move": "Thunderbolt",
+        "z-move": "Stoked Sparksurfer"
+    },
+    "Decidium Z": {
+        "name": "Decidium Z",
+        "category": "z-crystals",
+        "species": "Decidueye",
+        "base-move": "Spirit Shackle",
+        "z-move": "Sinister Arrow Raid"
+    },
+    "Eevium Z": {
+        "name": "Eevium Z",
+        "category": "z-crystals",
+        "species": "Eevee",
+        "base-move": "Last Resort",
+        "z-move": "Extreme Evoboost"
+    },
+    "Incinium Z": {
+        "name": "Incinium Z",
+        "category": "z-crystals",
+        "species": "Incineroar",
+        "base-move": "Darkest Lariat",
+        "z-move": "Malicious Moonsault"
+    },
+    "Kommonium Z": {
+        "name": "Kommonium Z",
+        "category": "z-crystals",
+        "species": "Kommo-o",
+        "base-move": "Clanging Scales",
+        "z-move": "Clangorous Soulblaze"
+    },
+    "Lunalium Z": {
+        "name": "Lunalium Z",
+        "category": "z-crystals",
+        "species": "Lunala;Necrozma-Dawn-Wings",
+        "base-move": "Moongeist Beam",
+        "z-move": "Menacing Moonraze Maelstrom"
+    },
+    "Lycanium Z": {
+        "name": "Lycanium Z",
+        "category": "z-crystals",
+        "species": "Lycanroc-Midday;Lycanroc-Dusk;Lycanroc-Midnight",
+        "base-move": "Stone Edge",
+        "z-move": "Splintered Stoneshards"
+    },
+    "Marshadium Z": {
+        "name": "Marshadium Z",
+        "category": "z-crystals",
+        "species": "Marshadow",
+        "base-move": "Spectral Thief",
+        "z-move": "Soul-Stealing 7-Star Strike"
+    },
+    "Mewnium Z": {
+        "name": "Mewnium Z",
+        "category": "z-crystals",
+        "species": "Mew",
+        "base-move": "Psychic",
+        "z-move": "Genesis Supernova"
+    },
+    "Mimikium Z": {
+        "name": "Mimikium Z",
+        "category": "z-crystals",
+        "species": "Mimikyu-Disguised;Mimikyu-Busted",
+        "base-move": "Play Rough",
+        "z-move": "Let's Snuggle Forever"
+    },
+    "Pikashunium Z": {
+        "name": "Pikashunium Z",
+        "category": "z-crystals",
+        "species": "Pikachu",
+        "base-move": "Thunderbolt",
+        "z-move": "10,000,000 Volt Thunderbolt"
+    },
+    "Pikanium Z": {
+        "name": "Pikanium Z",
+        "category": "z-crystals",
+        "species": "Pikachu",
+        "base-move": "Volt Tackle",
+        "z-move": "Catastropika"
+    },
+    "Primarium Z": {
+        "name": "Primarium Z",
+        "category": "z-crystals",
+        "species": "Primarina",
+        "base-move": "Sparkling Aria",
+        "z-move": "Oceanic Operetta"
+    },
+    "Snorlium Z": {
+        "name": "Snorlium Z",
+        "category": "z-crystals",
+        "species": "Snorlax",
+        "base-move": "Giga Impact",
+        "z-move": "Pulverizing Pancake"
+    },
+    "Solganium Z": {
+        "name": "Solganium Z",
+        "category": "z-crystals",
+        "species": "Solgaleo;Necrozma-Dusk-Mane",
+        "base-move": "Sunsteel Strike",
+        "z-move": "Searing Sunraze Smash"
+    },
+    "Tapunium Z": {
+        "name": "Tapunium Z",
+        "category": "z-crystals",
+        "species": "Tapu Koko;Tapu Lele;Tapu Bulu;Tapu Fini",
+        "base-move": "Nature's Madness",
+        "z-move": "Guardian of Alola"
+    },
+    "Ultranecrozium Z": {
+        "name": "Ultranecrozium Z",
+        "category": "z-crystals",
+        "species": "Necrozma-Ultra",
+        "base-move": "Photon Geyser",
+        "z-move": "Light That Burns the Sky"
+    },
+    "Ability Shield": {
+        "name": "Ability Shield",
+        "category": "misc"
+    },
+    "Absorb Bulb": {
+        "name": "Absorb Bulb",
+        "category": "misc"
+    },
+    "Adamant Orb": {
+        "name": "Adamant Orb",
+        "category": "misc"
+    },
+    "Adrenaline Orb": {
+        "name": "Adrenaline Orb",
+        "category": "misc"
+    },
+    "Air Balloon": {
+        "name": "Air Balloon",
+        "category": "misc"
+    },
+    "Amulet Coin": {
+        "name": "Amulet Coin",
+        "category": "misc"
+    },
+    "Armor Fossil": {
+        "name": "Armor Fossil",
+        "category": "misc"
+    },
+    "Assault Vest": {
+        "name": "Assault Vest",
+        "category": "misc"
+    },
+    "Berry Sweet": {
+        "name": "Berry Sweet",
+        "category": "misc"
+    },
+    "Big Root": {
+        "name": "Big Root",
+        "category": "misc"
+    },
+    "Binding Band": {
+        "name": "Binding Band",
+        "category": "misc"
+    },
+    "Black Sludge": {
+        "name": "Black Sludge",
+        "category": "misc"
+    },
+    "Blunder Policy": {
+        "name": "Blunder Policy",
+        "category": "misc"
+    },
+    "Booster Energy": {
+        "name": "Booster Energy",
+        "category": "misc"
+    },
+    "Bottle Cap": {
+        "name": "Bottle Cap",
+        "category": "misc"
+    },
+    "Bright Powder": {
+        "name": "Bright Powder",
+        "category": "misc"
+    },
+    "Cell Battery": {
+        "name": "Cell Battery",
+        "category": "misc"
+    },
+    "Chipped Pot": {
+        "name": "Chipped Pot",
+        "category": "misc"
+    },
+    "Choice Band": {
+        "name": "Choice Band",
+        "category": "misc"
+    },
+    "Choice Scarf": {
+        "name": "Choice Scarf",
+        "category": "misc"
+    },
+    "Choice Specs": {
+        "name": "Choice Specs",
+        "category": "misc"
+    },
+    "Claw Fossil": {
+        "name": "Claw Fossil",
+        "category": "misc"
+    },
+    "Clear Amulet": {
+        "name": "Clear Amulet",
+        "category": "misc"
+    },
+    "Clover Sweet": {
+        "name": "Clover Sweet",
+        "category": "misc"
+    },
+    "Cornerstone Mask": {
+        "name": "Cornerstone Mask",
+        "category": "misc"
+    },
+    "Cover Fossil": {
+        "name": "Cover Fossil",
+        "category": "misc"
+    },
+    "Covert Cloak": {
+        "name": "Covert Cloak",
+        "category": "misc"
+    },
+    "Cracked Pot": {
+        "name": "Cracked Pot",
+        "category": "misc"
+    },
+    "Damp Rock": {
+        "name": "Damp Rock",
+        "category": "misc"
+    },
+    "Dawn Stone": {
+        "name": "Dawn Stone",
+        "category": "misc"
+    },
+    "Deep Sea Scale": {
+        "name": "Deep Sea Scale",
+        "category": "misc"
+    },
+    "Deep Sea Tooth": {
+        "name": "Deep Sea Tooth",
+        "category": "misc"
+    },
+    "Destiny Knot": {
+        "name": "Destiny Knot",
+        "category": "misc"
+    },
+    "Dome Fossil": {
+        "name": "Dome Fossil",
+        "category": "misc"
+    },
+    "Dragon Scale": {
+        "name": "Dragon Scale",
+        "category": "misc"
+    },
+    "Dubious Disc": {
+        "name": "Dubious Disc",
+        "category": "misc"
+    },
+    "Dusk Stone": {
+        "name": "Dusk Stone",
+        "category": "misc"
+    },
+    "Eject Button": {
+        "name": "Eject Button",
+        "category": "misc"
+    },
+    "Eject Pack": {
+        "name": "Eject Pack",
+        "category": "misc"
+    },
+    "Electirizer": {
+        "name": "Electirizer",
+        "category": "misc"
+    },
+    "Electric Seed": {
+        "name": "Electric Seed",
+        "category": "misc"
+    },
+    "Eviolite": {
+        "name": "Eviolite",
+        "category": "misc"
+    },
+    "Expert Belt": {
+        "name": "Expert Belt",
+        "category": "misc"
+    },
+    "Fire Stone": {
+        "name": "Fire Stone",
+        "category": "misc"
+    },
+    "Flame Orb": {
+        "name": "Flame Orb",
+        "category": "misc"
+    },
+    "Float Stone": {
+        "name": "Float Stone",
+        "category": "misc"
+    },
+    "Flower Sweet": {
+        "name": "Flower Sweet",
+        "category": "misc"
+    },
+    "Focus Band": {
+        "name": "Focus Band",
+        "category": "misc"
+    },
+    "Focus Sash": {
+        "name": "Focus Sash",
+        "category": "misc"
+    },
+    "Fossilized Bird": {
+        "name": "Fossilized Bird",
+        "category": "misc"
+    },
+    "Fossilized Dino": {
+        "name": "Fossilized Dino",
+        "category": "misc"
+    },
+    "Fossilized Drake": {
+        "name": "Fossilized Drake",
+        "category": "misc"
+    },
+    "Fossilized Fish": {
+        "name": "Fossilized Fish",
+        "category": "misc"
+    },
+    "Full Incense": {
+        "name": "Full Incense",
+        "category": "misc"
+    },
+    "Galarica Cuff": {
+        "name": "Galarica Cuff",
+        "category": "misc"
+    },
+    "Galarica Wreath": {
+        "name": "Galarica Wreath",
+        "category": "misc"
+    },
+    "Gold Bottle Cap": {
+        "name": "Gold Bottle Cap",
+        "category": "misc"
+    },
+    "Grassy Seed": {
+        "name": "Grassy Seed",
+        "category": "misc"
+    },
+    "Grip Claw": {
+        "name": "Grip Claw",
+        "category": "misc"
+    },
+    "Griseous Orb": {
+        "name": "Griseous Orb",
+        "category": "misc"
+    },
+    "Hearthflame Mask": {
+        "name": "Hearthflame Mask",
+        "category": "misc"
+    },
+    "Heat Rock": {
+        "name": "Heat Rock",
+        "category": "misc"
+    },
+    "Heavy-Duty Boots": {
+        "name": "Heavy-Duty Boots",
+        "category": "misc"
+    },
+    "Helix Fossil": {
+        "name": "Helix Fossil",
+        "category": "misc"
+    },
+    "Hi-tech Earbuds": {
+        "name": "Hi-tech Earbuds",
+        "category": "misc"
+    },
+    "Ice Stone": {
+        "name": "Ice Stone",
+        "category": "misc"
+    },
+    "Icy Rock": {
+        "name": "Icy Rock",
+        "category": "misc"
+    },
+    "Iron Ball": {
+        "name": "Iron Ball",
+        "category": "misc"
+    },
+    "King's Rock": {
+        "name": "King's Rock",
+        "category": "misc"
+    },
+    "Lagging Tail": {
+        "name": "Lagging Tail",
+        "category": "misc"
+    },
+    "Lax Incense": {
+        "name": "Lax Incense",
+        "category": "misc"
+    },
+    "Leaf Stone": {
+        "name": "Leaf Stone",
+        "category": "misc"
+    },
+    "Leek": {
+        "name": "Leek",
+        "category": "misc"
+    },
+    "Leftovers": {
+        "name": "Leftovers",
+        "category": "misc"
+    },
+    "Life Orb": {
+        "name": "Life Orb",
+        "category": "misc"
+    },
+    "Light Ball": {
+        "name": "Light Ball",
+        "category": "misc"
+    },
+    "Light Clay": {
+        "name": "Light Clay",
+        "category": "misc"
+    },
+    "Loaded Dice": {
+        "name": "Loaded Dice",
+        "category": "misc"
+    },
+    "Love Sweet": {
+        "name": "Love Sweet",
+        "category": "misc"
+    },
+    "Luck Incense": {
+        "name": "Luck Incense",
+        "category": "misc"
+    },
+    "Lucky Egg": {
+        "name": "Lucky Egg",
+        "category": "misc"
+    },
+    "Lucky Punch": {
+        "name": "Lucky Punch",
+        "category": "misc"
+    },
+    "Luminous Moss": {
+        "name": "Luminous Moss",
+        "category": "misc"
+    },
+    "Lustrous Orb": {
+        "name": "Lustrous Orb",
+        "category": "misc"
+    },
+    "Macho Brace": {
+        "name": "Macho Brace",
+        "category": "misc"
+    },
+    "Magmarizer": {
+        "name": "Magmarizer",
+        "category": "misc"
+    },
+    "Mental Herb": {
+        "name": "Mental Herb",
+        "category": "misc"
+    },
+    "Metal Powder": {
+        "name": "Metal Powder",
+        "category": "misc"
+    },
+    "Metronome": {
+        "name": "Metronome",
+        "category": "misc"
+    },
+    "Mirror Herb": {
+        "name": "Mirror Herb",
+        "category": "misc"
+    },
+    "Misty Seed": {
+        "name": "Misty Seed",
+        "category": "misc"
+    },
+    "Moon Stone": {
+        "name": "Moon Stone",
+        "category": "misc"
+    },
+    "Muscle Band": {
+        "name": "Muscle Band",
+        "category": "misc"
+    },
+    "Odd Incense": {
+        "name": "Odd Incense",
+        "category": "misc"
+    },
+    "Oval Stone": {
+        "name": "Oval Stone",
+        "category": "misc"
+    },
+    "Plume Fossil": {
+        "name": "Plume Fossil",
+        "category": "misc"
+    },
+    "Power Anklet": {
+        "name": "Power Anklet",
+        "category": "misc"
+    },
+    "Power Band": {
+        "name": "Power Band",
+        "category": "misc"
+    },
+    "Power Belt": {
+        "name": "Power Belt",
+        "category": "misc"
+    },
+    "Power Bracer": {
+        "name": "Power Bracer",
+        "category": "misc"
+    },
+    "Power Herb": {
+        "name": "Power Herb",
+        "category": "misc"
+    },
+    "Power Lens": {
+        "name": "Power Lens",
+        "category": "misc"
+    },
+    "Power Weight": {
+        "name": "Power Weight",
+        "category": "misc"
+    },
+    "Prism Scale": {
+        "name": "Prism Scale",
+        "category": "misc"
+    },
+    "Protective Pads": {
+        "name": "Protective Pads",
+        "category": "misc"
+    },
+    "Protector": {
+        "name": "Protector",
+        "category": "misc"
+    },
+    "Psychic Seed": {
+        "name": "Psychic Seed",
+        "category": "misc"
+    },
+    "Punching Glove": {
+        "name": "Punching Glove",
+        "category": "misc"
+    },
+    "Pure Incense": {
+        "name": "Pure Incense",
+        "category": "misc"
+    },
+    "Quick Claw": {
+        "name": "Quick Claw",
+        "category": "misc"
+    },
+    "Quick Powder": {
+        "name": "Quick Powder",
+        "category": "misc"
+    },
+    "Rare Bone": {
+        "name": "Rare Bone",
+        "category": "misc"
+    },
+    "Razor Claw": {
+        "name": "Razor Claw",
+        "category": "misc"
+    },
+    "Razor Fang": {
+        "name": "Razor Fang",
+        "category": "misc"
+    },
+    "Reaper Cloth": {
+        "name": "Reaper Cloth",
+        "category": "misc"
+    },
+    "Red Card": {
+        "name": "Red Card",
+        "category": "misc"
+    },
+    "Ribbon Sweet": {
+        "name": "Ribbon Sweet",
+        "category": "misc"
+    },
+    "Ring Target": {
+        "name": "Ring Target",
+        "category": "misc"
+    },
+    "Rock Incense": {
+        "name": "Rock Incense",
+        "category": "misc"
+    },
+    "Rocky Helmet": {
+        "name": "Rocky Helmet",
+        "category": "misc"
+    },
+    "Room Service": {
+        "name": "Room Service",
+        "category": "misc"
+    },
+    "Root Fossil": {
+        "name": "Root Fossil",
+        "category": "misc"
+    },
+    "Rose Incense": {
+        "name": "Rose Incense",
+        "category": "misc"
+    },
+    "Sachet": {
+        "name": "Sachet",
+        "category": "misc"
+    },
+    "Safety Goggles": {
+        "name": "Safety Goggles",
+        "category": "misc"
+    },
+    "Scope Lens": {
+        "name": "Scope Lens",
+        "category": "misc"
+    },
+    "Sea Incense": {
+        "name": "Sea Incense",
+        "category": "misc"
+    },
+    "Shed Shell": {
+        "name": "Shed Shell",
+        "category": "misc"
+    },
+    "Shell Bell": {
+        "name": "Shell Bell",
+        "category": "misc"
+    },
+    "Shiny Stone": {
+        "name": "Shiny Stone",
+        "category": "misc"
+    },
+    "Skull Fossil": {
+        "name": "Skull Fossil",
+        "category": "misc"
+    },
+    "Smooth Rock": {
+        "name": "Smooth Rock",
+        "category": "misc"
+    },
+    "Snowball": {
+        "name": "Snowball",
+        "category": "misc"
+    },
+    "Soul Dew": {
+        "name": "Soul Dew",
+        "category": "misc"
+    },
+    "Star Sweet": {
+        "name": "Star Sweet",
+        "category": "misc"
+    },
+    "Sticky Barb": {
+        "name": "Sticky Barb",
+        "category": "misc"
+    },
+    "Strawberry Sweet": {
+        "name": "Strawberry Sweet",
+        "category": "misc"
+    },
+    "Sun Stone": {
+        "name": "Sun Stone",
+        "category": "misc"
+    },
+    "Sweet Apple": {
+        "name": "Sweet Apple",
+        "category": "misc"
+    },
+    "Syrupy Apple": {
+        "name": "Syrupy Apple",
+        "category": "misc"
+    },
+    "Tart Apple": {
+        "name": "Tart Apple",
+        "category": "misc"
+    },
+    "Terrain Extender": {
+        "name": "Terrain Extender",
+        "category": "misc"
+    },
+    "Thick Club": {
+        "name": "Thick Club",
+        "category": "misc"
+    },
+    "Throat Spray": {
+        "name": "Throat Spray",
+        "category": "misc"
+    },
+    "Thunder Stone": {
+        "name": "Thunder Stone",
+        "category": "misc"
+    },
+    "Toxic Orb": {
+        "name": "Toxic Orb",
+        "category": "misc"
+    },
+    "Upgrade": {
+        "name": "Upgrade",
+        "category": "misc"
+    },
+    "Utility Umbrella": {
+        "name": "Utility Umbrella",
+        "category": "misc"
+    },
+    "Water Stone": {
+        "name": "Water Stone",
+        "category": "misc"
+    },
+    "Wave Incense": {
+        "name": "Wave Incense",
+        "category": "misc"
+    },
+    "Weakness Policy": {
+        "name": "Weakness Policy",
+        "category": "misc"
+    },
+    "Wellspring Mask": {
+        "name": "Wellspring Mask",
+        "category": "misc"
+    },
+    "Whipped Dream": {
+        "name": "Whipped Dream",
+        "category": "misc"
+    },
+    "White Herb": {
+        "name": "White Herb",
+        "category": "misc"
+    },
+    "Wide Lens": {
+        "name": "Wide Lens",
+        "category": "misc"
+    },
+    "Wise Glasses": {
+        "name": "Wise Glasses",
+        "category": "misc"
+    },
+    "Zoom Lens": {
+        "name": "Zoom Lens",
+        "category": "misc"
+    }
+}

@@ -1,4 +1,5 @@
 from moves import *
+from items import *
 from random import choices
 import re
 
@@ -193,7 +194,7 @@ class MiniMon:
     def __init__(self, species: Species | str, form: Form | str | None = None, **kwargs):
         self.nickname = kwargs.get("nickname")
         if isinstance(species, str):
-            self.species = national_dex[species]
+            self.species = all_species[species]
         else:
             self.species = species
         self.form = self.species.get_form(form)
@@ -205,7 +206,8 @@ class MiniMon:
         self.evs = kwargs.get("evs", [0, 0, 0, 0, 0, 0])
         self.ability = self.form.primary_ability if kwargs.get("ability") not in self.form.legal_abilities \
             else kwargs.get("ability")
-        self.held_item = kwargs.get("held_item")
+        self.held_item = None if kwargs.get("held_item") not in all_items \
+            else kwargs.get("held_item")
         self.tera_type = self.form.type1 if kwargs.get("tera_type") not in types \
             else kwargs.get("tera_type")
         self.move_names = [g for g in kwargs.get("move_names", []) if g in all_moves][:4]
@@ -368,8 +370,8 @@ class MiniMon:
         return MiniMon.build(**ret)
 
 
-national_dex = {k: Species.from_json(v) for k, v in json.load(open("data/mons.json")).items()}
-fixed_species_and_forms = {fix(g): (g, "") for g in national_dex} | {
+all_species = {k: Species.from_json(v) for k, v in json.load(open("data/mons.json")).items()}
+fixed_species_and_forms = {fix(g): (g, "") for g in all_species} | {
     fix(MiniMon(sp, form=fm).species_and_form): (sp, fm.name)
-    for sp, v in national_dex.items() for fm in v.forms.values()
+    for sp, v in all_species.items() for fm in v.forms.values()
 }
