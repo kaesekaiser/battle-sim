@@ -70,11 +70,11 @@ class Move:
         return self.power if self.power else "—"
 
 
-moves = {g: Move.from_json(j) for g, j in json.load(open("data/moves.json", "r")).items()}
+all_moves = {g: Move.from_json(j) for g, j in json.load(open("data/moves.json", "r")).items()}
 
 
 def find_move(s: str) -> Move:
     try:
-        return [copy(j) for g, j in moves.items() if fix(g) == fix(s)][0]
+        return [copy(j) for g, j in all_moves.items() if fix(g) == fix(s)][0]
     except IndexError:
         raise ValueError(f"Invalid move: {s}")
