@@ -39,9 +39,9 @@ class Team:
             self.set_mon(mon, len(self.mons))
             self.order.append(len(self.order))
 
-    def update_mon(self, mon: FieldMon):
+    def recall_mon(self, mon: FieldMon):
         if mon.id in self.mons:
-            self.mons[mon.id] = mon.json()
+            self.mons[mon.id] = mon.json() | {"field_status": "fainted" if mon.fainted else "benched"}
 
     def swap_ids(self, id1: int, id2: int):
         transfer = self.mons[id1]
@@ -54,7 +54,7 @@ class Team:
 
     def change_id(self, new_id: int):
         self.id = new_id
-        for old_id, mon in self.mons.items():
+        for old_id, mon in list(self.mons.items()):
             mon["id"] = round(mon["id"] + new_id * self._size)
             mon["team_id"] = new_id
             del self.mons[old_id]
@@ -70,13 +70,11 @@ class Team:
 
     def inline_display(self, ignore: int = 0):
         return "\n".join(
-            f"[{n + 1}] {FieldMon.from_json(g).inline_display()}" + (" (on field)" if g.get("on_field") else "")
+            f"[{n + 1}] {FieldMon.from_json(g).inline_display()}" +
+            (f" ({g['field_status']})" if g["field_status"] != "benched" else "")
             for n, g in enumerate(self.ordered_mons) if n >= ignore
         )
 
     @property
     def reserves(self) -> list[dict]:
-        return [g for g in self.mons.values() if not (g.get("fainted") or g.get("on_field"))]
-
-    def has_reserves(self, field_size: int = 1):
-        return all(g.get("fainted") for g in self.ordered_mons[field_size:])
+        return [g for g in self.mons.values() if g["field_status"] == "benched"]

@@ -31,11 +31,12 @@ class Battle:
 
     def deploy_mon(self, team_id: int, mon_id: int, position: int, announce: bool = True):
         if mon := self.teams[team_id][mon_id]:
-            if announce:
-                if self.at(position):
+            if self.at(position):
+                if announce:
                     self.output(f"{self.teams[team_id].trainer} recalled {self.at(position).name}!")
+                self.teams[team_id].recall_mon(self.at(position))
             self.field.deploy_mon(FieldMon.from_json(mon | {"position": position}), position)
-            mon["on_field"] = True
+            mon["field_status"] = "on field"
             if announce:
                 self.output(f"{self.teams[team_id].trainer} sent out {self.at(position).name}!")
         else:
@@ -188,7 +189,7 @@ class Battle:
         if mon.remaining_hp == 0 and not mon.fainted:
             mon.fainted = True
             self.output(f"{mon.name} fainted!")
-            self.teams[mon.team_id].update_mon(mon)
+            self.teams[mon.team_id].recall_mon(mon)
 
     def check_winner(self) -> int | None:
         for n, t in enumerate(self.teams):
@@ -202,6 +203,9 @@ class Battle:
     def special_actions(self, mon: FieldMon):
         if mon.next_action == "!unplugged":
             self.output(f"{mon.name}'s Controller is unplugged. Try using a Player or BasicAI object.")
+        if mon.next_action.startswith("!switch"):
+            new_id = int(mon.next_action.split(":")[1])
+            self.deploy_mon(mon.team_id, new_id, mon.position)
 
     def run(self):
         self.init_battle()

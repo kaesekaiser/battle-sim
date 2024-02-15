@@ -454,7 +454,10 @@ class FieldMon(MiniMon):
         return FieldMon(**js)
 
     def json(self):
-        return {**self.mini_pack(False), "moves": [g.pack() for g in self.moves.values()]} | \
+        return {
+            **self.mini_pack(False),
+            "moves": [g.pack() for g in self.moves.values()],
+            "field_status": self.field_status} | \
             ({"nickname": self.nickname} if self.nickname else {}) | \
             ({"remaining_hp": self.remaining_hp} if self.hp != self.remaining_hp else {}) | \
             ({"status_condition": self.status_condition} if self.status_condition else {}) | \
@@ -462,7 +465,6 @@ class FieldMon(MiniMon):
             ({"terastallized": True} if self.terastallized else {}) | \
             ({"id": self.id} if self.id != -1 else {}) | \
             ({"team_id": self.team_id} if self.team_id != -1 else {}) | \
-            ({"on_field": True} if self.position != -1 and not self.fainted else {}) | \
             ({"fainted": True} if self.fainted else {})
 
     @property
@@ -481,7 +483,13 @@ class FieldMon(MiniMon):
     def next_action_priority(self):
         if self.next_action in self.moves:
             return self.moves[self.next_action].priority
+        if self.next_action.startswith("!switch"):
+            return 10
         return 0
+
+    @property
+    def field_status(self):
+        return "fainted" if self.fainted else "on field" if self.position != -1 else "benched"
 
     def heal(self, healing: int) -> int:
         initial_hp = self.remaining_hp

@@ -33,8 +33,8 @@ class Controller(Team):
 
     def get_replacement(self, position: int) -> int:
         """Gets the ID number of a replacement for a mon that fainted in the preceding turn."""
-        if available := [g for g in self.mons.values() if not (g.get("on_field") or g.get("fainted"))]:
-            return available[0]["id"]
+        if self.reserves:
+            return self.reserves[0]["id"]
         return None
 
 
@@ -50,14 +50,27 @@ class Player(Controller):
     def get_action(self, mon: FieldMon):
         print(f"What will {mon.name} do?\n" + ("\n".join(g.inline_display() for g in mon.moves.values())))
         while True:
-            selection = input("Input a move: ")
+            selection = fix(input("Input a move: "))
             if can_int(selection):
                 if not (1 <= int(selection) <= len(mon.moves)):
                     continue
                 else:
                     move = mon.move_names[int(selection) - 1]
+            elif selection == "switch":
+                if not self.reserves:
+                    print("There are no available mons to switch to!")
+                    continue
+                print()
+                if (switch := self.switch_dialog(mon)) == "cancel":
+                    continue
+                else:
+                    mon.next_action = f"!switch:{switch}"
+                    self.mons[mon.id]["field_status"] = "switching out"
+                    self.mons[switch]["field_status"] = "switching in"
+                    print(f"{MiniMon.from_mini_pack(self.mons[switch]).name} will switch in for {mon.name}.")
+                    return
             else:
-                move = fixed_moves.get(fix(selection))
+                move = fixed_moves.get(selection)
             if move in mon.moves and (targets := self.get_targets(mon.position, all_moves[move])):
                 mon.next_action = move
                 mon.targets = targets
@@ -80,16 +93,15 @@ class Player(Controller):
             print("No valid targets for that move!")
         return possible_targets
 
-    def get_replacement(self, position: int) -> int:
-        outgoing_mon = self.field.at(position)
+    def switch_dialog(self, outgoing_mon: FieldMon, force: bool = False) -> int | str:
         print(f"{self.inline_display()}\n")
         while True:
-            selection = input(f"Which mon will replace {outgoing_mon.name}? ")
-            try:
-                selection = int(selection.strip())
-            except ValueError:
-                continue
-            else:
-                if self.at(selection - 1) in self.reserves:
-                    print()
-                    return self.order[selection - 1]
+            selection = fix(input(f"Which mon will replace {outgoing_mon.name}? "))
+            if can_int(selection):
+                if self.at(int(selection) - 1) in self.reserves:
+                    return self.order[int(selection) - 1]
+            if (not force) and selection in ["exit", "back", "cancel"]:
+                return "cancel"
+
+    def get_replacement(self, position: int) -> int:
+        return self.switch_dialog(self.field.at(position), force=True)
