@@ -16,8 +16,31 @@ class Field:
         return self.positions.get(position)
 
     @property
-    def active_mons(self) -> list[FieldMon]:
+    def fielded_mons(self) -> list[FieldMon]:
         return [g for g in self.positions.values() if g is not None]
+
+    @property
+    def living_mons(self) -> list[FieldMon]:
+        return [g for g in self.fielded_mons if g]
+
+    def targets(self, from_position: int, target: str) -> list[int]:
+        if target == "user" or target == "all":
+            return [from_position]
+        if self.size == 1:
+            return [int(not from_position)]
+
+        possible_targets = [g.position for g in self.living_mons]
+        args = target.split("-")
+        if "adj" in args:
+            possible_targets = [g for g in possible_targets if -1 <= g % self.size - from_position % self.size <= 1]
+        if "foe" in args:
+            possible_targets = [g for g in possible_targets if g // self.size != from_position // self.size]
+        if "ally" in args:
+            possible_targets = [g for g in possible_targets if g // self.size == from_position // self.size]
+        if from_position in possible_targets and "user" not in args:
+            possible_targets.remove(from_position)
+
+        return possible_targets
 
     def diagram(self, select: list[int] = (), from_side: int = 0, include_hp: bool = True):
         ret = [

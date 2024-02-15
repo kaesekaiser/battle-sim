@@ -434,7 +434,7 @@ class FieldMon(MiniMon):
         self.id = kwargs.pop("id", -1)
         self.team_id = kwargs.pop("team_id", -1)
         self.position = kwargs.pop("position", -1)
-        self.next_action = None
+        self.next_action = ""
         self.targets = []
 
         self.fainted = kwargs.pop("fainted", False)  # set manually to keep from sending multiple "x fainted!" messages

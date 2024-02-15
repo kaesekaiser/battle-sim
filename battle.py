@@ -1,15 +1,6 @@
-from field import *
+from controllers import *
 from time import sleep
 from random import random, randrange
-
-
-def can_int(s: str) -> bool:
-    try:
-        int(s)
-    except ValueError:
-        return False
-    else:
-        return True
 
 
 def raw_damage(attacker_level: int, attacking_stat: int, defending_stat: int, power: int):
@@ -17,7 +8,7 @@ def raw_damage(attacker_level: int, attacking_stat: int, defending_stat: int, po
 
 
 class Battle:
-    def __init__(self, teams: list[Team], size: int = 1):
+    def __init__(self, teams: list[Controller], size: int = 1):
         self.teams = teams[:2]
         teams[0].change_id(0)
         teams[1].change_id(1)
@@ -27,6 +18,9 @@ class Battle:
         self.size = size
 
         self.field = Field(size=self.size)
+        self.teams[0].set_field(self.field)
+        self.teams[1].set_field(self.field)
+
         self.last_output = ""
 
     def output(self, text: str, sleep_time: float = 0.5):
@@ -51,67 +45,14 @@ class Battle:
         return self.field.at(position)
 
     @property
-    def active_mons(self) -> list[FieldMon]:
-        return self.field.active_mons
+    def fielded_mons(self) -> list[FieldMon]:
+        return self.field.fielded_mons
 
     def init_battle(self):
         for n in range(self.size):
             self.deploy_mon(0, n, n)
         for n in range(self.size, self.size * 2):
             self.deploy_mon(1, n % self.size + 6, self.size * 3 - 1 - n)  # deploy to trainer's left
-
-    def get_targets(self, from_position: int, target: str, return_possible: bool = False) -> list[int]:
-        if target == "user" or target == "all":
-            return [from_position]
-        if self.size == 1:
-            return [int(not from_position)]
-
-        possible_targets = [g.position for g in self.active_mons]
-        args = target.split("-")
-        if "adj" in args:
-            possible_targets = [g for g in possible_targets if -1 <= g % self.size - from_position % self.size <= 1]
-        if "foe" in args:
-            possible_targets = [g for g in possible_targets if g // self.size != from_position // self.size]
-        if "ally" in args:
-            possible_targets = [g for g in possible_targets if g // self.size == from_position // self.size]
-        if from_position in possible_targets and "user" not in args:
-            possible_targets.remove(from_position)
-
-        if return_possible:
-            return possible_targets
-
-        if "all" in args or len(possible_targets) == 1:
-            if not possible_targets:
-                self.output("No valid targets for this move!")
-            return possible_targets
-        else:
-            # self.output(self.field_diagram(select=possible_targets, from_side=(from_position >= self.size)), 0)
-            while True:
-                selection = input("Which position will you target? ")
-                try:
-                    selection = int(selection.strip())
-                except ValueError:
-                    continue
-                else:
-                    if selection - 1 in possible_targets:
-                        return [selection - 1]
-
-    def get_action(self, mon: FieldMon):
-        self.output(f"What will {mon.name} do?\n" + ("\n".join(g.inline_display() for g in mon.moves.values())), 0)
-        while True:
-            selection = input("Input a move: ")
-            if can_int(selection):
-                if not (1 <= int(selection) <= len(mon.moves)):
-                    continue
-                else:
-                    move = mon.move_names[int(selection) - 1]
-            else:
-                move = fixed_moves.get(fix(selection))
-            if move in mon.moves and (targets := self.get_targets(mon.position, all_moves[move].target)):
-                mon.next_action = move
-                mon.targets = targets
-                self.output("", 0)
-                return
 
     def turn_order(self) -> list[FieldMon]:
         priorities = [
@@ -120,20 +61,21 @@ class Battle:
                 g.spe,
                 random(),
                 g.position
-            ] for g in self.active_mons
+            ] for g in self.fielded_mons
         ]
         return [self.at(g[3]) for g in sorted(priorities, reverse=True)]
 
     def double_check_targets(self, mon: FieldMon):
         if not mon.move_selection:
             return
-        possible_targets = self.get_targets(mon.position, mon.move_selection.target, return_possible=True)
+        possible_targets = self.field.targets(mon.position, mon.move_selection.target)
         if not (new_targets := [g for g in mon.targets if g in possible_targets]):
-            if len(mon.targets) == 1 and len(possible_targets) >= 1:
-                mon.targets = [possible_targets[0]]
-            else:
-                mon["no_target"] = True
-                mon.targets = [mon.position]
+            if mon.move_selection.is_single_target:
+                if same_side_targets := [g for g in possible_targets if g // self.size == mon.targets[0] // self.size]:
+                    mon.targets = [same_side_targets[0]]
+                    return
+            mon["no_target"] = True
+            mon.targets = [mon.position]
         else:
             mon.targets = new_targets
 
@@ -216,13 +158,15 @@ class Battle:
         self.check_fainted(defender)
 
     def end_of_turn(self):
-        for mon in self.active_mons:
+        for mon in self.fielded_mons:
             self.individual_end_of_turn(mon)
+        if self.last_output:
+            self.output("", 0)
 
     def individual_end_of_turn(self, mon: FieldMon):
         if mon.fainted:
-            if self.teams[mon.team_id].has_reserves(self.size):
-                self.deploy_mon(mon.team_id, self.get_replacement(mon.position), mon.position)
+            if self.teams[mon.team_id].reserves:
+                self.deploy_mon(mon.team_id, self.teams[mon.team_id].get_replacement(mon.position), mon.position)
             else:
                 self.field.deploy_mon(None, mon.position)
         else:
@@ -230,26 +174,11 @@ class Battle:
             mon.next_action = None
             mon.targets = []
 
-    def get_replacement(self, position: int) -> int:
-        outgoing_mon = self.at(position)
-        team = self.teams[outgoing_mon.team_id]
-        self.output(("" if self.last_output == "" else "\n") + f"{team.inline_display()}\n", 0)
-        while True:
-            selection = input(f"Which mon will replace {outgoing_mon.name}? ")
-            try:
-                selection = int(selection.strip())
-            except ValueError:
-                continue
-            else:
-                if selection - 1 in range(len(team)) and not team.at(selection - 1).get("fainted") \
-                        and not team.at(selection - 1).get("on_field"):
-                    return team.order[selection - 1]
-
     def check_fainted(self, mon: FieldMon):
         if mon.remaining_hp == 0 and not mon.fainted:
             mon.fainted = True
             self.output(f"{mon.name} fainted!")
-            self.teams[mon.team_id].set_mon(mon.json(), mon.id)
+            self.teams[mon.team_id].update_mon(mon)
 
     def check_winner(self) -> int | None:
         for n, t in enumerate(self.teams):
@@ -260,22 +189,30 @@ class Battle:
         if (winner := self.check_winner()) is not None:
             return self.output(f"{self.teams[winner].trainer} wins!", 0)
 
+    def special_actions(self, mon: FieldMon):
+        if mon.next_action == "!unplugged":
+            self.output(f"{mon.name}'s Controller is unplugged. Try using a Player or BasicAI object.")
+
     def run(self):
         self.init_battle()
+        self.output("", 0)
 
         while True:
-            self.output(self.field.diagram())
+            self.output(self.field.diagram() + "\n")
 
-            for mon in self.active_mons:
-                self.get_action(mon)
+            for team in self.teams:
+                team.set_actions()
 
             for mon in self.turn_order():
                 if not mon.fainted:
-                    self.double_check_targets(mon)
-                    for target in mon.targets:
-                        self.use_move(mon, self.at(target), mon.moves[mon.next_action])
-                        if self.check_winner() is not None:
-                            return self.output_winner()
+                    if mon.next_action.startswith("!"):
+                        self.special_actions(mon)
+                    else:
+                        self.double_check_targets(mon)
+                        for target in mon.targets:
+                            self.use_move(mon, self.at(target), mon.moves[mon.next_action])
+                            if self.check_winner() is not None:
+                                return self.output_winner()
                     self.output("", 0)
 
             self.end_of_turn()

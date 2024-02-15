@@ -39,6 +39,10 @@ class Team:
             self.set_mon(mon, len(self.mons))
             self.order.append(len(self.order))
 
+    def update_mon(self, mon: FieldMon):
+        if mon.id in self.mons:
+            self.mons[mon.id] = mon.json()
+
     def swap_ids(self, id1: int, id2: int):
         transfer = self.mons[id1]
         self.mons[id1] = self.mons[id2] | {"id": id1}
@@ -70,5 +74,9 @@ class Team:
             for n, g in enumerate(self.ordered_mons) if n >= ignore
         )
 
+    @property
+    def reserves(self) -> list[dict]:
+        return [g for g in self.mons.values() if not (g.get("fainted") or g.get("on_field"))]
+
     def has_reserves(self, field_size: int = 1):
-        return not all(g.get("fainted") for g in self.ordered_mons[field_size:])
+        return all(g.get("fainted") for g in self.ordered_mons[field_size:])

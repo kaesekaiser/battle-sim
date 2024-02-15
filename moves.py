@@ -86,6 +86,14 @@ class Move:
     def power_str(self):
         return self.power if self.power else "—"
 
+    @property
+    def targs(self):
+        return self.target.split("-")
+
+    @property
+    def is_single_target(self):
+        return "any" in self.targs or self.target == "user"
+
     def inline_display(self):
         return f"[{self.name.ljust(16)} {str(self.remaining_pp).rjust(2, '0')}/{str(self.pp).rjust(2, '0')}]"
 
