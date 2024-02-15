@@ -1,4 +1,4 @@
-from teams import *
+from field import *
 from time import sleep
 from random import random, randrange
 
@@ -26,7 +26,7 @@ class Battle:
             raise ValueError("Size must be between 1 and 3.")
         self.size = size
 
-        self.field_positions = {}  # position (int): mon (FieldMon | None)
+        self.field = Field(size=self.size)
         self.last_output = ""
 
     def output(self, text: str, sleep_time: float = 0.5):
@@ -40,35 +40,19 @@ class Battle:
             if announce:
                 if self.at(position):
                     self.output(f"{self.teams[team_id].trainer} recalled {self.at(position).name}!")
-            self.field_positions[position] = FieldMon.from_json(mon | {"position": position})
+            self.field.deploy_mon(FieldMon.from_json(mon | {"position": position}), position)
             mon["on_field"] = True
             if announce:
                 self.output(f"{self.teams[team_id].trainer} sent out {self.at(position).name}!")
         else:
-            self.field_positions[position] = None
+            self.field.deploy_mon(None, position)
 
     def at(self, position: int) -> FieldMon | None:
-        return self.field_positions.get(position)
+        return self.field.at(position)
 
     @property
     def active_mons(self) -> list[FieldMon]:
-        return [g for g in self.field_positions.values() if g is not None]
-
-    def field_diagram(self, select: list[int] = (), from_side: int = 0, include_hp: bool = True):
-        ret = [
-            f"{'->' if n in select else '  '}[{n + 1}] "
-            f"{'---' if not self.at(n) else self.at(n).species_and_form}"
-            f"{'' if not self.at(n) or not include_hp else (' ' + self.at(n).hp_display())}"
-            f"{'<-' if n in select else '  '}"
-            for n in range(self.size * 2)
-        ]
-        ret = [ret[self.size:], ret[:self.size]]
-        if from_side == 1:
-            ret = [list(ret[1].__reversed__()), list(ret[0].__reversed__())]
-        max_lengths = [max(len(ret[0][g]), len(ret[1][g])) for g in range(self.size)]
-        return ("" if self.last_output == "" else "\n") + ("\n".join(
-            " ".join(j.ljust(max_lengths[n]) for n, j in enumerate(g)) for g in ret
-        )) + "\n"
+        return self.field.active_mons
 
     def init_battle(self):
         for n in range(self.size):
@@ -82,7 +66,7 @@ class Battle:
         if self.size == 1:
             return [int(not from_position)]
 
-        possible_targets = [k for k, v in self.field_positions.items() if v]
+        possible_targets = [g.position for g in self.active_mons]
         args = target.split("-")
         if "adj" in args:
             possible_targets = [g for g in possible_targets if -1 <= g % self.size - from_position % self.size <= 1]
@@ -138,7 +122,7 @@ class Battle:
                 g.position
             ] for g in self.active_mons
         ]
-        return [self.field_positions[g[3]] for g in sorted(priorities, reverse=True)]
+        return [self.at(g[3]) for g in sorted(priorities, reverse=True)]
 
     def double_check_targets(self, mon: FieldMon):
         if not mon.move_selection:
@@ -240,7 +224,7 @@ class Battle:
             if self.teams[mon.team_id].has_reserves(self.size):
                 self.deploy_mon(mon.team_id, self.get_replacement(mon.position), mon.position)
             else:
-                self.field_positions[mon.position] = None
+                self.field.deploy_mon(None, mon.position)
         else:
             mon["has_executed"] = False
             mon.next_action = None
@@ -280,7 +264,7 @@ class Battle:
         self.init_battle()
 
         while True:
-            self.output(self.field_diagram())
+            self.output(self.field.diagram())
 
             for mon in self.active_mons:
                 self.get_action(mon)
