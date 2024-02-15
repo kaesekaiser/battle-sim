@@ -93,6 +93,13 @@ class Battle:
             return True
         return False
 
+    def but_it_failed(self, attacker: FieldMon, defender: FieldMon, move: Move):
+        if defender.type_effectiveness(move.type) == 0:
+            return self.output(f"It doesn't affect {defender.name}...")
+        if not self.accuracy_check(attacker, defender, move):
+            return self.output(f"{attacker.name}'s attack missed!")
+        return True
+
     def get_damage(self, attacker: FieldMon, defender: FieldMon, move: Move):
         multipliers = []
         if len(attacker.targets) > 1:
@@ -149,8 +156,11 @@ class Battle:
 
         move = copy(move)  # create copy after deducting PP to avoid permanently changing move power, etc.
 
-        if not self.accuracy_check(attacker, defender, move):
-            return self.output(f"{attacker.name}'s attack missed!")
+        if not self.but_it_failed(attacker, defender, move):
+            attacker["failed_attack"] = True
+            return
+        else:
+            attacker["failed_attack"] = False
 
         damage = self.get_damage(attacker, defender, move)
         damage_dealt = defender.damage(damage)
