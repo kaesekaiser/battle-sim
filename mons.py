@@ -8,6 +8,13 @@ genders = male, female, genderless = "Male", "Female", "Genderless"
 six_stats = ["HP", "Atk", "Def", "SpA", "SpD", "Spe"]
 
 
+def product(iterable: iter) -> int | float:
+    ret = 1
+    for i in iterable:
+        ret *= i
+    return ret
+
+
 class Form:
     def __init__(self, hp: int, atk: int, dfn: int, spa: int, spd: int, spe: int, type1: str, type2: str | None,
                  height: float, weight: float, abilities: dict[str, str | None], name: str = ""):
@@ -214,7 +221,7 @@ class MiniMon:
         self.ability = self.form.primary_ability if kwargs.get("ability") not in self.form.legal_abilities \
             else kwargs.get("ability")
         self.held_item = None if kwargs.get("held_item") not in all_items \
-            else kwargs.get("held_item")
+            else all_items[kwargs.get("held_item")]
         self.tera_type = self.form.type1 if kwargs.get("tera_type") not in types \
             else kwargs.get("tera_type")
         self.move_names = [g for g in kwargs.get("move_names", []) if g in all_moves][:4]
@@ -229,11 +236,19 @@ class MiniMon:
         return gender
 
     @property
+    def name(self):
+        return self.nickname if self.nickname else self.species_and_form
+
+    @property
     def species_and_form(self):
         if not self.form.name:
             return self.species.name
         else:
             return f"{self.species.name}-{'-'.join(self.form.name.split())}"
+
+    @property
+    def verbose_name(self):
+        return f"{self.nickname} ({self.species_and_form})" if self.nickname else self.species_and_form
 
     @property
     def nature_index(self):
@@ -302,7 +317,7 @@ class MiniMon:
     def pokepaste(self):
         name_line = (f"{self.nickname} ({self.species_and_form})" if self.nickname else self.species_and_form) + \
             (f" ({self.gender[0]})" if self.has_nontrivial_gender else "") + \
-            (f" @ {self.held_item}" if self.held_item else "")
+            (f" @ {self.held_item.name}" if self.held_item else "")
         nontrivial_evs = [f"{self.evs[n]} {six_stats[n]}" for n in range(6) if self.evs[n] != 0]
         nontrivial_ivs = [f"{self.ivs[n]} {six_stats[n]}" for n in range(6) if self.ivs[n] != 31]
         return (
@@ -376,11 +391,15 @@ class MiniMon:
         return {
             "species_and_form": self.species_and_form, "level": self.level, "gender": self.gender,
             "nature": self.nature, "ivs": self.ivs, "evs": self.evs, "ability": self.ability,
-            "held_item": self.held_item, "tera_type": self.tera_type
+            "held_item": (self.held_item.name if self.held_item else None), "tera_type": self.tera_type
         } | ({"move_names": self.move_names} if include_move_names else {})
 
-    def build(self):
-        return FieldMon(**self.mini_pack())
+    @staticmethod
+    def from_mini_pack(mini_pack: dict):
+        return MiniMon(**mini_pack)
+
+    def deploy(self, **kwargs):
+        return FieldMon(**self.mini_pack(), **kwargs)
 
 
 all_species = {k: Species.from_json(v) for k, v in json.load(open("data/mons.json")).items()}
@@ -394,7 +413,7 @@ class FieldMon(MiniMon):
     def __init__(self, **kwargs):  # should never be called directly; use other functions to build
         super().__init__(**kwargs)
 
-        if moves := kwargs.pop("moves", None):
+        if moves := kwargs.pop("moves", []):
             self.moves = {g["name"]: Move.from_pack(**g) for g in moves}
             self.move_names = list(self.moves.keys())
         else:
@@ -403,12 +422,26 @@ class FieldMon(MiniMon):
         if self.gender not in genders:  # set_gender call should be unnecessary but it can't hurt
             self.gender = self.set_gender(self.species.random_gender())
 
-        self.remaining_hp = self.hp - kwargs.pop("damage", 0)
+        self.remaining_hp = kwargs.pop("remaining_hp", self.hp)
         self.status_condition = kwargs.pop("status_condition", None)
         self.status_timer = kwargs.pop("status_timer", 0)
         self.terastallized = kwargs.pop("terastallized", False)
 
+        self.type1 = self.form.type1
+        self.type2 = self.form.type2
+        self.type3 = None
+
+        self.id = kwargs.pop("id", -1)
+        self.team_id = kwargs.pop("team_id", -1)
+        self.position = kwargs.pop("position", -1)
+        self.next_action = None
+        self.targets = []
+
+        self.fainted = kwargs.pop("fainted", False)  # set manually to keep from sending multiple "x fainted!" messages
         self.other_data = kwargs
+
+    def __bool__(self):
+        return not self.fainted
 
     def __getitem__(self, item):
         return self.other_data.get(item)
@@ -423,7 +456,53 @@ class FieldMon(MiniMon):
     def json(self):
         return {**self.mini_pack(False), "moves": [g.pack() for g in self.moves.values()]} | \
             ({"nickname": self.nickname} if self.nickname else {}) | \
-            ({"damage": round(self.hp - self.remaining_hp)} if self.hp != self.remaining_hp else {}) | \
+            ({"remaining_hp": self.remaining_hp} if self.hp != self.remaining_hp else {}) | \
             ({"status_condition": self.status_condition} if self.status_condition else {}) | \
             ({"status_timer": self.status_timer} if self.status_timer else {}) | \
-            ({"terastallized": True} if self.terastallized else {})
+            ({"terastallized": True} if self.terastallized else {}) | \
+            ({"id": self.id} if self.id != -1 else {}) | \
+            ({"team_id": self.team_id} if self.team_id != -1 else {}) | \
+            ({"on_field": True} if self.position != -1 and not self.fainted else {}) | \
+            ({"fainted": True} if self.fainted else {})
+
+    @property
+    def types(self):
+        return tuple(g for g in [self.type1, self.type2, self.type3] if g is not None)
+
+    @property
+    def defensive_types(self):
+        return (self.tera_type, ) if self.terastallized else self.types
+
+    @property
+    def move_selection(self) -> Move | None:
+        return self.moves.get(self.next_action)
+
+    @property
+    def next_action_priority(self):
+        if self.next_action in self.moves:
+            return self.moves[self.next_action].priority
+        return 0
+
+    def heal(self, healing: int) -> int:
+        initial_hp = self.remaining_hp
+        self.remaining_hp = min(self.hp, self.remaining_hp + healing)
+        return self.remaining_hp - initial_hp
+
+    def damage(self, damage: int) -> int:
+        initial_hp = self.remaining_hp
+        self.remaining_hp = max(0, self.remaining_hp - damage)
+        return initial_hp - self.remaining_hp
+
+    def type_effectiveness(self, attacking_type: str, overwrites: dict[tuple[str, str], float] = ()) -> float:
+        if not attacking_type:
+            return 1
+        return round(product(
+            dict(overwrites).get((attacking_type, g), type_effectiveness[attacking_type][g])
+            for g in self.defensive_types
+        ), 3)
+
+    def hp_display(self, percentage: bool = False):
+        return f"[{round(100 * self.remaining_hp / self.hp)}%]" if percentage else f"[{self.remaining_hp}/{self.hp}]"
+
+    def inline_display(self, hp_percentage: bool = False):
+        return f"{self.verbose_name} {self.hp_display(hp_percentage)}"

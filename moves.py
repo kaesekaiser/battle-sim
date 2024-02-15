@@ -14,10 +14,15 @@ def fix(s: str, joiner: str = "-"):
     )
 
 
+def load_type_chart(path: str = "data/types.json") -> dict[str | None, dict[str, float]]:
+    return json.load(open(path))
+
+
 types = normal, fire, water, electric, grass, ice, fighting, poison, ground, flying, psychic, bug, rock, ghost, \
     dragon, dark, steel, fairy = "Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", "Poison", \
     "Ground", "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy"
 categories = physical, special, status = "Physical", "Special", "Status"
+type_effectiveness = load_type_chart()
 
 
 class Move:
@@ -30,6 +35,7 @@ class Move:
         self.power = power
         self.accuracy = accuracy
         self.priority = kwargs.pop("priority", 0)
+        self.target = kwargs.pop("target", "any-adj")
 
         self.attributes = kwargs
 
@@ -61,7 +67,7 @@ class Move:
         )
 
     def pack(self):
-        return {"name": self.name} | ({"remaining_pp": self.remaining_pp} if self.remaining_pp != self.pp else {})
+        return {"name": self.name} | ({"remaining_pp": self.remaining_pp} if self.remaining_pp != -1 else {})
 
     @staticmethod
     def from_json(js: dict):
@@ -80,12 +86,19 @@ class Move:
     def power_str(self):
         return self.power if self.power else "—"
 
+    def inline_display(self):
+        return f"[{self.name.ljust(16)} {str(self.remaining_pp).rjust(2, '0')}/{str(self.pp).rjust(2, '0')}]"
+
+    def deduct_pp(self, deduction: int = 1):
+        self.remaining_pp = max(0, self.remaining_pp - deduction)
+
 
 all_moves = {g: Move.from_json(j) for g, j in json.load(open("data/moves.json", "r")).items()}
+fixed_moves = {fix(g): g for g in all_moves}
 
 
 def find_move(s: str) -> Move:
     try:
-        return [copy(j) for g, j in all_moves.items() if fix(g) == fix(s)][0]
-    except IndexError:
+        return copy(fixed_moves[fix(s)])
+    except KeyError:
         raise ValueError(f"Invalid move: {s}")
