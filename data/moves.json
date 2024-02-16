@@ -2480,7 +2480,11 @@
         "pp": 10,
         "power": 80,
         "accuracy": 100,
-        "description": "The user gathers all its light energy and releases it at once. This may also lower the target's Sp. Def stat."
+        "description": "The user gathers all its light energy and releases it at once. This may also lower the target's Sp. Def stat.",
+        "target_stat_changes": {
+            "SpD": -1,
+            "chance": 10
+        }
     },
     "Flatter": {
         "name": "Flatter",
@@ -3661,7 +3665,10 @@
         "power": 0,
         "accuracy": 0,
         "description": "The user hardens its body's surface like iron, sharply boosting its Defense stat.",
-        "target": "user"
+        "target": "user",
+        "user_stat_changes": {
+            "Def": 2
+        }
     },
     "Iron Head": {
         "name": "Iron Head",
@@ -3901,7 +3908,10 @@
         "power": 0,
         "accuracy": 100,
         "description": "The user gives opposing Pok\u00e9mon an intimidating leer that lowers their Defense stats.",
-        "target": "all-adj-foe"
+        "target": "all-adj-foe",
+        "target_stat_changes": {
+            "Def": -1
+        }
     },
     "Let's Snuggle Forever": {
         "name": "Let's Snuggle Forever",
@@ -7390,7 +7400,10 @@
         "power": 0,
         "accuracy": 0,
         "description": "A frenetic dance to uplift the fighting spirit. This sharply boosts the user's Attack stat.",
-        "target": "user"
+        "target": "user",
+        "user_stat_changes": {
+            "Atk": 2
+        }
     },
     "Synchronoise": {
         "name": "Synchronoise",

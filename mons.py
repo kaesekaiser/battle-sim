@@ -6,7 +6,14 @@ import re
 
 genders = male, female, genderless = "Male", "Female", "Genderless"
 six_stats = ["HP", "Atk", "Def", "SpA", "SpD", "Spe"]
-eight_stats = [*six_stats, "Acc", "Eva"]
+stat_names = {
+    "Atk": "Attack", "Def": "Defense", "SpA": "Special Attack", "SpD": "Special Defense", "Spe": "Speed",
+    "Acc": "accuracy", "Eva": "evasion"
+}
+
+
+def sign(n: int | float) -> int:
+    return 1 if n > 0 else -1 if n < 0 else 0
 
 
 def product(iterable: iter) -> int | float:
@@ -524,5 +531,15 @@ class FieldMon(MiniMon):
         return round(
             self.stats.get(stat, 1) *
             (doubled_after + max(self.stat_stages[stat], 0)) /
-            (doubled_after + min(self.stat_stages[stat], 0))
+            (doubled_after - min(self.stat_stages[stat], 0))
         )
+
+    def apply(self, stat_change: StatChange) -> dict[str, int]:
+        ret = {}
+        for stat, change in stat_change.items():
+            if actual_change := (min(max(self.stat_stages[stat] + change, -6), 6) - self.stat_stages[stat]):
+                ret[stat] = actual_change
+                self.stat_stages[stat] += actual_change
+            else:
+                ret[stat] = 4 * sign(change)
+        return ret

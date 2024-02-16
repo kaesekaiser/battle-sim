@@ -3,6 +3,18 @@ from time import sleep
 from random import random
 
 
+stat_change_texts = {
+    4: "can't go any higher",
+    3: "rose drastically",
+    2: "rose sharply",
+    1: "rose",
+    -1: "fell",
+    -2: "harshly fell",
+    -3: "severely fell",
+    -4: "can't go any lower"
+}
+
+
 class Battle:
     def __init__(self, teams: list[Controller], size: int = 1):
         self.teams = teams[:2]
@@ -97,6 +109,20 @@ class Battle:
             return self.output(f"{attacker.name}'s attack missed!")
         return True
 
+    def display_stat_change(self, mon: FieldMon, stat_change: dict[str, int]):
+        for stat, change in stat_change.items():
+            self.output(f"{mon.name}'s {stat_names[stat]} {stat_change_texts[change]}!")
+
+    def move_effects(self, attacker: FieldMon, defender: FieldMon, move: Move):
+        if move.user_stat_changes:
+            if random() < move.user_stat_changes.chance / 100:
+                changes = attacker.apply(move.user_stat_changes)
+                self.display_stat_change(attacker, changes)
+        if move.target_stat_changes:
+            if random() < move.target_stat_changes.chance / 100:
+                changes = defender.apply(move.target_stat_changes)
+                self.display_stat_change(defender, changes)
+
     def use_move(self, attacker: FieldMon, defender: FieldMon, move: Move):
         if not (self.can_execute(attacker, move) or attacker["has_executed"]):
             return
@@ -125,10 +151,13 @@ class Battle:
                 if len(attacker.targets) > 1 else "It's not very effective..."
             )
 
-        damage = self.field.damage_roll(attacker, defender, move)
-        damage_dealt = defender.damage(damage)
-        self.output(f"{defender.name} took {damage_dealt} damage! (-> {defender.remaining_hp}/{defender.hp} HP)")
-        self.check_fainted(defender)
+        if move.category != status:
+            damage = self.field.damage_roll(attacker, defender, move)
+            damage_dealt = defender.damage(damage)
+            self.output(f"{defender.name} took {damage_dealt} damage! (-> {defender.remaining_hp}/{defender.hp} HP)")
+            self.check_fainted(defender)
+
+        self.move_effects(attacker, defender, move)
 
     def end_of_turn(self):
         for mon in self.fielded_mons:

@@ -25,6 +25,25 @@ categories = physical, special, status = "Physical", "Special", "Status"
 type_effectiveness = load_type_chart()
 
 
+class StatChange:
+    def __init__(self, chance: int = 100, **stats: int):
+        self.stats = stats
+        self.chance = chance
+
+    def __bool__(self):
+        return bool(self.stats) and bool(self.chance)
+
+    def json(self):
+        return self.stats | ({"chance": self.chance} if self.chance != 100 else {})
+
+    @staticmethod
+    def from_json(js: dict):
+        return StatChange(**js)
+
+    def items(self):
+        return self.stats.items()
+
+
 class Move:
     def __init__(self, name: str, type: str, category: str, pp: int, power: int | str, accuracy: int, **kwargs):
         self.name = name
@@ -74,9 +93,11 @@ class Move:
         return Move(**js)
 
     def json(self):
-        return {"name": self.name, "type": self.type, "category": self.category, "pp": self.pp,
-                "remaining_pp": self.remaining_pp, "power": self.power, "accuracy": self.accuracy,
-                "priority": self.priority, **self.attributes}
+        return {
+            "name": self.name, "type": self.type, "category": self.category, "pp": self.pp,
+            "remaining_pp": self.remaining_pp, "power": self.power, "accuracy": self.accuracy,
+            "priority": self.priority, "target": self.target, **self.attributes
+        }
 
     @property
     def accuracy_str(self):
@@ -107,6 +128,14 @@ class Move:
     @property
     def defending_stat(self) -> str:
         return self["defending_stat"] if self["defending_stat"] else "Def" if self.category == physical else "SpD"
+
+    @property
+    def user_stat_changes(self) -> StatChange | None:
+        return StatChange.from_json(self["user_stat_changes"]) if self["user_stat_changes"] else None
+
+    @property
+    def target_stat_changes(self) -> StatChange | None:
+        return StatChange.from_json(self["target_stat_changes"]) if self["target_stat_changes"] else None
 
 
 all_moves = {g: Move.from_json(j) for g, j in json.load(open("data/moves.json", "r")).items()}
