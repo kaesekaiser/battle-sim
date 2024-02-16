@@ -1,4 +1,9 @@
 from teams import *
+from random import randrange
+
+
+def raw_damage(attacker_level: int, attacking_stat: int, defending_stat: int, power: int):
+    return round((2 * attacker_level / 5 + 2) * power * attacking_stat / defending_stat / 50 + 2)
 
 
 class Field:
@@ -57,3 +62,42 @@ class Field:
         return "\n".join(
             " ".join(j.ljust(max_lengths[n]) for n, j in enumerate(g)) for g in ret
         )
+
+    def move_effectiveness(self, attacker: FieldMon, defender: FieldMon, move: Move) -> float:
+        overwrites = {}
+        return defender.type_effectiveness(move.type, overwrites)
+
+    def damage_roll(self, attacker: FieldMon, defender: FieldMon, move: Move, force_random: float = None) -> int:
+        multipliers = []
+        if len(attacker.targets) > 1:
+            multipliers.append(0.75)
+
+        # other multipliers to be added:
+        # 0.25 if second strike of parental bond
+        # 1.5 or 0.5 depending on type + weather
+        # 2 if target used glaive rush in previous turn
+        # 0.5 if lowered by burn
+        # 0.25 if it's a z-move that's been protected against
+        # "other" multiplier (see https://bulbapedia.bulbagarden.net/wiki/Damage#Generation_V_onward)
+        # 1.5 if it's a crit
+
+        multipliers.append(force_random if force_random else (randrange(85, 101) / 100))
+
+        type_eff = self.move_effectiveness(attacker, defender, move)
+        multipliers.append(type_eff)
+
+        stab = 1
+        if attacker.terastallized:
+            if move.type == attacker.tera_type:
+                stab += 0.5
+            if move.type in attacker.types:
+                stab += 0.5
+        else:
+            if move.type in attacker.types:
+                stab += 0.5
+        multipliers.append(stab)
+
+        attack_stat = attacker.atk if move.category == physical else attacker.spa
+        defense_stat = defender.dfn if move.category == physical else defender.spd
+
+        return max(1, round(raw_damage(attacker.level, attack_stat, defense_stat, move.power) * product(multipliers)))

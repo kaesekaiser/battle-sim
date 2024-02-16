@@ -1,10 +1,6 @@
 from controllers import *
 from time import sleep
-from random import random, randrange
-
-
-def raw_damage(attacker_level: int, attacking_stat: int, defending_stat: int, power: int):
-    return round((2 * attacker_level / 5 + 2) * power * attacking_stat / defending_stat / 50 + 2)
+from random import random
 
 
 class Battle:
@@ -95,56 +91,11 @@ class Battle:
         return False
 
     def but_it_failed(self, attacker: FieldMon, defender: FieldMon, move: Move):
-        if defender.type_effectiveness(move.type) == 0:
+        if self.field.move_effectiveness(attacker, defender, move) == 0:
             return self.output(f"It doesn't affect {defender.name}...")
         if not self.accuracy_check(attacker, defender, move):
             return self.output(f"{attacker.name}'s attack missed!")
         return True
-
-    def get_damage(self, attacker: FieldMon, defender: FieldMon, move: Move):
-        multipliers = []
-        if len(attacker.targets) > 1:
-            multipliers.append(0.75)
-
-        # other multipliers to be added:
-        # 0.25 if second strike of parental bond
-        # 1.5 or 0.5 depending on type + weather
-        # 2 if target used glaive rush in previous turn
-        # 0.5 if lowered by burn
-        # 0.25 if it's a z-move that's been protected against
-        # "other" multiplier (see https://bulbapedia.bulbagarden.net/wiki/Damage#Generation_V_onward)
-        # 1.5 if it's a crit
-
-        multipliers.append(randrange(85, 101) / 100)
-
-        type_eff = defender.type_effectiveness(move.type)
-        if type_eff > 1:
-            self.output(
-                f"It's super effective on {defender.name}!" if len(attacker.targets) > 1
-                else "It's super effective!"
-            )
-        if type_eff < 1:
-            self.output(
-                f"It's not very effective on {defender.name}..." if len(attacker.targets) > 1
-                else "It's not very effective..."
-            )
-        multipliers.append(type_eff)
-
-        stab = 1
-        if attacker.terastallized:
-            if move.type == attacker.tera_type:
-                stab += 0.5
-            if move.type in attacker.types:
-                stab += 0.5
-        else:
-            if move.type in attacker.types:
-                stab += 0.5
-        multipliers.append(stab)
-
-        attack_stat = attacker.atk if move.category == physical else attacker.spa
-        defense_stat = defender.dfn if move.category == physical else defender.spd
-
-        return max(1, round(raw_damage(attacker.level, attack_stat, defense_stat, move.power) * product(multipliers)))
 
     def use_move(self, attacker: FieldMon, defender: FieldMon, move: Move):
         if not (self.can_execute(attacker, move) or attacker["has_executed"]):
@@ -163,7 +114,18 @@ class Battle:
         else:
             attacker["failed_attack"] = False
 
-        damage = self.get_damage(attacker, defender, move)
+        if (eff := self.field.move_effectiveness(attacker, defender, move)) > 1:
+            self.output(
+                f"It's super effective on {defender.name}!"
+                if len(attacker.targets) > 1 else "It's super effective!"
+            )
+        elif eff < 1:
+            self.output(
+                f"It's not very effective on {defender.name}..."
+                if len(attacker.targets) > 1 else "It's not very effective..."
+            )
+
+        damage = self.field.damage_roll(attacker, defender, move)
         damage_dealt = defender.damage(damage)
         self.output(f"{defender.name} took {damage_dealt} damage! (-> {defender.remaining_hp}/{defender.hp} HP)")
         self.check_fainted(defender)
