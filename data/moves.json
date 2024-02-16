@@ -33,7 +33,8 @@
         "pp": 30,
         "power": 40,
         "accuracy": 100,
-        "description": "Opposing Pok\u00e9mon are attacked with a spray of harsh acid. This may also lower their Sp. Def stats."
+        "description": "Opposing Pok\u00e9mon are attacked with a spray of harsh acid. This may also lower their Sp. Def stats.",
+        "target": "all-adj-foe"
     },
     "Acid Armor": {
         "name": "Acid Armor",
@@ -42,7 +43,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user alters its cellular structure to liquefy itself, sharply boosting its Defense stat."
+        "description": "The user alters its cellular structure to liquefy itself, sharply boosting its Defense stat.",
+        "target": "user"
     },
     "Acid Downpour": {
         "name": "Acid Downpour",
@@ -69,7 +71,8 @@
         "pp": 15,
         "power": 55,
         "accuracy": 100,
-        "description": "The user nimbly strikes the target. This attack does massive damage if the user isn't holding an item."
+        "description": "The user nimbly strikes the target. This attack does massive damage if the user isn't holding an item.",
+        "target": "any"
     },
     "Acupressure": {
         "name": "Acupressure",
@@ -78,7 +81,8 @@
         "pp": 30,
         "power": 0,
         "accuracy": 0,
-        "description": "The user applies pressure to stress points, sharply boosting one of its or its allies' stats."
+        "description": "The user applies pressure to stress points, sharply boosting one of its or its allies' stats.",
+        "target": "user-any-adj-ally"
     },
     "Aerial Ace": {
         "name": "Aerial Ace",
@@ -87,7 +91,8 @@
         "pp": 20,
         "power": 60,
         "accuracy": 0,
-        "description": "The user confounds the target with speed, then slashes. This attack never misses."
+        "description": "The user confounds the target with speed, then slashes. This attack never misses.",
+        "target": "any"
     },
     "Aeroblast": {
         "name": "Aeroblast",
@@ -96,7 +101,8 @@
         "pp": 5,
         "power": 100,
         "accuracy": 95,
-        "description": "A vortex of air is shot at the target to inflict damage. This move has a heightened chance of landing a critical hit."
+        "description": "A vortex of air is shot at the target to inflict damage. This move has a heightened chance of landing a critical hit.",
+        "target": "any"
     },
     "After You": {
         "name": "After You",
@@ -114,7 +120,8 @@
         "pp": 30,
         "power": 0,
         "accuracy": 0,
-        "description": "The user relaxes and lightens its body to move faster. This sharply boosts its Speed stat."
+        "description": "The user relaxes and lightens its body to move faster. This sharply boosts its Speed stat.",
+        "target": "user"
     },
     "Air Cutter": {
         "name": "Air Cutter",
@@ -123,7 +130,8 @@
         "pp": 25,
         "power": 60,
         "accuracy": 95,
-        "description": "The user launches razor-like wind to slash opposing Pok\u00e9mon. This move has a heightened chance of landing a critical hit."
+        "description": "The user launches razor-like wind to slash opposing Pok\u00e9mon. This move has a heightened chance of landing a critical hit.",
+        "target": "all-adj-foe"
     },
     "Air Slash": {
         "name": "Air Slash",
@@ -132,7 +140,8 @@
         "pp": 15,
         "power": 75,
         "accuracy": 95,
-        "description": "The user attacks with a blade of air that slices even the sky. This may also make the target flinch."
+        "description": "The user attacks with a blade of air that slices even the sky. This may also make the target flinch.",
+        "target": "any"
     },
     "All-Out Pummeling": {
         "name": "All-Out Pummeling",
@@ -159,7 +168,8 @@
         "pp": 15,
         "power": 0,
         "accuracy": 0,
-        "description": "The user teleports using a strange power and switches places with one of its allies. This move's chance of failing rises if it is used in succession."
+        "description": "The user teleports using a strange power and switches places with one of its allies. This move's chance of failing rises if it is used in succession.",
+        "target": "user"
     },
     "Amnesia": {
         "name": "Amnesia",
@@ -168,7 +178,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user temporarily empties its mind to forget its concerns. This sharply boosts the user's Sp. Def stat."
+        "description": "The user temporarily empties its mind to forget its concerns. This sharply boosts the user's Sp. Def stat.",
+        "target": "user"
     },
     "Anchor Shot": {
         "name": "Anchor Shot",
@@ -222,7 +233,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user envelops itself in a veil made of water. It regains some HP every turn."
+        "description": "The user envelops itself in a veil made of water. It regains some HP every turn.",
+        "target": "user"
     },
     "Aqua Step": {
         "name": "Aqua Step",
@@ -267,7 +279,8 @@
         "pp": 5,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "user-all-ally"
     },
     "Aromatic Mist": {
         "name": "Aromatic Mist",
@@ -276,7 +289,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user boosts the Sp. Def stat of an ally Pok\u00e9mon by using a mysterious aroma."
+        "description": "The user boosts the Sp. Def stat of an ally Pok\u00e9mon by using a mysterious aroma.",
+        "target": "any-adj-ally"
     },
     "Assist": {
         "name": "Assist",
@@ -285,7 +299,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "user"
     },
     "Assurance": {
         "name": "Assurance",
@@ -312,7 +327,8 @@
         "pp": 5,
         "power": 120,
         "accuracy": 100,
-        "description": "The user attacks by sending a frightful amount of small ghosts at opposing Pok\u00e9mon."
+        "description": "The user attacks by sending a frightful amount of small ghosts at opposing Pok\u00e9mon.",
+        "target": "all-adj-foe"
     },
     "Attack Order": {
         "name": "Attack Order",
@@ -339,7 +355,8 @@
         "pp": 20,
         "power": 80,
         "accuracy": 0,
-        "description": "The user lets loose a pulse of aura power from deep within its body at the target. This attack never misses."
+        "description": "The user lets loose a pulse of aura power from deep within its body at the target. This attack never misses.",
+        "target": "any"
     },
     "Aura Wheel": {
         "name": "Aura Wheel",
@@ -366,7 +383,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "This move reduces damage from physical and special moves for five turns. This can be used only when it is snowing."
+        "description": "This move reduces damage from physical and special moves for five turns. This can be used only when it is snowing.",
+        "target": "user-all-ally"
     },
     "Autotomize": {
         "name": "Autotomize",
@@ -375,7 +393,8 @@
         "pp": 15,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "user"
     },
     "Avalanche": {
         "name": "Avalanche",
@@ -420,7 +439,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "In addition to protecting the user from attacks, this move also poisons any attacker that makes direct contact."
+        "description": "In addition to protecting the user from attacks, this move also poisons any attacker that makes direct contact.",
+        "target": "user"
     },
     "Barb Barrage": {
         "name": "Barb Barrage",
@@ -447,7 +467,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "user"
     },
     "Baton Pass": {
         "name": "Baton Pass",
@@ -456,7 +477,8 @@
         "pp": 40,
         "power": 0,
         "accuracy": 0,
-        "description": "The user switches places with a party Pok\u00e9mon in waiting and passes along any stat changes."
+        "description": "The user switches places with a party Pok\u00e9mon in waiting and passes along any stat changes.",
+        "target": "user"
     },
     "Beak Blast": {
         "name": "Beak Blast",
@@ -510,7 +532,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user maximizes its Attack stat but loses HP equal to half its max HP."
+        "description": "The user maximizes its Attack stat but loses HP equal to half its max HP.",
+        "target": "user"
     },
     "Bestow": {
         "name": "Bestow",
@@ -528,7 +551,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "user"
     },
     "Bind": {
         "name": "Bind",
@@ -609,7 +633,8 @@
         "pp": 10,
         "power": 100,
         "accuracy": 80,
-        "description": "The user attacks with savagely cold winds that cause both body and spirit to tremble. This may also lower the Speed stats of opposing Pok\u00e9mon."
+        "description": "The user attacks with savagely cold winds that cause both body and spirit to tremble. This may also lower the Speed stats of opposing Pok\u00e9mon.",
+        "target": "all-adj-foe"
     },
     "Blizzard": {
         "name": "Blizzard",
@@ -618,7 +643,8 @@
         "pp": 5,
         "power": 110,
         "accuracy": 70,
-        "description": "A howling blizzard is summoned to strike opposing Pok\u00e9mon. This may also leave the opposing Pok\u00e9mon frozen."
+        "description": "A howling blizzard is summoned to strike opposing Pok\u00e9mon. This may also leave the opposing Pok\u00e9mon frozen.",
+        "target": "all-adj-foe"
     },
     "Block": {
         "name": "Block",
@@ -726,7 +752,8 @@
         "pp": 10,
         "power": 140,
         "accuracy": 100,
-        "description": "The user attacks everything around it with the destructive power of a terrible explosive sound."
+        "description": "The user attacks everything around it with the destructive power of a terrible explosive sound.",
+        "target": "all-adj"
     },
     "Bounce": {
         "name": "Bounce",
@@ -735,7 +762,8 @@
         "pp": 5,
         "power": 85,
         "accuracy": 85,
-        "description": "The user bounces up high on the first turn, then drops onto the target on the next turn. This may also leave the target with paralysis."
+        "description": "The user bounces up high on the first turn, then drops onto the target on the next turn. This may also leave the target with paralysis.",
+        "target": "any"
     },
     "Bouncy Bubble": {
         "name": "Bouncy Bubble",
@@ -744,7 +772,8 @@
         "pp": 20,
         "power": 60,
         "accuracy": 100,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "all-adj-foe"
     },
     "Branch Poke": {
         "name": "Branch Poke",
@@ -762,7 +791,8 @@
         "pp": 15,
         "power": 120,
         "accuracy": 100,
-        "description": "The user tucks in its wings and charges at a low altitude. This also damages the user quite a lot."
+        "description": "The user tucks in its wings and charges at a low altitude. This also damages the user quite a lot.",
+        "target": "any"
     },
     "Breaking Swipe": {
         "name": "Breaking Swipe",
@@ -771,7 +801,8 @@
         "pp": 15,
         "power": 60,
         "accuracy": 100,
-        "description": "The user swings its tough tail wildly and attacks opposing Pok\u00e9mon. This also lowers their Attack stats."
+        "description": "The user swings its tough tail wildly and attacks opposing Pok\u00e9mon. This also lowers their Attack stats.",
+        "target": "all-adj-foe"
     },
     "Breakneck Blitz": {
         "name": "Breakneck Blitz",
@@ -807,7 +838,8 @@
         "pp": 20,
         "power": 60,
         "accuracy": 100,
-        "description": "The user swings its body around violently to inflict damage on everything in its vicinity."
+        "description": "The user swings its body around violently to inflict damage on everything in its vicinity.",
+        "target": "all-adj"
     },
     "Bubble": {
         "name": "Bubble",
@@ -816,7 +848,8 @@
         "pp": 30,
         "power": 40,
         "accuracy": 100,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "all-adj-foe"
     },
     "Bubble Beam": {
         "name": "Bubble Beam",
@@ -852,7 +885,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user tenses its muscles to bulk up its body, boosting its Attack and Defense stats."
+        "description": "The user tenses its muscles to bulk up its body, boosting its Attack and Defense stats.",
+        "target": "user"
     },
     "Bulldoze": {
         "name": "Bulldoze",
@@ -861,7 +895,8 @@
         "pp": 20,
         "power": 60,
         "accuracy": 100,
-        "description": "The user strikes everything around it by stomping down on the ground. This lowers the Speed stats of those hit."
+        "description": "The user strikes everything around it by stomping down on the ground. This lowers the Speed stats of those hit.",
+        "target": "all-adj"
     },
     "Bullet Punch": {
         "name": "Bullet Punch",
@@ -897,7 +932,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user's intensely hot fur protects it from attacks and also burns any attacker that makes direct contact with it."
+        "description": "The user's intensely hot fur protects it from attacks and also burns any attacker that makes direct contact with it.",
+        "target": "user"
     },
     "Burning Jealousy": {
         "name": "Burning Jealousy",
@@ -906,7 +942,8 @@
         "pp": 5,
         "power": 70,
         "accuracy": 100,
-        "description": "The user attacks with energy from jealousy. This leaves all opposing Pok\u00e9mon that have had their stats boosted during the turn with a burn."
+        "description": "The user attacks with energy from jealousy. This leaves all opposing Pok\u00e9mon that have had their stats boosted during the turn with a burn.",
+        "target": "all-adj-foe"
     },
     "Buzzy Buzz": {
         "name": "Buzzy Buzz",
@@ -924,7 +961,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user quietly focuses its mind and calms its spirit to boost its Sp. Atk and Sp. Def stats."
+        "description": "The user quietly focuses its mind and calms its spirit to boost its Sp. Atk and Sp. Def stats.",
+        "target": "user"
     },
     "Camouflage": {
         "name": "Camouflage",
@@ -933,7 +971,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "user"
     },
     "Captivate": {
         "name": "Captivate",
@@ -942,7 +981,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 100,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "all-adj-foe"
     },
     "Catastropika": {
         "name": "Catastropika",
@@ -969,7 +1009,8 @@
         "pp": 40,
         "power": 0,
         "accuracy": 0,
-        "description": "The Pok\u00e9mon congratulates you on your special day!"
+        "description": "The Pok\u00e9mon congratulates you on your special day!",
+        "target": "user"
     },
     "Charge": {
         "name": "Charge",
@@ -978,7 +1019,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user becomes charged, boosting the power of the next Electric-type move it uses. This also boosts the user's Sp. Def stat."
+        "description": "The user becomes charged, boosting the power of the next Electric-type move it uses. This also boosts the user's Sp. Def stat.",
+        "target": "user"
     },
     "Charge Beam": {
         "name": "Charge Beam",
@@ -1005,7 +1047,8 @@
         "pp": 20,
         "power": 65,
         "accuracy": 100,
-        "description": "The user attacks the target with sound waves of deafening chatter. This also confuses the target."
+        "description": "The user attacks the target with sound waves of deafening chatter. This also confuses the target.",
+        "target": "any"
     },
     "Chilling Water": {
         "name": "Chilling Water",
@@ -1023,7 +1066,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user tells a chillingly bad joke before switching places with a party Pok\u00e9mon in waiting. This summons a snowstorm lasting five turns."
+        "description": "The user tells a chillingly bad joke before switching places with a party Pok\u00e9mon in waiting. This summons a snowstorm lasting five turns.",
+        "target": "all"
     },
     "Chip Away": {
         "name": "Chip Away",
@@ -1068,7 +1112,8 @@
         "pp": 5,
         "power": 110,
         "accuracy": 100,
-        "description": "The user rubs the scales on its entire body and makes a huge noise to attack opposing Pok\u00e9mon. The user's Defense stat is lowered after the attack."
+        "description": "The user rubs the scales on its entire body and makes a huge noise to attack opposing Pok\u00e9mon. The user's Defense stat is lowered after the attack.",
+        "target": "all-adj-foe"
     },
     "Clangorous Soul": {
         "name": "Clangorous Soul",
@@ -1077,7 +1122,8 @@
         "pp": 5,
         "power": 0,
         "accuracy": 0,
-        "description": "The user boosts all its stats by using some of its own HP."
+        "description": "The user boosts all its stats by using some of its own HP.",
+        "target": "user"
     },
     "Clangorous Soulblaze": {
         "name": "Clangorous Soulblaze",
@@ -1086,7 +1132,8 @@
         "pp": 1,
         "power": 185,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "all-adj-foe"
     },
     "Clear Smog": {
         "name": "Clear Smog",
@@ -1113,7 +1160,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user properly coaches its ally Pok\u00e9mon, boosting their Attack and Defense stats."
+        "description": "The user properly coaches its ally Pok\u00e9mon, boosting their Attack and Defense stats.",
+        "target": "all-ally"
     },
     "Coil": {
         "name": "Coil",
@@ -1122,7 +1170,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user coils up and concentrates. This boosts its Attack and Defense stats as well as its accuracy."
+        "description": "The user coils up and concentrates. This boosts its Attack and Defense stats as well as its accuracy.",
+        "target": "user"
     },
     "Collision Course": {
         "name": "Collision Course",
@@ -1158,7 +1207,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 100,
-        "description": "The user retaliates with much greater force against the opponent that last inflicted damage on it."
+        "description": "The user retaliates with much greater force against the opponent that last inflicted damage on it.",
+        "target": "user"
     },
     "Confide": {
         "name": "Confide",
@@ -1212,7 +1262,8 @@
         "pp": 30,
         "power": 0,
         "accuracy": 0,
-        "description": "The user changes its type to become the same type as the move at the top of the list of moves it knows."
+        "description": "The user changes its type to become the same type as the move at the top of the list of moves it knows.",
+        "target": "user"
     },
     "Conversion 2": {
         "name": "Conversion 2",
@@ -1230,7 +1281,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user mimics the move used immediately before it. This move fails if no other move has been used yet."
+        "description": "The user mimics the move used immediately before it. This move fails if no other move has been used yet.",
+        "target": "user"
     },
     "Core Enforcer": {
         "name": "Core Enforcer",
@@ -1239,7 +1291,8 @@
         "pp": 10,
         "power": 100,
         "accuracy": 100,
-        "description": "If the Pok\u00e9mon damaged by this move have already used their moves that turn, this move eliminates the effects of those Pok\u00e9mon's Abilities."
+        "description": "If the Pok\u00e9mon damaged by this move have already used their moves that turn, this move eliminates the effects of those Pok\u00e9mon's Abilities.",
+        "target": "all-adj-foe"
     },
     "Corkscrew Crash": {
         "name": "Corkscrew Crash",
@@ -1257,7 +1310,8 @@
         "pp": 40,
         "power": 0,
         "accuracy": 100,
-        "description": "The user surrounds everything around it with highly acidic gas and melts away items held by other Pok\u00e9mon."
+        "description": "The user surrounds everything around it with highly acidic gas and melts away items held by other Pok\u00e9mon.",
+        "target": "all-adj"
     },
     "Cosmic Power": {
         "name": "Cosmic Power",
@@ -1266,7 +1320,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user absorbs a mystical power from space to boost its Defense and Sp. Def stats."
+        "description": "The user absorbs a mystical power from space to boost its Defense and Sp. Def stats.",
+        "target": "user"
     },
     "Cotton Guard": {
         "name": "Cotton Guard",
@@ -1275,7 +1330,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user protects itself by wrapping its body in soft cotton, drastically boosting its Defense stat."
+        "description": "The user protects itself by wrapping its body in soft cotton, drastically boosting its Defense stat.",
+        "target": "user"
     },
     "Cotton Spore": {
         "name": "Cotton Spore",
@@ -1284,7 +1340,8 @@
         "pp": 40,
         "power": 0,
         "accuracy": 100,
-        "description": "The user releases cotton-like spores that cling to opposing Pok\u00e9mon. This harshly lowers their Speed stats."
+        "description": "The user releases cotton-like spores that cling to opposing Pok\u00e9mon. This harshly lowers their Speed stats.",
+        "target": "all-adj-foe"
     },
     "Counter": {
         "name": "Counter",
@@ -1293,7 +1350,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 100,
-        "description": "A retaliatory attack that counters any physical move, inflicting double the damage taken."
+        "description": "A retaliatory attack that counters any physical move, inflicting double the damage taken.",
+        "target": "user"
     },
     "Court Change": {
         "name": "Court Change",
@@ -1302,7 +1360,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 100,
-        "description": "With its mysterious power, the user swaps the effects on either side of the field."
+        "description": "With its mysterious power, the user swaps the effects on either side of the field.",
+        "target": "all"
     },
     "Covet": {
         "name": "Covet",
@@ -1329,7 +1388,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "user-all-ally"
     },
     "Cross Chop": {
         "name": "Cross Chop",
@@ -1383,7 +1443,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "A move that has different effects depending on whether the user is a Ghost type or not."
+        "description": "A move that has different effects depending on whether the user is a Ghost type or not.",
+        "target": "user"
     },
     "Cut": {
         "name": "Cut",
@@ -1401,7 +1462,8 @@
         "pp": 15,
         "power": 80,
         "accuracy": 100,
-        "description": "The user releases a horrible aura imbued with ill intent. This may also make the target flinch."
+        "description": "The user releases a horrible aura imbued with ill intent. This may also make the target flinch.",
+        "target": "any"
     },
     "Dark Void": {
         "name": "Dark Void",
@@ -1410,7 +1472,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 50,
-        "description": "Opposing Pok\u00e9mon are dragged into a world of total darkness that puts them to sleep."
+        "description": "Opposing Pok\u00e9mon are dragged into a world of total darkness that puts them to sleep.",
+        "target": "all-adj-foe"
     },
     "Darkest Lariat": {
         "name": "Darkest Lariat",
@@ -1428,7 +1491,8 @@
         "pp": 10,
         "power": 80,
         "accuracy": 100,
-        "description": "The user damages opposing Pok\u00e9mon by emitting a powerful flash."
+        "description": "The user damages opposing Pok\u00e9mon by emitting a powerful flash.",
+        "target": "all-adj-foe"
     },
     "Decorate": {
         "name": "Decorate",
@@ -1446,7 +1510,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user calls out its underlings to shield its body, boosting its Defense and Sp. Def stats."
+        "description": "The user calls out its underlings to shield its body, boosting its Defense and Sp. Def stats.",
+        "target": "user"
     },
     "Defense Curl": {
         "name": "Defense Curl",
@@ -1455,7 +1520,8 @@
         "pp": 40,
         "power": 0,
         "accuracy": 0,
-        "description": "The user curls up and boosts its Defense stat."
+        "description": "The user curls up and boosts its Defense stat.",
+        "target": "user"
     },
     "Defog": {
         "name": "Defog",
@@ -1473,7 +1539,8 @@
         "pp": 5,
         "power": 0,
         "accuracy": 0,
-        "description": "If the user is knocked out after using this move, the Pok\u00e9mon that knocked it out will also faint. This move's chance of failing rises if it is used in succession."
+        "description": "If the user is knocked out after using this move, the Pok\u00e9mon that knocked it out will also faint. This move's chance of failing rises if it is used in succession.",
+        "target": "user"
     },
     "Detect": {
         "name": "Detect",
@@ -1482,7 +1549,8 @@
         "pp": 5,
         "power": 0,
         "accuracy": 0,
-        "description": "This move enables the user to protect itself from all attacks. Its chance of failing rises if it is used in succession."
+        "description": "This move enables the user to protect itself from all attacks. Its chance of failing rises if it is used in succession.",
+        "target": "user"
     },
     "Devastating Drake": {
         "name": "Devastating Drake",
@@ -1500,7 +1568,8 @@
         "pp": 5,
         "power": 100,
         "accuracy": 95,
-        "description": "The user whips up a storm of diamonds to damage opposing Pok\u00e9mon. This may also sharply boost the user's Defense stat."
+        "description": "The user whips up a storm of diamonds to damage opposing Pok\u00e9mon. This may also sharply boost the user's Defense stat.",
+        "target": "all-adj-foe"
     },
     "Dig": {
         "name": "Dig",
@@ -1536,7 +1605,8 @@
         "pp": 15,
         "power": 40,
         "accuracy": 0,
-        "description": "Letting out a charming cry, the user does emotional damage to opposing Pok\u00e9mon. This attack never misses."
+        "description": "Letting out a charming cry, the user does emotional damage to opposing Pok\u00e9mon. This attack never misses.",
+        "target": "all-adj-foe"
     },
     "Discharge": {
         "name": "Discharge",
@@ -1545,7 +1615,8 @@
         "pp": 15,
         "power": 80,
         "accuracy": 100,
-        "description": "The user strikes everything around it by letting loose a flare of electricity. This may also leave those hit by the attack with paralysis."
+        "description": "The user strikes everything around it by letting loose a flare of electricity. This may also leave those hit by the attack with paralysis.",
+        "target": "all-adj"
     },
     "Dive": {
         "name": "Dive",
@@ -1572,7 +1643,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 100,
-        "description": "The user captures the very essence of the target in a sketch. This changes the Abilities of the user and its ally Pok\u00e9mon to that of the target."
+        "description": "The user captures the very essence of the target in a sketch. This changes the Abilities of the user and its ally Pok\u00e9mon to that of the target.",
+        "target": "any-adj-foe"
     },
     "Doom Desire": {
         "name": "Doom Desire",
@@ -1635,7 +1707,8 @@
         "pp": 15,
         "power": 0,
         "accuracy": 0,
-        "description": "By moving rapidly, the user makes illusory copies of itself to boost its evasiveness."
+        "description": "By moving rapidly, the user makes illusory copies of itself to boost its evasiveness.",
+        "target": "user"
     },
     "Double-Edge": {
         "name": "Double-Edge",
@@ -1680,7 +1753,8 @@
         "pp": 15,
         "power": 0,
         "accuracy": 0,
-        "description": "The user raises its allies' morale with a draconic cry so that their future attacks have a heightened chance of landing critical hits. This rouses Dragon types more."
+        "description": "The user raises its allies' morale with a draconic cry so that their future attacks have a heightened chance of landing critical hits. This rouses Dragon types more.",
+        "target": "all-ally"
     },
     "Dragon Claw": {
         "name": "Dragon Claw",
@@ -1698,7 +1772,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user vigorously performs a mystic, powerful dance that boosts its Attack and Speed stats."
+        "description": "The user vigorously performs a mystic, powerful dance that boosts its Attack and Speed stats.",
+        "target": "user"
     },
     "Dragon Darts": {
         "name": "Dragon Darts",
@@ -1716,7 +1791,8 @@
         "pp": 5,
         "power": 150,
         "accuracy": 100,
-        "description": "Converting its life-force into power, the user attacks opposing Pok\u00e9mon. The lower the user's HP, the lower the move's power."
+        "description": "Converting its life-force into power, the user attacks opposing Pok\u00e9mon. The lower the user's HP, the lower the move's power.",
+        "target": "all-adj-foe"
     },
     "Dragon Hammer": {
         "name": "Dragon Hammer",
@@ -1734,7 +1810,8 @@
         "pp": 10,
         "power": 85,
         "accuracy": 100,
-        "description": "The target is attacked with a shock wave generated by the user's gaping mouth."
+        "description": "The target is attacked with a shock wave generated by the user's gaping mouth.",
+        "target": "any"
     },
     "Dragon Rage": {
         "name": "Dragon Rage",
@@ -1797,7 +1874,8 @@
         "pp": 20,
         "power": 80,
         "accuracy": 100,
-        "description": "A corkscrewing attack that strikes the target with a sharp beak acting as a drill."
+        "description": "A corkscrewing attack that strikes the target with a sharp beak acting as a drill.",
+        "target": "any"
     },
     "Drill Run": {
         "name": "Drill Run",
@@ -1869,7 +1947,8 @@
         "pp": 10,
         "power": 100,
         "accuracy": 100,
-        "description": "The user sets off an earthquake that strikes every Pok\u00e9mon around it."
+        "description": "The user sets off an earthquake that strikes every Pok\u00e9mon around it.",
+        "target": "all-adj"
     },
     "Echoed Voice": {
         "name": "Echoed Voice",
@@ -1914,7 +1993,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user turns the ground into Electric Terrain for five turns, powering up Electric-type moves. Pok\u00e9mon on the ground can no longer fall asleep."
+        "description": "The user turns the ground into Electric Terrain for five turns, powering up Electric-type moves. Pok\u00e9mon on the ground can no longer fall asleep.",
+        "target": "all"
     },
     "Electrify": {
         "name": "Electrify",
@@ -1959,7 +2039,8 @@
         "pp": 15,
         "power": 55,
         "accuracy": 95,
-        "description": "The user captures opposing Pok\u00e9mon in an electric net to inflict damage. This also lowers their Speed stats."
+        "description": "The user captures opposing Pok\u00e9mon in an electric net to inflict damage. This also lowers their Speed stats.",
+        "target": "all-adj-foe"
     },
     "Embargo": {
         "name": "Embargo",
@@ -2004,7 +2085,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user endures any attack with at least 1 HP. This move's chance of failing rises if used in succession."
+        "description": "The user endures any attack with at least 1 HP. This move's chance of failing rises if used in succession.",
+        "target": "user"
     },
     "Energy Ball": {
         "name": "Energy Ball",
@@ -2031,7 +2113,8 @@
         "pp": 5,
         "power": 150,
         "accuracy": 100,
-        "description": "The user attacks opposing Pok\u00e9mon with explosive fury. The lower the user's HP, the lower the move's power."
+        "description": "The user attacks opposing Pok\u00e9mon with explosive fury. The lower the user's HP, the lower the move's power.",
+        "target": "all-adj-foe"
     },
     "Esper Wing": {
         "name": "Esper Wing",
@@ -2067,7 +2150,8 @@
         "pp": 5,
         "power": 250,
         "accuracy": 100,
-        "description": "The user attacks everything around it by causing a tremendous explosion. The user faints upon using this move."
+        "description": "The user attacks everything around it by causing a tremendous explosion. The user faints upon using this move.",
+        "target": "all-adj"
     },
     "Extrasensory": {
         "name": "Extrasensory",
@@ -2085,7 +2169,8 @@
         "pp": 1,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "user"
     },
     "Extreme Speed": {
         "name": "Extreme Speed",
@@ -2112,7 +2197,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "By locking down the battlefield, the user keeps all Pok\u00e9mon from fleeing during the next turn."
+        "description": "By locking down the battlefield, the user keeps all Pok\u00e9mon from fleeing during the next turn.",
+        "target": "all"
     },
     "Fairy Wind": {
         "name": "Fairy Wind",
@@ -2220,7 +2306,8 @@
         "pp": 10,
         "power": 90,
         "accuracy": 100,
-        "description": "The user transforms its wrath into a fire-like aura to attack. This may also make opposing Pok\u00e9mon flinch."
+        "description": "The user transforms its wrath into a fire-like aura to attack. This may also make opposing Pok\u00e9mon flinch.",
+        "target": "all-adj-foe"
     },
     "Fillet Away": {
         "name": "Fillet Away",
@@ -2229,7 +2316,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user sharply boosts its Attack, Sp. Atk, and Speed stats by using its own HP."
+        "description": "The user sharply boosts its Attack, Sp. Atk, and Speed stats by using its own HP.",
+        "target": "user"
     },
     "Final Gambit": {
         "name": "Final Gambit",
@@ -2454,7 +2542,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "all"
     },
     "Flower Trick": {
         "name": "Flower Trick",
@@ -2472,7 +2561,8 @@
         "pp": 15,
         "power": 90,
         "accuracy": 95,
-        "description": "The user flies up into the sky on the first turn, then attacks on the next turn."
+        "description": "The user flies up into the sky on the first turn, then attacks on the next turn.",
+        "target": "any"
     },
     "Flying Press": {
         "name": "Flying Press",
@@ -2481,7 +2571,8 @@
         "pp": 10,
         "power": 100,
         "accuracy": 95,
-        "description": "The user dives down onto the target from the sky. This move is Fighting and Flying type simultaneously."
+        "description": "The user dives down onto the target from the sky. This move is Fighting and Flying type simultaneously.",
+        "target": "any"
     },
     "Focus Blast": {
         "name": "Focus Blast",
@@ -2499,7 +2590,8 @@
         "pp": 30,
         "power": 0,
         "accuracy": 0,
-        "description": "The user takes a deep breath and focuses so that its future attacks have a heightened chance of landing critical hits."
+        "description": "The user takes a deep breath and focuses so that its future attacks have a heightened chance of landing critical hits.",
+        "target": "user"
     },
     "Focus Punch": {
         "name": "Focus Punch",
@@ -2517,7 +2609,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user draws attention to itself, making all opposing Pok\u00e9mon take aim only at the user."
+        "description": "The user draws attention to itself, making all opposing Pok\u00e9mon take aim only at the user.",
+        "target": "user"
     },
     "Force Palm": {
         "name": "Force Palm",
@@ -2697,7 +2790,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "user-all-ally"
     },
     "Genesis Supernova": {
         "name": "Genesis Supernova",
@@ -2715,7 +2809,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user absorbs energy on the first turn, then sharply boosts its Sp. Atk, Sp. Def, and Speed stats on the next turn."
+        "description": "The user absorbs energy on the first turn, then sharply boosts its Sp. Atk, Sp. Def, and Speed stats on the next turn.",
+        "target": "user"
     },
     "Giga Drain": {
         "name": "Giga Drain",
@@ -2760,7 +2855,8 @@
         "pp": 5,
         "power": 120,
         "accuracy": 100,
-        "description": "The user attacks by hurling a blizzard-cloaked icicle lance at opposing Pok\u00e9mon."
+        "description": "The user attacks by hurling a blizzard-cloaked icicle lance at opposing Pok\u00e9mon.",
+        "target": "all-adj-foe"
     },
     "Glaciate": {
         "name": "Glaciate",
@@ -2769,7 +2865,8 @@
         "pp": 10,
         "power": 65,
         "accuracy": 95,
-        "description": "The user attacks by blowing freezing cold air at opposing Pok\u00e9mon. This also lowers their Speed stats."
+        "description": "The user attacks by blowing freezing cold air at opposing Pok\u00e9mon. This also lowers their Speed stats.",
+        "target": "all-adj-foe"
     },
     "Glaive Rush": {
         "name": "Glaive Rush",
@@ -2841,7 +2938,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user turns the ground into Grassy Terrain for five turns. This restores the HP of Pok\u00e9mon on the ground a little every turn and powers up Grass-type moves."
+        "description": "The user turns the ground into Grassy Terrain for five turns. This restores the HP of Pok\u00e9mon on the ground a little every turn and powers up Grass-type moves.",
+        "target": "all"
     },
     "Grav Apple": {
         "name": "Grav Apple",
@@ -2859,7 +2957,8 @@
         "pp": 5,
         "power": 0,
         "accuracy": 0,
-        "description": "Enables Flying types or Pok\u00e9mon with the Levitate Ability to be hit by Ground-type moves for five turns. Moves that involve flying can't be used."
+        "description": "Enables Flying types or Pok\u00e9mon with the Levitate Ability to be hit by Ground-type moves for five turns. Moves that involve flying can't be used.",
+        "target": "all"
     },
     "Growl": {
         "name": "Growl",
@@ -2868,7 +2967,8 @@
         "pp": 40,
         "power": 0,
         "accuracy": 100,
-        "description": "The user growls in an endearing way, making opposing Pok\u00e9mon less wary. This lowers their Attack stats."
+        "description": "The user growls in an endearing way, making opposing Pok\u00e9mon less wary. This lowers their Attack stats.",
+        "target": "all-adj-foe"
     },
     "Growth": {
         "name": "Growth",
@@ -2877,7 +2977,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user's body grows all at once, boosting the Attack and Sp. Atk stats."
+        "description": "The user's body grows all at once, boosting the Attack and Sp. Atk stats.",
+        "target": "user"
     },
     "Grudge": {
         "name": "Grudge",
@@ -2886,7 +2987,8 @@
         "pp": 5,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "user"
     },
     "Guard Split": {
         "name": "Guard Split",
@@ -2940,7 +3042,8 @@
         "pp": 35,
         "power": 40,
         "accuracy": 100,
-        "description": "A gust of wind is whipped up by wings and launched at the target to inflict damage."
+        "description": "A gust of wind is whipped up by wings and launched at the target to inflict damage.",
+        "target": "any"
     },
     "Gyro Ball": {
         "name": "Gyro Ball",
@@ -2958,7 +3061,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "all"
     },
     "Hammer Arm": {
         "name": "Hammer Arm",
@@ -2976,7 +3080,8 @@
         "pp": 30,
         "power": 0,
         "accuracy": 0,
-        "description": "Using Happy Hour doubles the amount of prize money received after battle."
+        "description": "Using Happy Hour doubles the amount of prize money received after battle.",
+        "target": "user-all-ally"
     },
     "Hard Press": {
         "name": "Hard Press",
@@ -2994,7 +3099,8 @@
         "pp": 30,
         "power": 0,
         "accuracy": 0,
-        "description": "The user stiffens all the muscles in its body to boost its Defense stat."
+        "description": "The user stiffens all the muscles in its body to boost its Defense stat.",
+        "target": "user"
     },
     "Haze": {
         "name": "Haze",
@@ -3003,7 +3109,8 @@
         "pp": 30,
         "power": 0,
         "accuracy": 0,
-        "description": "The user creates a haze that eliminates every stat change among all the Pok\u00e9mon engaged in battle."
+        "description": "The user creates a haze that eliminates every stat change among all the Pok\u00e9mon engaged in battle.",
+        "target": "all"
     },
     "Head Charge": {
         "name": "Head Charge",
@@ -3048,7 +3155,8 @@
         "pp": 5,
         "power": 0,
         "accuracy": 0,
-        "description": "The user makes a soothing bell chime to cure the status conditions of all its fellow party Pok\u00e9mon and allies."
+        "description": "The user makes a soothing bell chime to cure the status conditions of all its fellow party Pok\u00e9mon and allies.",
+        "target": "user-all-ally"
     },
     "Heal Block": {
         "name": "Heal Block",
@@ -3057,7 +3165,8 @@
         "pp": 15,
         "power": 0,
         "accuracy": 100,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "all-adj-foe"
     },
     "Heal Order": {
         "name": "Heal Order",
@@ -3066,7 +3175,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "user"
     },
     "Heal Pulse": {
         "name": "Heal Pulse",
@@ -3075,7 +3185,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user emits a healing pulse that restores the target's HP by up to half its max HP."
+        "description": "The user emits a healing pulse that restores the target's HP by up to half its max HP.",
+        "target": "any"
     },
     "Healing Wish": {
         "name": "Healing Wish",
@@ -3084,7 +3195,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user faints. In return, the Pok\u00e9mon taking its place will have its HP restored and status conditions cured."
+        "description": "The user faints. In return, the Pok\u00e9mon taking its place will have its HP restored and status conditions cured.",
+        "target": "user"
     },
     "Heart Stamp": {
         "name": "Heart Stamp",
@@ -3120,7 +3232,8 @@
         "pp": 10,
         "power": 95,
         "accuracy": 90,
-        "description": "The user attacks by exhaling hot breath on opposing Pok\u00e9mon. This may also leave them with a burn."
+        "description": "The user attacks by exhaling hot breath on opposing Pok\u00e9mon. This may also leave them with a burn.",
+        "target": "all-adj-foe"
     },
     "Heavy Slam": {
         "name": "Heavy Slam",
@@ -3138,7 +3251,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user assists an ally by boosting the power of that ally's attack."
+        "description": "The user assists an ally by boosting the power of that ally's attack.",
+        "target": "user"
     },
     "Hex": {
         "name": "Hex",
@@ -3192,7 +3306,8 @@
         "pp": 40,
         "power": 0,
         "accuracy": 0,
-        "description": "The user and an ally hold hands. This makes them very happy."
+        "description": "The user and an ally hold hands. This makes them very happy.",
+        "target": "any-adj-ally"
     },
     "Hone Claws": {
         "name": "Hone Claws",
@@ -3201,7 +3316,8 @@
         "pp": 15,
         "power": 0,
         "accuracy": 0,
-        "description": "The user sharpens its claws to boost its Attack stat and accuracy."
+        "description": "The user sharpens its claws to boost its Attack stat and accuracy.",
+        "target": "user"
     },
     "Horn Attack": {
         "name": "Horn Attack",
@@ -3237,7 +3353,8 @@
         "pp": 40,
         "power": 0,
         "accuracy": 0,
-        "description": "The user howls loudly to rouse itself and its allies. This boosts their Attack stats."
+        "description": "The user howls loudly to rouse itself and its allies. This boosts their Attack stats.",
+        "target": "user-all-ally"
     },
     "Hurricane": {
         "name": "Hurricane",
@@ -3246,7 +3363,8 @@
         "pp": 10,
         "power": 110,
         "accuracy": 70,
-        "description": "The user attacks by wrapping the target in a fierce wind. This may also confuse the target."
+        "description": "The user attacks by wrapping the target in a fierce wind. This may also confuse the target.",
+        "target": "any"
     },
     "Hydro Cannon": {
         "name": "Hydro Cannon",
@@ -3318,7 +3436,8 @@
         "pp": 10,
         "power": 90,
         "accuracy": 100,
-        "description": "The user attacks by letting loose a horribly loud, resounding cry."
+        "description": "The user attacks by letting loose a horribly loud, resounding cry.",
+        "target": "all-adj-foe"
     },
     "Hyperspace Fury": {
         "name": "Hyperspace Fury",
@@ -3444,7 +3563,8 @@
         "pp": 15,
         "power": 55,
         "accuracy": 95,
-        "description": "The user attacks with a gust of chilled air. This also lowers opposing Pok\u00e9mon's Speed stats."
+        "description": "The user attacks with a gust of chilled air. This also lowers opposing Pok\u00e9mon's Speed stats.",
+        "target": "all-adj-foe"
     },
     "Imprison": {
         "name": "Imprison",
@@ -3453,7 +3573,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "If opposing Pok\u00e9mon know any move also known by the user, they are prevented from using it."
+        "description": "If opposing Pok\u00e9mon know any move also known by the user, they are prevented from using it.",
+        "target": "user"
     },
     "Incinerate": {
         "name": "Incinerate",
@@ -3462,7 +3583,8 @@
         "pp": 15,
         "power": 60,
         "accuracy": 100,
-        "description": "The user attacks opposing Pok\u00e9mon with fire. If a Pok\u00e9mon is holding a certain item, such as a Berry, the item becomes burned up and unusable."
+        "description": "The user attacks opposing Pok\u00e9mon with fire. If a Pok\u00e9mon is holding a certain item, such as a Berry, the item becomes burned up and unusable.",
+        "target": "all-adj-foe"
     },
     "Infernal Parade": {
         "name": "Infernal Parade",
@@ -3507,7 +3629,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user lays roots that restore its own HP every turn. Because the user is now rooted, it can't switch out."
+        "description": "The user lays roots that restore its own HP every turn. Because the user is now rooted, it can't switch out.",
+        "target": "user"
     },
     "Instruct": {
         "name": "Instruct",
@@ -3525,7 +3648,8 @@
         "pp": 25,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "all"
     },
     "Iron Defense": {
         "name": "Iron Defense",
@@ -3534,7 +3658,8 @@
         "pp": 15,
         "power": 0,
         "accuracy": 0,
-        "description": "The user hardens its body's surface like iron, sharply boosting its Defense stat."
+        "description": "The user hardens its body's surface like iron, sharply boosting its Defense stat.",
+        "target": "user"
     },
     "Iron Head": {
         "name": "Iron Head",
@@ -3606,7 +3731,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user becomes one with the jungle, restoring HP and curing status conditions for itself and its ally Pok\u00e9mon currently in the battle."
+        "description": "The user becomes one with the jungle, restoring HP and curing status conditions for itself and its ally Pok\u00e9mon currently in the battle.",
+        "target": "user-all-ally"
     },
     "Karate Chop": {
         "name": "Karate Chop",
@@ -3633,7 +3759,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user takes a defensive stance while it protects itself from damage. This also lowers the Attack stat of any attacker that makes direct contact."
+        "description": "The user takes a defensive stance while it protects itself from damage. This also lowers the Attack stat of any attacker that makes direct contact.",
+        "target": "user"
     },
     "Knock Off": {
         "name": "Knock Off",
@@ -3660,7 +3787,8 @@
         "pp": 10,
         "power": 90,
         "accuracy": 100,
-        "description": "The user gathers the energy of the land and focuses that power on opposing Pok\u00e9mon to inflict damage."
+        "description": "The user gathers the energy of the land and focuses that power on opposing Pok\u00e9mon to inflict damage.",
+        "target": "all-adj-foe"
     },
     "Laser Focus": {
         "name": "Laser Focus",
@@ -3669,7 +3797,8 @@
         "pp": 30,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "user"
     },
     "Lash Out": {
         "name": "Lash Out",
@@ -3705,7 +3834,8 @@
         "pp": 15,
         "power": 80,
         "accuracy": 100,
-        "description": "The user torches everything around it in an inferno of scarlet flames. This may also leave those it hits with a burn."
+        "description": "The user torches everything around it in an inferno of scarlet flames. This may also leave those it hits with a burn.",
+        "target": "all-adj"
     },
     "Leaf Blade": {
         "name": "Leaf Blade",
@@ -3768,7 +3898,8 @@
         "pp": 30,
         "power": 0,
         "accuracy": 100,
-        "description": "The user gives opposing Pok\u00e9mon an intimidating leer that lowers their Defense stats."
+        "description": "The user gives opposing Pok\u00e9mon an intimidating leer that lowers their Defense stats.",
+        "target": "all-adj-foe"
     },
     "Let's Snuggle Forever": {
         "name": "Let's Snuggle Forever",
@@ -3795,7 +3926,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user scatters mysterious water around and restores the HP of itself and its ally Pok\u00e9mon currently in the battle."
+        "description": "The user scatters mysterious water around and restores the HP of itself and its ally Pok\u00e9mon currently in the battle.",
+        "target": "user-all-ally"
     },
     "Light of Ruin": {
         "name": "Light of Ruin",
@@ -3813,7 +3945,8 @@
         "pp": 30,
         "power": 0,
         "accuracy": 0,
-        "description": "A wondrous wall of light is put up to reduce damage from special moves for five turns."
+        "description": "A wondrous wall of light is put up to reduce damage from special moves for five turns.",
+        "target": "user-all-ally"
     },
     "Light That Burns the Sky": {
         "name": "Light That Burns the Sky",
@@ -3876,7 +4009,8 @@
         "pp": 30,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "user-all-ally"
     },
     "Lumina Crash": {
         "name": "Lumina Crash",
@@ -3894,7 +4028,8 @@
         "pp": 5,
         "power": 0,
         "accuracy": 0,
-        "description": "The user receives a blessing from the crescent moon, restoring HP and curing status conditions for itself and its ally Pok\u00e9mon currently in the battle."
+        "description": "The user receives a blessing from the crescent moon, restoring HP and curing status conditions for itself and its ally Pok\u00e9mon currently in the battle.",
+        "target": "user-all-ally"
     },
     "Lunar Dance": {
         "name": "Lunar Dance",
@@ -3903,7 +4038,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user faints. In return, the Pok\u00e9mon taking its place will have its HP and PP restored and its status conditions cured."
+        "description": "The user faints. In return, the Pok\u00e9mon taking its place will have its HP and PP restored and its status conditions cured.",
+        "target": "user"
     },
     "Lunge": {
         "name": "Lunge",
@@ -3939,7 +4075,8 @@
         "pp": 15,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "user"
     },
     "Magic Powder": {
         "name": "Magic Powder",
@@ -3957,7 +4094,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user creates a bizarre area in which Pok\u00e9mon's held items lose their effects for five turns."
+        "description": "The user creates a bizarre area in which Pok\u00e9mon's held items lose their effects for five turns.",
+        "target": "all"
     },
     "Magical Leaf": {
         "name": "Magical Leaf",
@@ -4002,7 +4140,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user levitates using electrically generated magnetism for five turns."
+        "description": "The user levitates using electrically generated magnetism for five turns.",
+        "target": "user"
     },
     "Magnetic Flux": {
         "name": "Magnetic Flux",
@@ -4011,7 +4150,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user manipulates magnetic fields, which boosts the Defense and Sp. Def stats of ally Pok\u00e9mon with the Plus Ability or the Minus Ability."
+        "description": "The user manipulates magnetic fields, which boosts the Defense and Sp. Def stats of ally Pok\u00e9mon with the Plus Ability or the Minus Ability.",
+        "target": "user-all-ally"
     },
     "Magnitude": {
         "name": "Magnitude",
@@ -4020,7 +4160,8 @@
         "pp": 30,
         "power": 0,
         "accuracy": 100,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "all-adj"
     },
     "Make It Rain": {
         "name": "Make It Rain",
@@ -4029,7 +4170,8 @@
         "pp": 5,
         "power": 120,
         "accuracy": 100,
-        "description": "The user attacks by throwing out a mass of coins. This also lowers the user's Sp. Atk stat. Money is earned after the battle."
+        "description": "The user attacks by throwing out a mass of coins. This also lowers the user's Sp. Atk stat. Money is earned after the battle.",
+        "target": "all-adj-foe"
     },
     "Malicious Moonsault": {
         "name": "Malicious Moonsault",
@@ -4056,7 +4198,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "user-all-ally"
     },
     "Matcha Gotcha": {
         "name": "Matcha Gotcha",
@@ -4065,7 +4208,8 @@
         "pp": 15,
         "power": 80,
         "accuracy": 90,
-        "description": "The user fires a blast of tea that it mixed. The user's HP is restored by up to half the damage taken by the target. This may also leave the target with a burn."
+        "description": "The user fires a blast of tea that it mixed. The user's HP is restored by up to half the damage taken by the target. This may also leave the target with a burn.",
+        "target": "all-adj-foe"
     },
     "Max Airstream": {
         "name": "Max Airstream",
@@ -4074,7 +4218,8 @@
         "pp": 10,
         "power": 10,
         "accuracy": 0,
-        "description": "This is a Flying-type attack Dynamax Pok\u00e9mon use. This boosts ally Pok\u00e9mon's Speed stats."
+        "description": "This is a Flying-type attack Dynamax Pok\u00e9mon use. This boosts ally Pok\u00e9mon's Speed stats.",
+        "target": "any-adj-foe"
     },
     "Max Darkness": {
         "name": "Max Darkness",
@@ -4083,7 +4228,8 @@
         "pp": 10,
         "power": 10,
         "accuracy": 0,
-        "description": "This is a Dark-type attack Dynamax Pok\u00e9mon use. This lowers the target's Sp. Def stat."
+        "description": "This is a Dark-type attack Dynamax Pok\u00e9mon use. This lowers the target's Sp. Def stat.",
+        "target": "any-adj-foe"
     },
     "Max Flare": {
         "name": "Max Flare",
@@ -4092,7 +4238,8 @@
         "pp": 10,
         "power": 100,
         "accuracy": 0,
-        "description": "This is a Fire-type attack Dynamax Pok\u00e9mon use. The user intensifies the sun for five turns."
+        "description": "This is a Fire-type attack Dynamax Pok\u00e9mon use. The user intensifies the sun for five turns.",
+        "target": "any-adj-foe"
     },
     "Max Flutterby": {
         "name": "Max Flutterby",
@@ -4101,7 +4248,8 @@
         "pp": 10,
         "power": 10,
         "accuracy": 0,
-        "description": "This is a Bug-type attack Dynamax Pok\u00e9mon use. This lowers the target's Sp. Atk stat."
+        "description": "This is a Bug-type attack Dynamax Pok\u00e9mon use. This lowers the target's Sp. Atk stat.",
+        "target": "any-adj-foe"
     },
     "Max Geyser": {
         "name": "Max Geyser",
@@ -4110,7 +4258,8 @@
         "pp": 10,
         "power": 10,
         "accuracy": 0,
-        "description": "This is a Water-type attack Dynamax Pok\u00e9mon use. The user summons a heavy rain that falls for five turns."
+        "description": "This is a Water-type attack Dynamax Pok\u00e9mon use. The user summons a heavy rain that falls for five turns.",
+        "target": "any-adj-foe"
     },
     "Max Guard": {
         "name": "Max Guard",
@@ -4119,7 +4268,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "This move enables the user to protect itself from all attacks. Its chance of failing rises if it is used in succession."
+        "description": "This move enables the user to protect itself from all attacks. Its chance of failing rises if it is used in succession.",
+        "target": "user"
     },
     "Max Hailstorm": {
         "name": "Max Hailstorm",
@@ -4128,7 +4278,8 @@
         "pp": 10,
         "power": 10,
         "accuracy": 0,
-        "description": "This is an Ice-type attack Dynamax Pok\u00e9mon use. The user summons a snowstorm lasting five turns."
+        "description": "This is an Ice-type attack Dynamax Pok\u00e9mon use. The user summons a snowstorm lasting five turns.",
+        "target": "any-adj-foe"
     },
     "Max Knuckle": {
         "name": "Max Knuckle",
@@ -4137,7 +4288,8 @@
         "pp": 10,
         "power": 10,
         "accuracy": 0,
-        "description": "This is a Fighting-type attack Dynamax Pok\u00e9mon use. This boosts ally Pok\u00e9mon's Attack stats."
+        "description": "This is a Fighting-type attack Dynamax Pok\u00e9mon use. This boosts ally Pok\u00e9mon's Attack stats.",
+        "target": "any-adj-foe"
     },
     "Max Lightning": {
         "name": "Max Lightning",
@@ -4146,7 +4298,8 @@
         "pp": 10,
         "power": 10,
         "accuracy": 0,
-        "description": "This is an Electric-type attack Dynamax Pok\u00e9mon use. The user turns the ground into Electric Terrain for five turns."
+        "description": "This is an Electric-type attack Dynamax Pok\u00e9mon use. The user turns the ground into Electric Terrain for five turns.",
+        "target": "any-adj-foe"
     },
     "Max Mindstorm": {
         "name": "Max Mindstorm",
@@ -4155,7 +4308,8 @@
         "pp": 10,
         "power": 10,
         "accuracy": 0,
-        "description": "This is a Psychic-type attack Dynamax Pok\u00e9mon use. The user turns the ground into Psychic Terrain for five turns."
+        "description": "This is a Psychic-type attack Dynamax Pok\u00e9mon use. The user turns the ground into Psychic Terrain for five turns.",
+        "target": "any-adj-foe"
     },
     "Max Ooze": {
         "name": "Max Ooze",
@@ -4164,7 +4318,8 @@
         "pp": 10,
         "power": 10,
         "accuracy": 0,
-        "description": "This is a Poison-type attack Dynamax Pok\u00e9mon use. This boosts ally Pok\u00e9mon's Sp. Atk stats."
+        "description": "This is a Poison-type attack Dynamax Pok\u00e9mon use. This boosts ally Pok\u00e9mon's Sp. Atk stats.",
+        "target": "any-adj-foe"
     },
     "Max Overgrowth": {
         "name": "Max Overgrowth",
@@ -4173,7 +4328,8 @@
         "pp": 10,
         "power": 10,
         "accuracy": 0,
-        "description": "This is a Grass-type attack Dynamax Pok\u00e9mon use. The user turns the ground into Grassy Terrain for five turns."
+        "description": "This is a Grass-type attack Dynamax Pok\u00e9mon use. The user turns the ground into Grassy Terrain for five turns.",
+        "target": "any-adj-foe"
     },
     "Max Phantasm": {
         "name": "Max Phantasm",
@@ -4182,7 +4338,8 @@
         "pp": 10,
         "power": 10,
         "accuracy": 0,
-        "description": "This is a Ghost-type attack Dynamax Pok\u00e9mon use. This lowers the target's Defense stat."
+        "description": "This is a Ghost-type attack Dynamax Pok\u00e9mon use. This lowers the target's Defense stat.",
+        "target": "any-adj-foe"
     },
     "Max Quake": {
         "name": "Max Quake",
@@ -4191,7 +4348,8 @@
         "pp": 10,
         "power": 10,
         "accuracy": 0,
-        "description": "This is a Ground-type attack Dynamax Pok\u00e9mon use. This boosts ally Pok\u00e9mon's Sp. Def stats."
+        "description": "This is a Ground-type attack Dynamax Pok\u00e9mon use. This boosts ally Pok\u00e9mon's Sp. Def stats.",
+        "target": "any-adj-foe"
     },
     "Max Rockfall": {
         "name": "Max Rockfall",
@@ -4200,7 +4358,8 @@
         "pp": 10,
         "power": 10,
         "accuracy": 0,
-        "description": "This is a Rock-type attack Dynamax Pok\u00e9mon use. The user summons a sandstorm lasting five turns."
+        "description": "This is a Rock-type attack Dynamax Pok\u00e9mon use. The user summons a sandstorm lasting five turns.",
+        "target": "any-adj-foe"
     },
     "Max Starfall": {
         "name": "Max Starfall",
@@ -4209,7 +4368,8 @@
         "pp": 10,
         "power": 10,
         "accuracy": 0,
-        "description": "This is a Fairy-type attack Dynamax Pok\u00e9mon use. The user turns the ground into Misty Terrain for five turns."
+        "description": "This is a Fairy-type attack Dynamax Pok\u00e9mon use. The user turns the ground into Misty Terrain for five turns.",
+        "target": "any-adj-foe"
     },
     "Max Steelspike": {
         "name": "Max Steelspike",
@@ -4218,7 +4378,8 @@
         "pp": 10,
         "power": 10,
         "accuracy": 0,
-        "description": "This is a Steel-type attack Dynamax Pok\u00e9mon use. This boosts ally Pok\u00e9mon's Defense stats."
+        "description": "This is a Steel-type attack Dynamax Pok\u00e9mon use. This boosts ally Pok\u00e9mon's Defense stats.",
+        "target": "any-adj-foe"
     },
     "Max Strike": {
         "name": "Max Strike",
@@ -4227,7 +4388,8 @@
         "pp": 10,
         "power": 10,
         "accuracy": 0,
-        "description": "This is a Normal-type attack Dynamax Pok\u00e9mon use. This lowers the target's Speed stat."
+        "description": "This is a Normal-type attack Dynamax Pok\u00e9mon use. This lowers the target's Speed stat.",
+        "target": "any-adj-foe"
     },
     "Max Wyrmwind": {
         "name": "Max Wyrmwind",
@@ -4236,7 +4398,8 @@
         "pp": 10,
         "power": 10,
         "accuracy": 0,
-        "description": "This is a Dragon-type attack Dynamax Pok\u00e9mon use. This lowers the target's Attack stat."
+        "description": "This is a Dragon-type attack Dynamax Pok\u00e9mon use. This lowers the target's Attack stat.",
+        "target": "any-adj-foe"
     },
     "Me First": {
         "name": "Me First",
@@ -4245,7 +4408,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "any-adj-foe"
     },
     "Mean Look": {
         "name": "Mean Look",
@@ -4263,7 +4427,8 @@
         "pp": 40,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "user"
     },
     "Mega Drain": {
         "name": "Mega Drain",
@@ -4326,7 +4491,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 100,
-        "description": "The user retaliates with much greater force against the opponent that last inflicted damage on it."
+        "description": "The user retaliates with much greater force against the opponent that last inflicted damage on it.",
+        "target": "user"
     },
     "Metal Claw": {
         "name": "Metal Claw",
@@ -4380,7 +4546,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user waggles a finger and stimulates its brain into randomly using nearly any move."
+        "description": "The user waggles a finger and stimulates its brain into randomly using nearly any move.",
+        "target": "user"
     },
     "Mighty Cleave": {
         "name": "Mighty Cleave",
@@ -4398,7 +4565,8 @@
         "pp": 5,
         "power": 0,
         "accuracy": 0,
-        "description": "The user restores its own HP by up to half its max HP."
+        "description": "The user restores its own HP by up to half its max HP.",
+        "target": "user"
     },
     "Mimic": {
         "name": "Mimic",
@@ -4416,7 +4584,8 @@
         "pp": 5,
         "power": 150,
         "accuracy": 100,
-        "description": "The user attacks everything around it by causing its own head to explode. This also damages the user."
+        "description": "The user attacks everything around it by causing its own head to explode. This also damages the user.",
+        "target": "all-adj"
     },
     "Mind Reader": {
         "name": "Mind Reader",
@@ -4434,7 +4603,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user compresses its body to make itself look smaller, which sharply boosts its evasiveness."
+        "description": "The user compresses its body to make itself look smaller, which sharply boosts its evasiveness.",
+        "target": "user"
     },
     "Miracle Eye": {
         "name": "Miracle Eye",
@@ -4452,7 +4622,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 100,
-        "description": "A retaliatory attack that counters any special move, inflicting double the damage taken."
+        "description": "A retaliatory attack that counters any special move, inflicting double the damage taken.",
+        "target": "user"
     },
     "Mirror Move": {
         "name": "Mirror Move",
@@ -4479,7 +4650,8 @@
         "pp": 30,
         "power": 0,
         "accuracy": 0,
-        "description": "The user cloaks itself and its allies in a white mist that prevents any of their stats from being lowered for five turns."
+        "description": "The user cloaks itself and its allies in a white mist that prevents any of their stats from being lowered for five turns.",
+        "target": "user-all-ally"
     },
     "Mist Ball": {
         "name": "Mist Ball",
@@ -4497,7 +4669,8 @@
         "pp": 5,
         "power": 100,
         "accuracy": 100,
-        "description": "The user attacks everything around it and faints upon using this move. This move's power is boosted on Misty Terrain."
+        "description": "The user attacks everything around it and faints upon using this move. This move's power is boosted on Misty Terrain.",
+        "target": "all-adj"
     },
     "Misty Terrain": {
         "name": "Misty Terrain",
@@ -4506,7 +4679,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "This protects Pok\u00e9mon on the ground from status conditions and halves damage from Dragon-type moves for five turns."
+        "description": "This protects Pok\u00e9mon on the ground from status conditions and halves damage from Dragon-type moves for five turns.",
+        "target": "all"
     },
     "Moonblast": {
         "name": "Moonblast",
@@ -4533,7 +4707,8 @@
         "pp": 5,
         "power": 0,
         "accuracy": 0,
-        "description": "The user restores its own HP. The amount of HP regained varies with the weather."
+        "description": "The user restores its own HP. The amount of HP regained varies with the weather.",
+        "target": "user"
     },
     "Morning Sun": {
         "name": "Morning Sun",
@@ -4542,7 +4717,8 @@
         "pp": 5,
         "power": 0,
         "accuracy": 0,
-        "description": "The user restores its own HP. The amount of HP regained varies with the weather."
+        "description": "The user restores its own HP. The amount of HP regained varies with the weather.",
+        "target": "user"
     },
     "Mortal Spin": {
         "name": "Mortal Spin",
@@ -4551,7 +4727,8 @@
         "pp": 15,
         "power": 30,
         "accuracy": 100,
-        "description": "The user performs a spin attack that can also eliminate the effects of such moves as Bind, Wrap, and Leech Seed. This also poisons opposing Pok\u00e9mon."
+        "description": "The user performs a spin attack that can also eliminate the effects of such moves as Bind, Wrap, and Leech Seed. This also poisons opposing Pok\u00e9mon.",
+        "target": "all-adj-foe"
     },
     "Mountain Gale": {
         "name": "Mountain Gale",
@@ -4587,7 +4764,8 @@
         "pp": 15,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "all"
     },
     "Mud-Slap": {
         "name": "Mud-Slap",
@@ -4605,7 +4783,8 @@
         "pp": 10,
         "power": 90,
         "accuracy": 85,
-        "description": "The user attacks by shooting muddy water at opposing Pok\u00e9mon. This may also lower their accuracy."
+        "description": "The user attacks by shooting muddy water at opposing Pok\u00e9mon. This may also lower their accuracy.",
+        "target": "all-adj-foe"
     },
     "Multi-Attack": {
         "name": "Multi-Attack",
@@ -4641,7 +4820,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user stimulates its brain by thinking bad thoughts. This sharply boosts the user's Sp. Atk stat."
+        "description": "The user stimulates its brain by thinking bad thoughts. This sharply boosts the user's Sp. Atk stat.",
+        "target": "user"
     },
     "Natural Gift": {
         "name": "Natural Gift",
@@ -4659,7 +4839,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "user"
     },
     "Nature's Madness": {
         "name": "Nature's Madness",
@@ -4731,7 +4912,8 @@
         "pp": 5,
         "power": 0,
         "accuracy": 0,
-        "description": "This move boosts all the user's stats but prevents the user from switching out or fleeing."
+        "description": "This move boosts all the user's stats but prevents the user from switching out or fleeing.",
+        "target": "user"
     },
     "Noble Roar": {
         "name": "Noble Roar",
@@ -4767,7 +4949,8 @@
         "pp": 10,
         "power": 80,
         "accuracy": 100,
-        "description": "The user absorbs the target's HP. The user's HP is restored by over half the damage taken by the target."
+        "description": "The user absorbs the target's HP. The user's HP is restored by over half the damage taken by the target.",
+        "target": "any"
     },
     "Obstruct": {
         "name": "Obstruct",
@@ -4776,7 +4959,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 100,
-        "description": "This move enables the user to protect itself from all attacks. Its chance of failing rises if used in succession. Direct contact harshly lowers the attacker's Defense stat."
+        "description": "This move enables the user to protect itself from all attacks. Its chance of failing rises if used in succession. Direct contact harshly lowers the attacker's Defense stat.",
+        "target": "user"
     },
     "Oceanic Operetta": {
         "name": "Oceanic Operetta",
@@ -4839,7 +5023,8 @@
         "pp": 10,
         "power": 110,
         "accuracy": 85,
-        "description": "The user attacks opposing Pok\u00e9mon with countless beams of light that glow a deep and brilliant blue."
+        "description": "The user attacks opposing Pok\u00e9mon with countless beams of light that glow a deep and brilliant blue.",
+        "target": "all-adj-foe"
     },
     "Outrage": {
         "name": "Outrage",
@@ -4848,7 +5033,8 @@
         "pp": 10,
         "power": 120,
         "accuracy": 100,
-        "description": "The user rampages and attacks for two to three turns. The user then becomes confused."
+        "description": "The user rampages and attacks for two to three turns. The user then becomes confused.",
+        "target": "user"
     },
     "Overdrive": {
         "name": "Overdrive",
@@ -4857,7 +5043,8 @@
         "pp": 10,
         "power": 80,
         "accuracy": 100,
-        "description": "The user attacks opposing Pok\u00e9mon by twanging a guitar or bass guitar, causing a huge echo and strong vibration."
+        "description": "The user attacks opposing Pok\u00e9mon by twanging a guitar or bass guitar, causing a huge echo and strong vibration.",
+        "target": "all-adj-foe"
     },
     "Overheat": {
         "name": "Overheat",
@@ -4884,7 +5071,8 @@
         "pp": 20,
         "power": 65,
         "accuracy": 100,
-        "description": "The user attacks everything around it. The user's HP is restored by half the damage taken by those hit."
+        "description": "The user attacks everything around it. The user's HP is restored by half the damage taken by those hit.",
+        "target": "all-adj"
     },
     "Parting Shot": {
         "name": "Parting Shot",
@@ -4920,7 +5108,8 @@
         "pp": 35,
         "power": 35,
         "accuracy": 100,
-        "description": "The target is jabbed with a sharply pointed beak or horn to inflict damage."
+        "description": "The target is jabbed with a sharply pointed beak or horn to inflict damage.",
+        "target": "any"
     },
     "Perish Song": {
         "name": "Perish Song",
@@ -4929,7 +5118,8 @@
         "pp": 5,
         "power": 0,
         "accuracy": 0,
-        "description": "Any Pok\u00e9mon that hears this song faints in three turns, unless it switches out of battle."
+        "description": "Any Pok\u00e9mon that hears this song faints in three turns, unless it switches out of battle.",
+        "target": "all"
     },
     "Petal Blizzard": {
         "name": "Petal Blizzard",
@@ -4938,7 +5128,8 @@
         "pp": 15,
         "power": 90,
         "accuracy": 100,
-        "description": "The user stirs up a violent petal blizzard and damages everything around it."
+        "description": "The user stirs up a violent petal blizzard and damages everything around it.",
+        "target": "all-adj"
     },
     "Petal Dance": {
         "name": "Petal Dance",
@@ -4947,7 +5138,8 @@
         "pp": 10,
         "power": 120,
         "accuracy": 100,
-        "description": "The user attacks the target by scattering petals for two to three turns. The user then becomes confused."
+        "description": "The user attacks the target by scattering petals for two to three turns. The user then becomes confused.",
+        "target": "user"
     },
     "Phantom Force": {
         "name": "Phantom Force",
@@ -5019,7 +5211,8 @@
         "pp": 20,
         "power": 60,
         "accuracy": 100,
-        "description": "The user attacks by pecking the target. If the target is holding a Berry, the user eats it and gains its effect."
+        "description": "The user attacks by pecking the target. If the target is holding a Berry, the user eats it and gains its effect.",
+        "target": "any"
     },
     "Poison Fang": {
         "name": "Poison Fang",
@@ -5037,7 +5230,8 @@
         "pp": 40,
         "power": 0,
         "accuracy": 90,
-        "description": "A cloud of poison gas is sprayed in the faces of opposing Pok\u00e9mon, poisoning those it hits."
+        "description": "A cloud of poison gas is sprayed in the faces of opposing Pok\u00e9mon, poisoning those it hits.",
+        "target": "all-adj-foe"
     },
     "Poison Jab": {
         "name": "Poison Jab",
@@ -5136,7 +5330,8 @@
         "pp": 25,
         "power": 40,
         "accuracy": 100,
-        "description": "The user attacks with a chilling gust of powdery snow. This may also leave opposing Pok\u00e9mon frozen."
+        "description": "The user attacks with a chilling gust of powdery snow. This may also leave opposing Pok\u00e9mon frozen.",
+        "target": "all-adj-foe"
     },
     "Power Gem": {
         "name": "Power Gem",
@@ -5154,7 +5349,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user swaps its Attack and Defense stats."
+        "description": "The user swaps its Attack and Defense stats.",
+        "target": "user"
     },
     "Power Split": {
         "name": "Power Split",
@@ -5181,7 +5377,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user employs its psychic power to switch its Attack stat with its Defense stat."
+        "description": "The user employs its psychic power to switch its Attack stat with its Defense stat.",
+        "target": "user"
     },
     "Power Trip": {
         "name": "Power Trip",
@@ -5217,7 +5414,8 @@
         "pp": 10,
         "power": 120,
         "accuracy": 85,
-        "description": "The user attacks opposing Pok\u00e9mon by manifesting the power of the land in fearsome blades of stone."
+        "description": "The user attacks opposing Pok\u00e9mon by manifesting the power of the land in fearsome blades of stone.",
+        "target": "all-adj-foe"
     },
     "Present": {
         "name": "Present",
@@ -5244,7 +5442,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "This move enables the user to protect itself from all attacks. Its chance of failing rises if it is used in succession."
+        "description": "This move enables the user to protect itself from all attacks. Its chance of failing rises if it is used in succession.",
+        "target": "user"
     },
     "Psybeam": {
         "name": "Psybeam",
@@ -5307,7 +5506,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "This protects Pok\u00e9mon on the ground from priority moves and powers up Psychic-type moves for five turns."
+        "description": "This protects Pok\u00e9mon on the ground from priority moves and powers up Psychic-type moves for five turns.",
+        "target": "all"
     },
     "Psycho Boost": {
         "name": "Psycho Boost",
@@ -5442,7 +5642,8 @@
         "pp": 15,
         "power": 0,
         "accuracy": 0,
-        "description": "The user protects itself and its allies from priority moves."
+        "description": "The user protects itself and its allies from priority moves.",
+        "target": "user-all-ally"
     },
     "Quiver Dance": {
         "name": "Quiver Dance",
@@ -5451,7 +5652,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user lightly performs a beautiful, mystic dance. This boosts the user's Sp. Atk, Sp. Def, and Speed stats."
+        "description": "The user lightly performs a beautiful, mystic dance. This boosts the user's Sp. Atk, Sp. Def, and Speed stats.",
+        "target": "user"
     },
     "Rage": {
         "name": "Rage",
@@ -5478,7 +5680,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user scatters a cloud of irritating powder to draw attention to itself. Opposing Pok\u00e9mon aim only at the user."
+        "description": "The user scatters a cloud of irritating powder to draw attention to itself. Opposing Pok\u00e9mon aim only at the user.",
+        "target": "user"
     },
     "Raging Bull": {
         "name": "Raging Bull",
@@ -5496,7 +5699,8 @@
         "pp": 10,
         "power": 120,
         "accuracy": 100,
-        "description": "The user rampages around spewing flames for two to three turns. The user then becomes confused."
+        "description": "The user rampages around spewing flames for two to three turns. The user then becomes confused.",
+        "target": "user"
     },
     "Rain Dance": {
         "name": "Rain Dance",
@@ -5505,7 +5709,8 @@
         "pp": 5,
         "power": 0,
         "accuracy": 0,
-        "description": "The user summons a heavy rain that falls for five turns, powering up Water-type attacks. The rain also lowers the power of Fire-type attacks."
+        "description": "The user summons a heavy rain that falls for five turns, powering up Water-type attacks. The rain also lowers the power of Fire-type attacks.",
+        "target": "all"
     },
     "Rapid Spin": {
         "name": "Rapid Spin",
@@ -5523,7 +5728,8 @@
         "pp": 25,
         "power": 55,
         "accuracy": 95,
-        "description": "Sharp-edged leaves are launched to slash at opposing Pok\u00e9mon. This move has a heightened chance of landing a critical hit."
+        "description": "Sharp-edged leaves are launched to slash at opposing Pok\u00e9mon. This move has a heightened chance of landing a critical hit.",
+        "target": "all-adj-foe"
     },
     "Razor Shell": {
         "name": "Razor Shell",
@@ -5541,7 +5747,8 @@
         "pp": 10,
         "power": 80,
         "accuracy": 100,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "all-adj-foe"
     },
     "Recover": {
         "name": "Recover",
@@ -5550,7 +5757,8 @@
         "pp": 5,
         "power": 0,
         "accuracy": 0,
-        "description": "The user regenerates its cells, restoring its own HP by up to half its max HP."
+        "description": "The user regenerates its cells, restoring its own HP by up to half its max HP.",
+        "target": "user"
     },
     "Recycle": {
         "name": "Recycle",
@@ -5559,7 +5767,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user recycles a held item that has been used in battle so it can be used again."
+        "description": "The user recycles a held item that has been used in battle so it can be used again.",
+        "target": "user"
     },
     "Reflect": {
         "name": "Reflect",
@@ -5568,7 +5777,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "A wondrous wall of light is put up to reduce damage from physical moves for five turns."
+        "description": "A wondrous wall of light is put up to reduce damage from physical moves for five turns.",
+        "target": "user-all-ally"
     },
     "Reflect Type": {
         "name": "Reflect Type",
@@ -5586,7 +5796,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "user"
     },
     "Relic Song": {
         "name": "Relic Song",
@@ -5595,7 +5806,8 @@
         "pp": 10,
         "power": 75,
         "accuracy": 100,
-        "description": "The user sings an ancient song and attacks by appealing to the hearts of the listening opposing Pok\u00e9mon. This may also induce sleep."
+        "description": "The user sings an ancient song and attacks by appealing to the hearts of the listening opposing Pok\u00e9mon. This may also induce sleep.",
+        "target": "all-adj-foe"
     },
     "Rest": {
         "name": "Rest",
@@ -5604,7 +5816,8 @@
         "pp": 5,
         "power": 0,
         "accuracy": 0,
-        "description": "The user goes to sleep for two turns. This fully restores the user's HP and cures any status conditions."
+        "description": "The user goes to sleep for two turns. This fully restores the user's HP and cures any status conditions.",
+        "target": "user"
     },
     "Retaliate": {
         "name": "Retaliate",
@@ -5658,7 +5871,8 @@
         "pp": 1,
         "power": 0,
         "accuracy": 0,
-        "description": "The user bestows a loving blessing, reviving a party Pok\u00e9mon that has fainted and restoring half that Pok\u00e9mon's max HP."
+        "description": "The user bestows a loving blessing, reviving a party Pok\u00e9mon that has fainted and restoring half that Pok\u00e9mon's max HP.",
+        "target": "user"
     },
     "Rising Voltage": {
         "name": "Rising Voltage",
@@ -5712,7 +5926,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user polishes its body to reduce drag. This sharply boosts the user's Speed stat."
+        "description": "The user polishes its body to reduce drag. This sharply boosts the user's Speed stat.",
+        "target": "user"
     },
     "Rock Slide": {
         "name": "Rock Slide",
@@ -5721,7 +5936,8 @@
         "pp": 10,
         "power": 75,
         "accuracy": 90,
-        "description": "Large boulders are hurled at opposing Pok\u00e9mon to inflict damage. This may also make the opposing Pok\u00e9mon flinch."
+        "description": "Large boulders are hurled at opposing Pok\u00e9mon to inflict damage. This may also make the opposing Pok\u00e9mon flinch.",
+        "target": "all-adj-foe"
     },
     "Rock Smash": {
         "name": "Rock Smash",
@@ -5793,7 +6009,8 @@
         "pp": 5,
         "power": 0,
         "accuracy": 0,
-        "description": "The user lands and rests its body. This move restores the user's HP by up to half its max HP."
+        "description": "The user lands and rests its body. This move restores the user's HP by up to half its max HP.",
+        "target": "user"
     },
     "Rototiller": {
         "name": "Rototiller",
@@ -5802,7 +6019,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "all"
     },
     "Round": {
         "name": "Round",
@@ -5847,7 +6065,8 @@
         "pp": 25,
         "power": 0,
         "accuracy": 0,
-        "description": "The user creates a protective field that prevents status conditions for five turns."
+        "description": "The user creates a protective field that prevents status conditions for five turns.",
+        "target": "user-all-ally"
     },
     "Salt Cure": {
         "name": "Salt Cure",
@@ -5883,7 +6102,8 @@
         "pp": 10,
         "power": 100,
         "accuracy": 80,
-        "description": "The user attacks by wrapping opposing Pok\u00e9mon in fierce winds and searingly hot sand. This may also leave them with a burn."
+        "description": "The user attacks by wrapping opposing Pok\u00e9mon in fierce winds and searingly hot sand. This may also leave them with a burn.",
+        "target": "all-adj-foe"
     },
     "Sandstorm": {
         "name": "Sandstorm",
@@ -5892,7 +6112,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "A five-turn sandstorm is summoned to damage all Pok\u00e9mon except Rock, Ground, and Steel types. The sandstorm also boosts the Sp. Def stats of Rock types."
+        "description": "A five-turn sandstorm is summoned to damage all Pok\u00e9mon except Rock, Ground, and Steel types. The sandstorm also boosts the Sp. Def stats of Rock types.",
+        "target": "all"
     },
     "Sappy Seed": {
         "name": "Sappy Seed",
@@ -5973,7 +6194,8 @@
         "pp": 5,
         "power": 100,
         "accuracy": 100,
-        "description": "The user torches everything around it in an inferno of scarlet flames. This may also leave those it hits with a burn."
+        "description": "The user torches everything around it in an inferno of scarlet flames. This may also leave those it hits with a burn.",
+        "target": "all-adj"
     },
     "Searing Sunraze Smash": {
         "name": "Searing Sunraze Smash",
@@ -6036,7 +6258,8 @@
         "pp": 5,
         "power": 200,
         "accuracy": 100,
-        "description": "The user attacks everything around it by causing an explosion. The user faints upon using this move."
+        "description": "The user attacks everything around it by causing an explosion. The user faints upon using this move.",
+        "target": "all-adj"
     },
     "Shadow Ball": {
         "name": "Shadow Ball",
@@ -6099,7 +6322,8 @@
         "pp": 30,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "user"
     },
     "Shattered Psyche": {
         "name": "Shattered Psyche",
@@ -6117,7 +6341,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user creates a substitute for itself using its own HP before switching places with a party Pok\u00e9mon in waiting."
+        "description": "The user creates a substitute for itself using its own HP before switching places with a party Pok\u00e9mon in waiting.",
+        "target": "user"
     },
     "Sheer Cold": {
         "name": "Sheer Cold",
@@ -6144,7 +6369,8 @@
         "pp": 15,
         "power": 0,
         "accuracy": 0,
-        "description": "The user breaks its shell, which lowers its Defense and Sp. Def stats but sharply boosts its Attack, Sp. Atk, and Speed stats."
+        "description": "The user breaks its shell, which lowers its Defense and Sp. Def stats but sharply boosts its Attack, Sp. Atk, and Speed stats.",
+        "target": "user"
     },
     "Shell Trap": {
         "name": "Shell Trap",
@@ -6153,7 +6379,8 @@
         "pp": 5,
         "power": 150,
         "accuracy": 100,
-        "description": "The user sets a shell trap. If the user is hit by a physical move, the trap will explode and inflict damage on opposing Pok\u00e9mon."
+        "description": "The user sets a shell trap. If the user is hit by a physical move, the trap will explode and inflict damage on opposing Pok\u00e9mon.",
+        "target": "all-adj-foe"
     },
     "Shelter": {
         "name": "Shelter",
@@ -6162,7 +6389,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user makes its skin as hard as an iron shield, sharply boosting its Defense stat."
+        "description": "The user makes its skin as hard as an iron shield, sharply boosting its Defense stat.",
+        "target": "user"
     },
     "Shift Gear": {
         "name": "Shift Gear",
@@ -6171,7 +6399,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user rotates its gears, boosting its Attack stat and sharply boosting its Speed stat."
+        "description": "The user rotates its gears, boosting its Attack stat and sharply boosting its Speed stat.",
+        "target": "user"
     },
     "Shock Wave": {
         "name": "Shock Wave",
@@ -6189,7 +6418,8 @@
         "pp": 5,
         "power": 0,
         "accuracy": 0,
-        "description": "The user restores its own HP by up to half its max HP. It regains more HP in a sandstorm."
+        "description": "The user restores its own HP by up to half its max HP. It regains more HP in a sandstorm.",
+        "target": "user"
     },
     "Signal Beam": {
         "name": "Signal Beam",
@@ -6207,7 +6437,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user spins a silken trap, protecting itself from damage while lowering the Speed stat of any attacker that makes direct contact."
+        "description": "The user spins a silken trap, protecting itself from damage while lowering the Speed stat of any attacker that makes direct contact.",
+        "target": "user"
     },
     "Silver Wind": {
         "name": "Silver Wind",
@@ -6297,7 +6528,8 @@
         "pp": 5,
         "power": 140,
         "accuracy": 90,
-        "description": "The user attacks the turn after using this move. This move has a heightened chance of landing a critical hit and may also make the target flinch."
+        "description": "The user attacks the turn after using this move. This move has a heightened chance of landing a critical hit and may also make the target flinch.",
+        "target": "any"
     },
     "Sky Drop": {
         "name": "Sky Drop",
@@ -6306,7 +6538,8 @@
         "pp": 10,
         "power": 60,
         "accuracy": 100,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "any"
     },
     "Sky Uppercut": {
         "name": "Sky Uppercut",
@@ -6324,7 +6557,8 @@
         "pp": 5,
         "power": 0,
         "accuracy": 0,
-        "description": "The user slacks off, restoring its own HP by up to half its max HP."
+        "description": "The user slacks off, restoring its own HP by up to half its max HP.",
+        "target": "user"
     },
     "Slam": {
         "name": "Slam",
@@ -6360,7 +6594,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user randomly uses one of the moves it knows. This move can only be used while the user is asleep."
+        "description": "The user randomly uses one of the moves it knows. This move can only be used while the user is asleep.",
+        "target": "user"
     },
     "Sludge": {
         "name": "Sludge",
@@ -6387,7 +6622,8 @@
         "pp": 10,
         "power": 95,
         "accuracy": 100,
-        "description": "The user strikes everything around it by swamping the area with a giant sludge wave. This may also poison those it hits."
+        "description": "The user strikes everything around it by swamping the area with a giant sludge wave. This may also poison those it hits.",
+        "target": "all-adj"
     },
     "Smack Down": {
         "name": "Smack Down",
@@ -6450,7 +6686,8 @@
         "pp": 15,
         "power": 55,
         "accuracy": 95,
-        "description": "The user yells as if it's ranting about something, which lowers the Sp. Atk stats of opposing Pok\u00e9mon."
+        "description": "The user yells as if it's ranting about something, which lowers the Sp. Atk stats of opposing Pok\u00e9mon.",
+        "target": "all-adj-foe"
     },
     "Snatch": {
         "name": "Snatch",
@@ -6459,7 +6696,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "user"
     },
     "Snipe Shot": {
         "name": "Snipe Shot",
@@ -6486,7 +6724,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user summons a snowstorm lasting five turns. This boosts the Defense stats of Ice types."
+        "description": "The user summons a snowstorm lasting five turns. This boosts the Defense stats of Ice types.",
+        "target": "all"
     },
     "Soak": {
         "name": "Soak",
@@ -6504,7 +6743,8 @@
         "pp": 5,
         "power": 0,
         "accuracy": 0,
-        "description": "The user restores its own HP by up to half its max HP."
+        "description": "The user restores its own HP by up to half its max HP.",
+        "target": "user"
     },
     "Solar Beam": {
         "name": "Solar Beam",
@@ -6567,7 +6807,8 @@
         "pp": 10,
         "power": 90,
         "accuracy": 100,
-        "description": "The user bursts into song, emitting many bubbles. Any Pok\u00e9mon suffering from a burn will be cured by the touch of these bubbles."
+        "description": "The user bursts into song, emitting many bubbles. Any Pok\u00e9mon suffering from a burn will be cured by the touch of these bubbles.",
+        "target": "all-adj"
     },
     "Sparkly Swirl": {
         "name": "Sparkly Swirl",
@@ -6630,7 +6871,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user lays a trap of spikes at the feet of the opposing team. The spikes will damage opposing Pok\u00e9mon that switch into battle."
+        "description": "The user lays a trap of spikes at the feet of the opposing team. The spikes will damage opposing Pok\u00e9mon that switch into battle.",
+        "target": "all-foe"
     },
     "Spiky Shield": {
         "name": "Spiky Shield",
@@ -6639,7 +6881,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "In addition to protecting the user from attacks, this move also damages any attacker that makes direct contact."
+        "description": "In addition to protecting the user from attacks, this move also damages any attacker that makes direct contact.",
+        "target": "user"
     },
     "Spin Out": {
         "name": "Spin Out",
@@ -6693,7 +6936,8 @@
         "pp": 40,
         "power": 0,
         "accuracy": 0,
-        "description": "The user just flops and splashes around to no effect at all..."
+        "description": "The user just flops and splashes around to no effect at all...",
+        "target": "user"
     },
     "Splintered Stormshards": {
         "name": "Splintered Stormshards",
@@ -6711,7 +6955,8 @@
         "pp": 15,
         "power": 90,
         "accuracy": 100,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "all-adj-foe"
     },
     "Spore": {
         "name": "Spore",
@@ -6738,7 +6983,8 @@
         "pp": 5,
         "power": 100,
         "accuracy": 80,
-        "description": "The user attacks by wrapping opposing Pok\u00e9mon in fierce winds brimming with love and hate. This may also lower their Attack stats."
+        "description": "The user attacks by wrapping opposing Pok\u00e9mon in fierce winds brimming with love and hate. This may also lower their Attack stats.",
+        "target": "all-adj-foe"
     },
     "Stealth Rock": {
         "name": "Stealth Rock",
@@ -6747,7 +6993,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user lays a trap of levitating stones around the opposing team. The trap damages opposing Pok\u00e9mon that switch into battle."
+        "description": "The user lays a trap of levitating stones around the opposing team. The trap damages opposing Pok\u00e9mon that switch into battle.",
+        "target": "all-foe"
     },
     "Steam Eruption": {
         "name": "Steam Eruption",
@@ -6801,7 +7048,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user weaves a sticky net around the opposing team, which lowers their Speed stats upon switching into battle."
+        "description": "The user weaves a sticky net around the opposing team, which lowers their Speed stats upon switching into battle.",
+        "target": "all-foe"
     },
     "Stockpile": {
         "name": "Stockpile",
@@ -6810,7 +7058,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user stores power and boosts its Defense and Sp. Def stats. This move can be used up to three times."
+        "description": "The user stores power and boosts its Defense and Sp. Def stats. This move can be used up to three times.",
+        "target": "user"
     },
     "Stoked Sparksurfer": {
         "name": "Stoked Sparksurfer",
@@ -6909,7 +7158,8 @@
         "pp": 40,
         "power": 0,
         "accuracy": 95,
-        "description": "The user blows silk from its mouth that binds opposing Pok\u00e9mon and harshly lowers their Speed stats."
+        "description": "The user blows silk from its mouth that binds opposing Pok\u00e9mon and harshly lowers their Speed stats.",
+        "target": "all-adj-foe"
     },
     "Struggle": {
         "name": "Struggle",
@@ -6918,7 +7168,8 @@
         "pp": 1,
         "power": 50,
         "accuracy": 0,
-        "description": "This attack is used in desperation only if the user has no remaining PP. It also damages the user a little."
+        "description": "This attack is used in desperation only if the user has no remaining PP. It also damages the user a little.",
+        "target": "user"
     },
     "Struggle Bug": {
         "name": "Struggle Bug",
@@ -6927,7 +7178,8 @@
         "pp": 20,
         "power": 50,
         "accuracy": 100,
-        "description": "The user attacks by struggling against opposing Pok\u00e9mon. This also lowers their Sp. Atk stats."
+        "description": "The user attacks by struggling against opposing Pok\u00e9mon. This also lowers their Sp. Atk stats.",
+        "target": "all-adj-foe"
     },
     "Stuff Cheeks": {
         "name": "Stuff Cheeks",
@@ -6936,7 +7188,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user eats its held Berry, then sharply boosts its Defense stat."
+        "description": "The user eats its held Berry, then sharply boosts its Defense stat.",
+        "target": "user"
     },
     "Stun Spore": {
         "name": "Stun Spore",
@@ -6963,7 +7216,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user creates a substitute for itself using some of its own HP. The substitute serves as the user's decoy."
+        "description": "The user creates a substitute for itself using some of its own HP. The substitute serves as the user's decoy.",
+        "target": "user"
     },
     "Subzero Slammer": {
         "name": "Subzero Slammer",
@@ -6990,7 +7244,8 @@
         "pp": 5,
         "power": 0,
         "accuracy": 0,
-        "description": "The user intensifies the sun for five turns, powering up Fire-type attacks. The sunlight also lowers the power of Water-type attacks."
+        "description": "The user intensifies the sun for five turns, powering up Fire-type attacks. The sunlight also lowers the power of Water-type attacks.",
+        "target": "all"
     },
     "Sunsteel Strike": {
         "name": "Sunsteel Strike",
@@ -7053,7 +7308,8 @@
         "pp": 15,
         "power": 90,
         "accuracy": 100,
-        "description": "The user attacks everything around it by swamping its surroundings with a giant wave."
+        "description": "The user attacks everything around it by swamping its surroundings with a giant wave.",
+        "target": "all-adj"
     },
     "Surging Strikes": {
         "name": "Surging Strikes",
@@ -7080,7 +7336,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The power stored using the move Stockpile is absorbed by the user to restore its own HP. The more power is stored, the more HP is restored."
+        "description": "The power stored using the move Stockpile is absorbed by the user to restore its own HP. The more power is stored, the more HP is restored.",
+        "target": "user"
     },
     "Sweet Kiss": {
         "name": "Sweet Kiss",
@@ -7098,7 +7355,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 100,
-        "description": "The user releases a scent that harshly lowers opposing Pok\u00e9mon's evasiveness."
+        "description": "The user releases a scent that harshly lowers opposing Pok\u00e9mon's evasiveness.",
+        "target": "all-adj-foe"
     },
     "Swift": {
         "name": "Swift",
@@ -7107,7 +7365,8 @@
         "pp": 20,
         "power": 60,
         "accuracy": 0,
-        "description": "Star-shaped rays are shot at opposing Pok\u00e9mon. This attack never misses."
+        "description": "Star-shaped rays are shot at opposing Pok\u00e9mon. This attack never misses.",
+        "target": "all-adj-foe"
     },
     "Switcheroo": {
         "name": "Switcheroo",
@@ -7125,7 +7384,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "A frenetic dance to uplift the fighting spirit. This sharply boosts the user's Attack stat."
+        "description": "A frenetic dance to uplift the fighting spirit. This sharply boosts the user's Attack stat.",
+        "target": "user"
     },
     "Synchronoise": {
         "name": "Synchronoise",
@@ -7134,7 +7394,8 @@
         "pp": 10,
         "power": 120,
         "accuracy": 100,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "all-adj"
     },
     "Synthesis": {
         "name": "Synthesis",
@@ -7143,7 +7404,8 @@
         "pp": 5,
         "power": 0,
         "accuracy": 0,
-        "description": "The user restores its own HP. The amount of HP regained varies with the weather."
+        "description": "The user restores its own HP. The amount of HP regained varies with the weather.",
+        "target": "user"
     },
     "Syrup Bomb": {
         "name": "Syrup Bomb",
@@ -7179,7 +7441,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user stares at flashing lights to focus its mind, drastically boosting its Sp. Atk stat."
+        "description": "The user stares at flashing lights to focus its mind, drastically boosting its Sp. Atk stat.",
+        "target": "user"
     },
     "Tail Slap": {
         "name": "Tail Slap",
@@ -7197,7 +7460,8 @@
         "pp": 30,
         "power": 0,
         "accuracy": 100,
-        "description": "The user wags its tail cutely, making opposing Pok\u00e9mon less wary. This lowers their Defense stats."
+        "description": "The user wags its tail cutely, making opposing Pok\u00e9mon less wary. This lowers their Defense stats.",
+        "target": "all-adj-foe"
     },
     "Tailwind": {
         "name": "Tailwind",
@@ -7206,7 +7470,8 @@
         "pp": 15,
         "power": 0,
         "accuracy": 0,
-        "description": "The user whips up a turbulent whirlwind that boosts the Speed stats of itself and its allies for four turns."
+        "description": "The user whips up a turbulent whirlwind that boosts the Speed stats of itself and its allies for four turns.",
+        "target": "user-all-ally"
     },
     "Take Down": {
         "name": "Take Down",
@@ -7224,7 +7489,8 @@
         "pp": 15,
         "power": 0,
         "accuracy": 0,
-        "description": "The user lifts its spirits, curing its own status conditions and boosting its Sp. Atk and Sp. Def stats."
+        "description": "The user lifts its spirits, curing its own status conditions and boosting its Sp. Atk and Sp. Def stats.",
+        "target": "user"
     },
     "Tar Shot": {
         "name": "Tar Shot",
@@ -7260,7 +7526,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user has teatime with all the Pok\u00e9mon currently in the battle. Each Pok\u00e9mon eats its held Berry."
+        "description": "The user has teatime with all the Pok\u00e9mon currently in the battle. Each Pok\u00e9mon eats its held Berry.",
+        "target": "all"
     },
     "Techno Blast": {
         "name": "Techno Blast",
@@ -7287,7 +7554,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 100,
-        "description": "The user performs a wobbly dance that confuses every Pok\u00e9mon around it."
+        "description": "The user performs a wobbly dance that confuses every Pok\u00e9mon around it.",
+        "target": "all-adj"
     },
     "Telekinesis": {
         "name": "Telekinesis",
@@ -7305,7 +7573,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user switches places with a party Pok\u00e9mon in waiting, if any. If a wild Pok\u00e9mon uses this move, it flees."
+        "description": "The user switches places with a party Pok\u00e9mon in waiting, if any. If a wild Pok\u00e9mon uses this move, it flees.",
+        "target": "user"
     },
     "Temper Flare": {
         "name": "Temper Flare",
@@ -7359,7 +7628,8 @@
         "pp": 10,
         "power": 90,
         "accuracy": 100,
-        "description": "This move can hit opposing Pok\u00e9mon that are in the air. Those Pok\u00e9mon will be knocked down to the ground."
+        "description": "This move can hit opposing Pok\u00e9mon that are in the air. Those Pok\u00e9mon will be knocked down to the ground.",
+        "target": "all-adj-foe"
     },
     "Thousand Waves": {
         "name": "Thousand Waves",
@@ -7368,7 +7638,8 @@
         "pp": 10,
         "power": 90,
         "accuracy": 100,
-        "description": "The user attacks with a wave that crawls along the ground. Those it hits can't flee from battle."
+        "description": "The user attacks with a wave that crawls along the ground. Those it hits can't flee from battle.",
+        "target": "all-adj-foe"
     },
     "Thrash": {
         "name": "Thrash",
@@ -7377,7 +7648,8 @@
         "pp": 10,
         "power": 120,
         "accuracy": 100,
-        "description": "The user rampages and attacks for two to three turns. The user then becomes confused."
+        "description": "The user rampages and attacks for two to three turns. The user then becomes confused.",
+        "target": "user"
     },
     "Throat Chop": {
         "name": "Throat Chop",
@@ -7485,7 +7757,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user tidies up and removes the effects of Spikes, Stealth Rock, Sticky Web, Toxic Spikes, and Substitute. This also boosts the user's Attack and Speed stats."
+        "description": "The user tidies up and removes the effects of Spikes, Stealth Rock, Sticky Web, Toxic Spikes, and Substitute. This also boosts the user's Attack and Speed stats.",
+        "target": "user"
     },
     "Topsy-Turvy": {
         "name": "Topsy-Turvy",
@@ -7530,7 +7803,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 0,
-        "description": "The user lays a trap of poison spikes at the feet of the opposing team. The spikes will poison opposing Pok\u00e9mon that switch into battle."
+        "description": "The user lays a trap of poison spikes at the feet of the opposing team. The spikes will poison opposing Pok\u00e9mon that switch into battle.",
+        "target": "all-foe"
     },
     "Toxic Thread": {
         "name": "Toxic Thread",
@@ -7584,7 +7858,8 @@
         "pp": 5,
         "power": 0,
         "accuracy": 0,
-        "description": "The user creates a bizarre area in which slower Pok\u00e9mon get to move first for five turns."
+        "description": "The user creates a bizarre area in which slower Pok\u00e9mon get to move first for five turns.",
+        "target": "all"
     },
     "Trick-or-Treat": {
         "name": "Trick-or-Treat",
@@ -7683,7 +7958,8 @@
         "pp": 20,
         "power": 40,
         "accuracy": 100,
-        "description": "The user whips up a vicious tornado to tear at opposing Pok\u00e9mon. This may also make them flinch."
+        "description": "The user whips up a vicious tornado to tear at opposing Pok\u00e9mon. This may also make them flinch.",
+        "target": "all-adj-foe"
     },
     "U-turn": {
         "name": "U-turn",
@@ -7710,7 +7986,8 @@
         "pp": 10,
         "power": 90,
         "accuracy": 100,
-        "description": "The user attacks in an uproar for three turns. During that time, no Pok\u00e9mon can fall asleep."
+        "description": "The user attacks in an uproar for three turns. During that time, no Pok\u00e9mon can fall asleep.",
+        "target": "user"
     },
     "V-create": {
         "name": "V-create",
@@ -7746,7 +8023,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 100,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "all-adj-foe"
     },
     "Venoshock": {
         "name": "Venoshock",
@@ -7764,7 +8042,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user performs an intense dance to usher in victory, boosting its Attack, Defense, and Speed stats."
+        "description": "The user performs an intense dance to usher in victory, boosting its Attack, Defense, and Speed stats.",
+        "target": "user"
     },
     "Vine Whip": {
         "name": "Vine Whip",
@@ -7845,7 +8124,8 @@
         "pp": 20,
         "power": 60,
         "accuracy": 100,
-        "description": "The user attacks the target with a pulsing blast of water. This may also confuse the target."
+        "description": "The user attacks the target with a pulsing blast of water. This may also confuse the target.",
+        "target": "any"
     },
     "Water Shuriken": {
         "name": "Water Shuriken",
@@ -7863,7 +8143,8 @@
         "pp": 15,
         "power": 0,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "target": "all"
     },
     "Water Spout": {
         "name": "Water Spout",
@@ -7872,7 +8153,8 @@
         "pp": 5,
         "power": 150,
         "accuracy": 100,
-        "description": "The user spouts water to damage opposing Pok\u00e9mon. The lower the user's HP, the lower the move's power."
+        "description": "The user spouts water to damage opposing Pok\u00e9mon. The lower the user's HP, the lower the move's power.",
+        "target": "all-adj-foe"
     },
     "Waterfall": {
         "name": "Waterfall",
@@ -7944,7 +8226,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user and its allies are protected from wide-ranging attacks for one turn."
+        "description": "The user and its allies are protected from wide-ranging attacks for one turn.",
+        "target": "user-all-ally"
     },
     "Wild Charge": {
         "name": "Wild Charge",
@@ -7962,7 +8245,8 @@
         "pp": 10,
         "power": 100,
         "accuracy": 80,
-        "description": "The user summons a thunderous tempest and savagely attacks with lightning and wind. This may also leave opposing Pok\u00e9mon with paralysis."
+        "description": "The user summons a thunderous tempest and savagely attacks with lightning and wind. This may also leave opposing Pok\u00e9mon with paralysis.",
+        "target": "all-adj-foe"
     },
     "Will-O-Wisp": {
         "name": "Will-O-Wisp",
@@ -7980,7 +8264,8 @@
         "pp": 35,
         "power": 60,
         "accuracy": 100,
-        "description": "The target is struck with large, imposing wings spread wide to inflict damage."
+        "description": "The target is struck with large, imposing wings spread wide to inflict damage.",
+        "target": "any"
     },
     "Wish": {
         "name": "Wish",
@@ -7989,7 +8274,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "One turn after this move is used, the user's or its replacement's HP is restored by up to half the user's max HP."
+        "description": "One turn after this move is used, the user's or its replacement's HP is restored by up to half the user's max HP.",
+        "target": "user"
     },
     "Withdraw": {
         "name": "Withdraw",
@@ -7998,7 +8284,8 @@
         "pp": 40,
         "power": 0,
         "accuracy": 0,
-        "description": "The user withdraws its body into its hard shell, boosting its Defense stat."
+        "description": "The user withdraws its body into its hard shell, boosting its Defense stat.",
+        "target": "user"
     },
     "Wonder Room": {
         "name": "Wonder Room",
@@ -8007,7 +8294,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 0,
-        "description": "The user creates a bizarre area in which Pok\u00e9mon's Defense and Sp. Def stats are swapped for five turns."
+        "description": "The user creates a bizarre area in which Pok\u00e9mon's Defense and Sp. Def stats are swapped for five turns.",
+        "target": "all"
     },
     "Wood Hammer": {
         "name": "Wood Hammer",
@@ -8025,7 +8313,8 @@
         "pp": 30,
         "power": 0,
         "accuracy": 0,
-        "description": "The user is roused, and its Attack and Sp. Atk stats are boosted."
+        "description": "The user is roused, and its Attack and Sp. Atk stats are boosted.",
+        "target": "user"
     },
     "Worry Seed": {
         "name": "Worry Seed",
