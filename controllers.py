@@ -72,6 +72,8 @@ class Player(Controller):
             else:
                 move = fixed_moves.get(selection)
             if move in mon.moves and (targets := self.get_targets(mon.position, all_moves[move])):
+                if not mon.moves[move].remaining_pp:
+                    continue
                 mon.next_action = move
                 mon.targets = targets
                 return
