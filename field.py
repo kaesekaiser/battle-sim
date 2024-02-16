@@ -6,6 +6,10 @@ def raw_damage(attacker_level: int, attacking_stat: int, defending_stat: int, po
     return round((2 * attacker_level / 5 + 2) * power * attacking_stat / defending_stat / 50 + 2)
 
 
+def crit_chance(crit_stages: int = 0):
+    return 1 / (24 if crit_stages <= 0 else 8 if crit_stages == 1 else 2 if crit_stages == 2 else 1)
+
+
 class Field:
     def __init__(self, size: int = 1):
         if not (1 <= size <= 3):
@@ -80,11 +84,12 @@ class Field:
         # 0.25 if it's a z-move that's been protected against
         # "other" multiplier (see https://bulbapedia.bulbagarden.net/wiki/Damage#Generation_V_onward)
 
-        crit = False
-        if kwargs.get("allow_crit", True):
-            if random() < (1/24):
+        crit = move.get("always_crits", False)
+        if kwargs.get("allow_crit", True) and not crit:
+            if random() < crit_chance(move.get("crit_rate_modifier", 0)):
                 crit = True
-                multipliers.append(1.5)
+        if crit:
+            multipliers.append(1.5)
 
         multipliers.append(kwargs["force_random"] if kwargs.get("force_random") else (randrange(85, 101) / 100))
 

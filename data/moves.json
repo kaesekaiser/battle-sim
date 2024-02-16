@@ -6,7 +6,8 @@
         "pp": 1,
         "power": 195,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "crit_rate_modifier": 2
     },
     "Absorb": {
         "name": "Absorb",
@@ -102,7 +103,8 @@
         "power": 100,
         "accuracy": 95,
         "description": "A vortex of air is shot at the target to inflict damage. This move has a heightened chance of landing a critical hit.",
-        "target": "any"
+        "target": "any",
+        "crit_rate_modifier": 1
     },
     "After You": {
         "name": "After You",
@@ -131,7 +133,8 @@
         "power": 60,
         "accuracy": 95,
         "description": "The user launches razor-like wind to slash opposing Pok\u00e9mon. This move has a heightened chance of landing a critical hit.",
-        "target": "all-adj-foe"
+        "target": "all-adj-foe",
+        "crit_rate_modifier": 1
     },
     "Air Slash": {
         "name": "Air Slash",
@@ -215,7 +218,8 @@
         "pp": 20,
         "power": 70,
         "accuracy": 100,
-        "description": "The user expels pressurized water to cut at the target like a blade. This move has a heightened chance of landing a critical hit."
+        "description": "The user expels pressurized water to cut at the target like a blade. This move has a heightened chance of landing a critical hit.",
+        "crit_rate_modifier": 1
     },
     "Aqua Jet": {
         "name": "Aqua Jet",
@@ -337,7 +341,8 @@
         "pp": 15,
         "power": 90,
         "accuracy": 100,
-        "description": "The user calls out its underlings to pummel the target. This move has a heightened chance of landing a critical hit."
+        "description": "The user calls out its underlings to pummel the target. This move has a heightened chance of landing a critical hit.",
+        "crit_rate_modifier": 1
     },
     "Attract": {
         "name": "Attract",
@@ -615,7 +620,8 @@
         "pp": 10,
         "power": 85,
         "accuracy": 90,
-        "description": "The user launches a kick that has a heightened chance of landing a critical hit. This may also leave the target with a burn."
+        "description": "The user launches a kick that has a heightened chance of landing a critical hit. This may also leave the target with a burn.",
+        "crit_rate_modifier": 1
     },
     "Blazing Torque": {
         "name": "Blazing Torque",
@@ -1380,7 +1386,8 @@
         "pp": 10,
         "power": 100,
         "accuracy": 90,
-        "description": "The target is hammered with a large pincer. This move has a heightened chance of landing a critical hit."
+        "description": "The target is hammered with a large pincer. This move has a heightened chance of landing a critical hit.",
+        "crit_rate_modifier": 1
     },
     "Crafty Shield": {
         "name": "Crafty Shield",
@@ -1399,7 +1406,8 @@
         "pp": 5,
         "power": 100,
         "accuracy": 80,
-        "description": "The user delivers a double chop with its forearms crossed. This move has a heightened chance of landing a critical hit."
+        "description": "The user delivers a double chop with its forearms crossed. This move has a heightened chance of landing a critical hit.",
+        "crit_rate_modifier": 1
     },
     "Cross Poison": {
         "name": "Cross Poison",
@@ -1408,7 +1416,8 @@
         "pp": 20,
         "power": 70,
         "accuracy": 100,
-        "description": "A slashing attack with a poisonous blade that may also poison the target. This move has a heightened chance of landing a critical hit."
+        "description": "A slashing attack with a poisonous blade that may also poison the target. This move has a heightened chance of landing a critical hit.",
+        "crit_rate_modifier": 1
     },
     "Crunch": {
         "name": "Crunch",
@@ -1588,7 +1597,8 @@
         "pp": 15,
         "power": 80,
         "accuracy": 100,
-        "description": "The user lashes out at the target with ruinous claws. This may also leave the target poisoned, paralyzed, or asleep."
+        "description": "The user lashes out at the target with ruinous claws. This may also leave the target poisoned, paralyzed, or asleep.",
+        "crit_rate_modifier": 1
     },
     "Disable": {
         "name": "Disable",
@@ -1885,7 +1895,8 @@
         "pp": 10,
         "power": 80,
         "accuracy": 95,
-        "description": "The user crashes into the target while rotating its body like a drill. This move has a heightened chance of landing a critical hit."
+        "description": "The user crashes into the target while rotating its body like a drill. This move has a heightened chance of landing a critical hit.",
+        "crit_rate_modifier": 1
     },
     "Drum Beating": {
         "name": "Drum Beating",
@@ -2124,7 +2135,8 @@
         "pp": 10,
         "power": 80,
         "accuracy": 100,
-        "description": "The user slashes the target with aura-enriched wings. This also boosts the user's Speed stat. This move has a heightened chance of landing a critical hit."
+        "description": "The user slashes the target with aura-enriched wings. This also boosts the user's Speed stat. This move has a heightened chance of landing a critical hit.",
+        "crit_rate_modifier": 1
     },
     "Eternabeam": {
         "name": "Eternabeam",
@@ -2557,7 +2569,8 @@
         "pp": 10,
         "power": 70,
         "accuracy": 0,
-        "description": "The user throws a rigged bouquet of flowers at the target. This attack never misses and always lands a critical hit."
+        "description": "The user throws a rigged bouquet of flowers at the target. This attack never misses and always lands a critical hit.",
+        "always_crits": true
     },
     "Fly": {
         "name": "Fly",
@@ -2706,7 +2719,8 @@
         "pp": 10,
         "power": 60,
         "accuracy": 90,
-        "description": "The user attacks by blowing its cold breath on the target. This move always lands a critical hit."
+        "description": "The user attacks by blowing its cold breath on the target. This move always lands a critical hit.",
+        "always_crits": true
     },
     "Frustration": {
         "name": "Frustration",
@@ -3695,7 +3709,8 @@
         "pp": 10,
         "power": 100,
         "accuracy": 100,
-        "description": "The user strikes with an ivy-wrapped cudgel. This move's type changes depending on the mask worn by the user, and it has a heightened chance of landing a critical hit."
+        "description": "The user strikes with an ivy-wrapped cudgel. This move's type changes depending on the mask worn by the user, and it has a heightened chance of landing a critical hit.",
+        "crit_rate_modifier": 1
     },
     "Jaw Lock": {
         "name": "Jaw Lock",
@@ -3750,7 +3765,8 @@
         "pp": 25,
         "power": 50,
         "accuracy": 100,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "crit_rate_modifier": 1
     },
     "Kinesis": {
         "name": "Kinesis",
@@ -3853,7 +3869,8 @@
         "pp": 15,
         "power": 90,
         "accuracy": 100,
-        "description": "The user handles a sharp leaf like a sword and cuts the target to inflict damage. This move has a heightened chance of landing a critical hit."
+        "description": "The user handles a sharp leaf like a sword and cuts the target to inflict damage. This move has a heightened chance of landing a critical hit.",
+        "crit_rate_modifier": 1
     },
     "Leaf Storm": {
         "name": "Leaf Storm",
@@ -4906,7 +4923,8 @@
         "pp": 15,
         "power": 70,
         "accuracy": 100,
-        "description": "The user slashes the target the instant an opportunity arises. This move has a heightened chance of landing a critical hit."
+        "description": "The user slashes the target the instant an opportunity arises. This move has a heightened chance of landing a critical hit.",
+        "crit_rate_modifier": 1
     },
     "Nightmare": {
         "name": "Nightmare",
@@ -5279,7 +5297,8 @@
         "pp": 25,
         "power": 50,
         "accuracy": 100,
-        "description": "The user hits the target with its tail. This move has a heightened chance of landing a critical hit and may also poison the target."
+        "description": "The user hits the target with its tail. This move has a heightened chance of landing a critical hit and may also poison the target.",
+        "crit_rate_modifier": 1
     },
     "Pollen Puff": {
         "name": "Pollen Puff",
@@ -5537,7 +5556,8 @@
         "pp": 20,
         "power": 70,
         "accuracy": 100,
-        "description": "The user tears at the target with blades formed by psychic power. This move has a heightened chance of landing a critical hit."
+        "description": "The user tears at the target with blades formed by psychic power. This move has a heightened chance of landing a critical hit.",
+        "crit_rate_modifier": 1
     },
     "Psycho Shift": {
         "name": "Psycho Shift",
@@ -5743,7 +5763,8 @@
         "power": 55,
         "accuracy": 95,
         "description": "Sharp-edged leaves are launched to slash at opposing Pok\u00e9mon. This move has a heightened chance of landing a critical hit.",
-        "target": "all-adj-foe"
+        "target": "all-adj-foe",
+        "crit_rate_modifier": 1
     },
     "Razor Shell": {
         "name": "Razor Shell",
@@ -5762,7 +5783,8 @@
         "power": 80,
         "accuracy": 100,
         "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
-        "target": "all-adj-foe"
+        "target": "all-adj-foe",
+        "crit_rate_modifier": 1
     },
     "Recover": {
         "name": "Recover",
@@ -6301,7 +6323,8 @@
         "pp": 15,
         "power": 70,
         "accuracy": 100,
-        "description": "The user attacks by slashing the target with a sharp claw made from shadows. This move has a heightened chance of landing a critical hit."
+        "description": "The user attacks by slashing the target with a sharp claw made from shadows. This move has a heightened chance of landing a critical hit.",
+        "crit_rate_modifier": 1
     },
     "Shadow Force": {
         "name": "Shadow Force",
@@ -6544,7 +6567,8 @@
         "power": 140,
         "accuracy": 90,
         "description": "The user attacks the turn after using this move. This move has a heightened chance of landing a critical hit and may also make the target flinch.",
-        "target": "any"
+        "target": "any",
+        "crit_rate_modifier": 1
     },
     "Sky Drop": {
         "name": "Sky Drop",
@@ -6591,7 +6615,8 @@
         "pp": 20,
         "power": 70,
         "accuracy": 100,
-        "description": "The target is attacked with a slash of claws, scythes, or the like. This move has a heightened chance of landing a critical hit."
+        "description": "The target is attacked with a slash of claws, scythes, or the like. This move has a heightened chance of landing a critical hit.",
+        "crit_rate_modifier": 1
     },
     "Sleep Powder": {
         "name": "Sleep Powder",
@@ -6721,7 +6746,8 @@
         "pp": 15,
         "power": 80,
         "accuracy": 100,
-        "description": "The user ignores the effects of opposing Pok\u00e9mon's moves and Abilities that draw in moves, allowing this move to hit the chosen target."
+        "description": "The user ignores the effects of opposing Pok\u00e9mon's moves and Abilities that draw in moves, allowing this move to hit the chosen target.",
+        "crit_rate_modifier": 1
     },
     "Snore": {
         "name": "Snore",
@@ -6804,7 +6830,8 @@
         "pp": 5,
         "power": 100,
         "accuracy": 95,
-        "description": "The user tears the target along with the space around it. This move has a heightened chance of landing a critical hit."
+        "description": "The user tears the target along with the space around it. This move has a heightened chance of landing a critical hit.",
+        "crit_rate_modifier": 1
     },
     "Spark": {
         "name": "Spark",
@@ -7119,7 +7146,8 @@
         "pp": 5,
         "power": 100,
         "accuracy": 80,
-        "description": "The user stabs the target with sharpened stones. This move has a heightened chance of landing a critical hit."
+        "description": "The user stabs the target with sharpened stones. This move has a heightened chance of landing a critical hit.",
+        "crit_rate_modifier": 1
     },
     "Stored Power": {
         "name": "Stored Power",
@@ -7137,7 +7165,8 @@
         "pp": 10,
         "power": 60,
         "accuracy": 100,
-        "description": "The user attacks by striking the target with a fierce blow. This move always lands a critical hit."
+        "description": "The user attacks by striking the target with a fierce blow. This move always lands a critical hit.",
+        "always_crits": true
     },
     "Strange Steam": {
         "name": "Strange Steam",
@@ -7333,7 +7362,8 @@
         "pp": 5,
         "power": 25,
         "accuracy": 100,
-        "description": "The user, having mastered the Water style, strikes the target with a flowing motion three times in a row. This move always lands a critical hit."
+        "description": "The user, having mastered the Water style, strikes the target with a flowing motion three times in a row. This move always lands a critical hit.",
+        "always_crits": true
     },
     "Swagger": {
         "name": "Swagger",
@@ -7895,7 +7925,8 @@
         "pp": 10,
         "power": 90,
         "accuracy": 100,
-        "description": "The user kicks, then fires three arrows. This move has a heightened chance of landing a critical hit and may also lower the target's Defense stat or make it flinch."
+        "description": "The user kicks, then fires three arrows. This move has a heightened chance of landing a critical hit and may also lower the target's Defense stat or make it flinch.",
+        "crit_rate_modifier": 1
     },
     "Triple Axel": {
         "name": "Triple Axel",
@@ -8226,7 +8257,8 @@
         "pp": 5,
         "power": 75,
         "accuracy": 100,
-        "description": "The user, having mastered the Dark style, strikes the target with a fierce blow. This move always lands a critical hit."
+        "description": "The user, having mastered the Dark style, strikes the target with a fierce blow. This move always lands a critical hit.",
+        "always_crits": true
     },
     "Wicked Torque": {
         "name": "Wicked Torque",
@@ -8413,6 +8445,7 @@
         "pp": 10,
         "power": 80,
         "accuracy": 100,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "always_crits": true
     }
 }

@@ -99,6 +99,9 @@ class Move:
             "priority": self.priority, "target": self.target, **self.attributes
         }
 
+    def get(self, attribute: str, default_value=None):
+        return self.attributes.get(attribute, default_value)
+
     @property
     def accuracy_str(self):
         return f"{self.accuracy}%" if self.accuracy else "—"
@@ -123,11 +126,11 @@ class Move:
 
     @property
     def attacking_stat(self) -> str:
-        return self["attacking_stat"] if self["attacking_stat"] else "Atk" if self.category == physical else "SpA"
+        return self.get("attacking_stat", "Atk" if self.category == physical else "SpA")
 
     @property
     def defending_stat(self) -> str:
-        return self["defending_stat"] if self["defending_stat"] else "Def" if self.category == physical else "SpD"
+        return self.get("defending_stat", "Def" if self.category == physical else "SpD")
 
     @property
     def user_stat_changes(self) -> StatChange | None:
