@@ -6,6 +6,7 @@ import re
 
 genders = male, female, genderless = "Male", "Female", "Genderless"
 six_stats = ["HP", "Atk", "Def", "SpA", "SpD", "Spe"]
+eight_stats = [*six_stats, "Acc", "Eva"]
 
 
 def product(iterable: iter) -> int | float:
@@ -431,6 +432,10 @@ class FieldMon(MiniMon):
         self.type2 = self.form.type2
         self.type3 = None
 
+        self.stat_stages = kwargs.pop(
+            "stat_stages", {"Atk": 0, "Def": 0, "SpA": 0, "SpD": 0, "Spe": 0, "Acc": 0, "Eva": 0}
+        )
+
         self.id = kwargs.pop("id", -1)
         self.team_id = kwargs.pop("team_id", -1)
         self.position = kwargs.pop("position", -1)
@@ -514,3 +519,10 @@ class FieldMon(MiniMon):
 
     def inline_display(self, hp_percentage: bool = False):
         return f"{self.verbose_name} {self.hp_display(hp_percentage)}"
+
+    def staged_stat(self, stat: str, doubled_after: int = 2) -> int:
+        return round(
+            self.stats.get(stat, 1) *
+            (doubled_after + max(self.stat_stages[stat], 0)) /
+            (doubled_after + min(self.stat_stages[stat], 0))
+        )

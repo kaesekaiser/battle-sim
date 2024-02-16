@@ -100,6 +100,14 @@ class Move:
     def deduct_pp(self, deduction: int = 1):
         self.remaining_pp = max(0, self.remaining_pp - deduction)
 
+    @property
+    def attacking_stat(self) -> str:
+        return self["attacking_stat"] if self["attacking_stat"] else "Atk" if self.category == physical else "SpA"
+
+    @property
+    def defending_stat(self) -> str:
+        return self["defending_stat"] if self["defending_stat"] else "Def" if self.category == physical else "SpD"
+
 
 all_moves = {g: Move.from_json(j) for g, j in json.load(open("data/moves.json", "r")).items()}
 fixed_moves = {fix(g): g for g in all_moves}

@@ -689,7 +689,8 @@
         "pp": 10,
         "power": 80,
         "accuracy": 100,
-        "description": "The user attacks by slamming its body into the target. The higher the user's Defense stat, the greater the damage this move deals."
+        "description": "The user attacks by slamming its body into the target. The higher the user's Defense stat, the greater the damage this move deals.",
+        "attacking_stat": "Def"
     },
     "Body Slam": {
         "name": "Body Slam",
@@ -2646,7 +2647,8 @@
         "pp": 15,
         "power": 95,
         "accuracy": 100,
-        "description": "The user turns the target's strength against it. The higher the target's Attack stat, the greater the damage this move inflicts."
+        "description": "The user turns the target's strength against it. The higher the target's Attack stat, the greater the damage this move inflicts.",
+        "use_target_offense": true
     },
     "Freeze Shock": {
         "name": "Freeze Shock",
@@ -5552,7 +5554,8 @@
         "pp": 10,
         "power": 80,
         "accuracy": 100,
-        "description": "The user materializes an odd psychic wave to attack the target. This move deals physical damage."
+        "description": "The user materializes an odd psychic wave to attack the target. This move deals physical damage.",
+        "defending_stat": "Def"
     },
     "Psystrike": {
         "name": "Psystrike",
@@ -5561,7 +5564,8 @@
         "pp": 10,
         "power": 100,
         "accuracy": 100,
-        "description": "The user materializes an odd psychic wave to attack the target. This move deals physical damage."
+        "description": "The user materializes an odd psychic wave to attack the target. This move deals physical damage.",
+        "defending_stat": "Def"
     },
     "Psywave": {
         "name": "Psywave",
@@ -6222,7 +6226,8 @@
         "pp": 10,
         "power": 85,
         "accuracy": 100,
-        "description": "The user cuts with its long horn. The odd power contained in the horn deals physical damage to the target."
+        "description": "The user cuts with its long horn. The odd power contained in the horn deals physical damage to the target.",
+        "defending_stat": "Def"
     },
     "Seed Bomb": {
         "name": "Seed Bomb",

@@ -78,7 +78,7 @@ class Player(Controller):
 
     def get_targets(self, position: int, move: Move) -> list[int]:
         possible_targets = self.field.targets(position, move.target)
-        if move.is_single_target:
+        if move.is_single_target and len(possible_targets) > 1:
             while True:
                 selection = input("Which position will you target? ")
                 try:

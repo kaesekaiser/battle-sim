@@ -97,7 +97,10 @@ class Field:
                 stab += 0.5
         multipliers.append(stab)
 
-        attack_stat = attacker.atk if move.category == physical else attacker.spa
-        defense_stat = defender.dfn if move.category == physical else defender.spd
+        attack_stat = self.get_stat(defender if move["use_target_offense"] else attacker, move.attacking_stat)
+        defense_stat = self.get_stat(defender, move.defending_stat)
 
         return max(1, round(raw_damage(attacker.level, attack_stat, defense_stat, move.power) * product(multipliers)))
+
+    def get_stat(self, mon: FieldMon, stat: str) -> int:
+        return mon.staged_stat(stat, 3 if stat in ("Eva", "Acc") else 2)
