@@ -1,5 +1,5 @@
 from teams import *
-from random import randrange
+from random import random, randrange
 
 
 def raw_damage(attacker_level: int, attacking_stat: int, defending_stat: int, power: int):
@@ -67,7 +67,7 @@ class Field:
         overwrites = {}
         return defender.type_effectiveness(move.type, overwrites)
 
-    def damage_roll(self, attacker: FieldMon, defender: FieldMon, move: Move, force_random: float = None) -> int:
+    def damage_roll(self, attacker: FieldMon, defender: FieldMon, move: Move, **kwargs) -> dict[str]:
         multipliers = []
         if len(attacker.targets) > 1:
             multipliers.append(0.75)
@@ -79,9 +79,14 @@ class Field:
         # 0.5 if lowered by burn
         # 0.25 if it's a z-move that's been protected against
         # "other" multiplier (see https://bulbapedia.bulbagarden.net/wiki/Damage#Generation_V_onward)
-        # 1.5 if it's a crit
 
-        multipliers.append(force_random if force_random else (randrange(85, 101) / 100))
+        crit = False
+        if kwargs.get("allow_crit", True):
+            if random() < (1/24):
+                crit = True
+                multipliers.append(1.5)
+
+        multipliers.append(kwargs["force_random"] if kwargs.get("force_random") else (randrange(85, 101) / 100))
 
         type_eff = self.move_effectiveness(attacker, defender, move)
         multipliers.append(type_eff)
@@ -100,7 +105,8 @@ class Field:
         attack_stat = self.get_stat(defender if move["use_target_offense"] else attacker, move.attacking_stat)
         defense_stat = self.get_stat(defender, move.defending_stat)
 
-        return max(1, round(raw_damage(attacker.level, attack_stat, defense_stat, move.power) * product(multipliers)))
+        damage = max(1, round(raw_damage(attacker.level, attack_stat, defense_stat, move.power) * product(multipliers)))
+        return {"damage": damage, "effectiveness": type_eff, "crit": crit}
 
     def get_stat(self, mon: FieldMon, stat: str) -> int:
         return mon.staged_stat(stat, 3 if stat in ("Eva", "Acc") else 2)

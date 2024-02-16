@@ -1,6 +1,5 @@
 from controllers import *
 from time import sleep
-from random import random
 
 
 stat_change_texts = {
@@ -140,20 +139,24 @@ class Battle:
         else:
             attacker["failed_attack"] = False
 
-        if (eff := self.field.move_effectiveness(attacker, defender, move)) > 1:
-            self.output(
-                f"It's super effective on {defender.name}!"
-                if len(attacker.targets) > 1 else "It's super effective!"
-            )
-        elif eff < 1:
-            self.output(
-                f"It's not very effective on {defender.name}..."
-                if len(attacker.targets) > 1 else "It's not very effective..."
-            )
-
         if move.category != status:
             damage = self.field.damage_roll(attacker, defender, move)
-            damage_dealt = defender.damage(damage)
+
+            if damage["crit"]:
+                self.output(f"A critical hit on {defender.name}!" if len(attacker.targets) > 1 else "A critical hit!")
+
+            if damage["effectiveness"] > 1:
+                self.output(
+                    f"It's super effective on {defender.name}!"
+                    if len(attacker.targets) > 1 else "It's super effective!"
+                )
+            elif damage["effectiveness"] < 1:
+                self.output(
+                    f"It's not very effective on {defender.name}..."
+                    if len(attacker.targets) > 1 else "It's not very effective..."
+                )
+
+            damage_dealt = defender.damage(damage["damage"])
             self.output(f"{defender.name} took {damage_dealt} damage! (-> {defender.remaining_hp}/{defender.hp} HP)")
             self.check_fainted(defender)
 
@@ -194,9 +197,8 @@ class Battle:
     def special_actions(self, mon: FieldMon):
         if mon.next_action == "!unplugged":
             self.output(f"{mon.name}'s Controller is unplugged. Try using a Player or BasicAI object.")
-        if mon.next_action.startswith("!switch"):
-            new_id = int(mon.next_action.split(":")[1])
-            self.deploy_mon(mon.team_id, new_id, mon.position)
+        if mon.next_action == "!switch":
+            self.deploy_mon(mon.team_id, mon.targets[0], mon.position)
 
     def run(self):
         self.init_battle()

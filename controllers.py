@@ -64,7 +64,8 @@ class Player(Controller):
                 if (switch := self.switch_dialog(mon)) == "cancel":
                     continue
                 else:
-                    mon.next_action = f"!switch:{switch}"
+                    mon.next_action = f"!switch"
+                    mon.targets = [switch]
                     self.mons[mon.id]["field_status"] = "switching out"
                     self.mons[switch]["field_status"] = "switching in"
                     print(f"{MiniMon.from_mini_pack(self.mons[switch]).name} will switch in for {mon.name}.")
