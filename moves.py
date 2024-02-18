@@ -1,7 +1,8 @@
-import re
 import json
-from math import floor
+import re
+import random
 from copy import copy
+from math import floor
 
 
 def fix(s: str, joiner: str = "-"):
@@ -33,6 +34,9 @@ class StatChange:
     def __bool__(self):
         return bool(self.stats) and bool(self.chance)
 
+    def __mul__(self, other: int | float):
+        return StatChange.from_json(self.json() | {"chance": min(max(round(self.chance * other), 0), 100)})
+
     def json(self):
         return self.stats | ({"chance": self.chance} if self.chance != 100 else {})
 
@@ -42,6 +46,31 @@ class StatChange:
 
     def items(self):
         return self.stats.items()
+
+
+class StatusCondition:
+    def __init__(self, condition: str = None, multi: list[str] = (), chance: int = 100):
+        self.multi = multi
+        if multi:
+            self.condition = random.choice(self.multi)
+        else:
+            self.condition = condition
+        self.chance = chance
+
+    def __bool__(self):
+        return bool(self.condition) and bool(self.chance)
+
+    def json(self):
+        return ({"multi": self.multi} if self.multi else {"condition": self.condition}) | \
+            ({"chance": self.chance} if self.chance else {})
+
+    @staticmethod
+    def from_json(js: dict):
+        return StatusCondition(**js)
+
+    def randomize(self):
+        if self.multi:
+            self.condition = random.choice(self.multi)
 
 
 class Move:
@@ -139,6 +168,16 @@ class Move:
     @property
     def target_stat_changes(self) -> StatChange | None:
         return StatChange.from_json(self["target_stat_changes"]) if self["target_stat_changes"] else None
+
+    @property
+    def status_condition(self) -> StatusCondition | None:
+        return StatusCondition.from_json(self["status"]) if self["status"] else None
+
+    @property
+    def total_effects(self):
+        return sum(1 if g else 0 for g in [
+            self.target_stat_changes, self.user_stat_changes, self.status_condition
+        ])
 
 
 all_moves = {g: Move.from_json(j) for g, j in json.load(open("data/moves.json", "r")).items()}

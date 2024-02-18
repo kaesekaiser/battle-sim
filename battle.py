@@ -1,5 +1,6 @@
 from controllers import *
-from time import sleep
+import time
+from math import ceil
 
 
 stat_change_texts = {
@@ -11,6 +12,14 @@ stat_change_texts = {
     -2: "harshly fell",
     -3: "severely fell",
     -4: "can't go any lower"
+}
+status_condition_texts = {
+    burn: "was burned",
+    freeze: "was frozen solid",
+    paralysis: "was paralyzed",
+    mild_poison: "was poisoned",
+    bad_poison: "was badly poisoned",
+    sleep: "fell asleep"
 }
 
 
@@ -30,11 +39,14 @@ class Battle:
 
         self.last_output = ""
 
-    def output(self, text: str, sleep_time: float = 0.5):
+    def output(self, text: str, sleep_time: float = 0.5) -> None:
         print(text)
         self.last_output = text.split("\n")[-1]
         if sleep_time:
-            sleep(sleep_time)
+            time.sleep(sleep_time)
+
+    def spaced(self, text: str) -> str:
+        return ("\n" if self.last_output else "") + text
 
     def deploy_mon(self, team_id: int, mon_id: int, position: int, announce: bool = True):
         if mon := self.teams[team_id][mon_id]:
@@ -66,8 +78,8 @@ class Battle:
         priorities = [
             [
                 g.next_action_priority,
-                g.spe,
-                random(),
+                self.field.get_stat(g, "Spe"),
+                random.random(),
                 g.position
             ] for g in self.fielded_mons
         ]
@@ -87,8 +99,32 @@ class Battle:
         else:
             mon.targets = new_targets
 
+    def damage(self, mon: FieldMon, damage: int, description: str = "damage"):
+        damage_dealt = mon.damage(damage)
+        self.output(f"{mon.name} took {damage_dealt} {description}! (-> {mon.remaining_hp}/{mon.hp} HP)")
+        self.check_fainted(mon)
+
     def can_execute(self, attacker: FieldMon, move: Move):
         """Checks that prevent the execution of a move (e.g. being frozen, priority on PTerrain) before it happens."""
+        if attacker.status_condition == freeze:
+            if random.random() < 0.2:
+                attacker.status_condition = None
+                self.output(f"{attacker.name} thawed out!")
+            else:
+                self.output(f"{attacker.name} is frozen solid!")
+                return False
+        elif attacker.status_condition == paralysis:
+            if random.random() < 0.25:
+                self.output(f"{attacker.name} is paralyzed! It can't move!")
+                return False
+        elif attacker.status_condition == sleep:
+            if attacker.status_timer == 0:
+                self.output(f"{attacker.name} woke up!")
+                self.apply_status(attacker, None)
+            else:
+                self.output(f"{attacker.name} is fast asleep.")
+                attacker.status_timer -= 1
+                return False
         if attacker["no_target"]:
             self.output(f"{attacker.name} has no valid targets for {move.name}!")
             return False
@@ -97,33 +133,54 @@ class Battle:
     def accuracy_check(self, attacker: FieldMon, defender: FieldMon, move: Move):
         if not move.accuracy:
             return True
-        if random() < move.accuracy / 100:
+        if random.random() < move.accuracy / 100:
             return True
         return False
 
-    def but_it_failed(self, attacker: FieldMon, defender: FieldMon, move: Move):
+    def but_it_failed(self, attacker: FieldMon, defender: FieldMon, move: Move) -> bool | None:
         if self.field.move_effectiveness(attacker, defender, move) == 0:
             return self.output(f"It doesn't affect {defender.name}...")
         if not self.accuracy_check(attacker, defender, move):
             return self.output(f"{attacker.name}'s attack missed!")
+        if move.status_condition and move.category == status and move.total_effects == 1 and len(attacker.targets) < 2 \
+                and not self.field.can_apply_status(attacker, defender, move.status_condition.condition):
+            return self.output("But it failed!")
         return True
 
     def display_stat_change(self, mon: FieldMon, stat_change: dict[str, int]):
         for stat, change in stat_change.items():
             self.output(f"{mon.name}'s {stat_names[stat]} {stat_change_texts[change]}!")
 
+    def apply_status(self, mon: FieldMon, condition: str | None):
+        mon.status_condition = condition
+        if condition == sleep:
+            mon.status_timer = random.choice([1, 2, 3])
+        else:
+            mon.status_timer = 0
+        if condition:
+            self.output(f"{mon.name} {status_condition_texts[condition]}!")
+
     def move_effects(self, attacker: FieldMon, defender: FieldMon, move: Move):
         if move.user_stat_changes:
-            if random() < move.user_stat_changes.chance / 100:
+            if random.random() < move.user_stat_changes.chance / 100:
                 changes = attacker.apply(move.user_stat_changes)
                 self.display_stat_change(attacker, changes)
         if move.target_stat_changes:
-            if random() < move.target_stat_changes.chance / 100:
+            if random.random() < move.target_stat_changes.chance / 100:
                 changes = defender.apply(move.target_stat_changes)
                 self.display_stat_change(defender, changes)
+        if move.status_condition:
+            if self.field.can_apply_status(attacker, defender, move.status_condition.condition) and \
+                    (random.random() < move.status_condition.chance / 100):
+                self.apply_status(defender, move.status_condition.condition)
 
     def use_move(self, attacker: FieldMon, defender: FieldMon, move: Move):
-        if not (self.can_execute(attacker, move) or attacker["has_executed"]):
+        if attacker["has_attempted"] and not attacker["has_executed"]:
+            return  # if the mon previously failed to execute its move against a different target, don't try again
+
+        attacker["has_attempted"] = True
+
+        if not (attacker["has_executed"] or self.can_execute(attacker, move)):
             return
 
         if not attacker["has_executed"]:
@@ -156,28 +213,39 @@ class Battle:
                     if len(attacker.targets) > 1 else "It's not very effective..."
                 )
 
-            damage_dealt = defender.damage(damage["damage"])
-            self.output(f"{defender.name} took {damage_dealt} damage! (-> {defender.remaining_hp}/{defender.hp} HP)")
-            self.check_fainted(defender)
+            self.damage(defender, damage["damage"])
 
         self.move_effects(attacker, defender, move)
+
+    def individual_end_of_turn(self, mon: FieldMon):
+        if not mon.fainted:
+            mon["has_attempted"] = False
+            mon["has_executed"] = False
+            mon.next_action = None
+            mon.targets = []
+
+            if mon.status_condition == burn:
+                self.damage(mon, ceil(mon.hp / 16), "damage from its burn")
+            elif mon.status_condition == mild_poison:
+                self.damage(mon, ceil(mon.hp / 8), "damage from poison")
+            elif mon.status_condition == bad_poison:
+                mon.status_timer += 1
+                self.damage(mon, ceil(mon.hp * mon.status_timer / 16), "damage from poison")
+
+    def send_out_replacements(self):
+        for mon in self.fielded_mons:
+            if mon.fainted:
+                if self.teams[mon.team_id].reserves:
+                    self.deploy_mon(mon.team_id, self.teams[mon.team_id].get_replacement(mon.position), mon.position)
+                else:
+                    self.field.deploy_mon(None, mon.position)
 
     def end_of_turn(self):
         for mon in self.fielded_mons:
             self.individual_end_of_turn(mon)
         if self.last_output:
             self.output("", 0)
-
-    def individual_end_of_turn(self, mon: FieldMon):
-        if mon.fainted:
-            if self.teams[mon.team_id].reserves:
-                self.deploy_mon(mon.team_id, self.teams[mon.team_id].get_replacement(mon.position), mon.position)
-            else:
-                self.field.deploy_mon(None, mon.position)
-        else:
-            mon["has_executed"] = False
-            mon.next_action = None
-            mon.targets = []
+        self.send_out_replacements()
 
     def check_fainted(self, mon: FieldMon):
         if mon.remaining_hp == 0 and not mon.fainted:
@@ -192,7 +260,7 @@ class Battle:
 
     def output_winner(self):
         if (winner := self.check_winner()) is not None:
-            return self.output(f"{self.teams[winner].trainer} wins!", 0)
+            return self.output(self.spaced(f"{self.teams[winner].trainer} wins!"), 0)
 
     def special_actions(self, mon: FieldMon):
         if mon.next_action == "!unplugged":
@@ -202,10 +270,9 @@ class Battle:
 
     def run(self):
         self.init_battle()
-        self.output("", 0)
 
         while True:
-            self.output(self.field.diagram() + "\n")
+            self.output(self.spaced(self.field.diagram() + "\n"))
 
             for team in self.teams:
                 team.set_actions()

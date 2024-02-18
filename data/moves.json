@@ -3502,7 +3502,11 @@
         "pp": 10,
         "power": 90,
         "accuracy": 100,
-        "description": "The target is struck with an icy-cold beam of energy. This may also leave the target frozen."
+        "description": "The target is struck with an icy-cold beam of energy. This may also leave the target frozen.",
+        "status": {
+            "condition": "freeze",
+            "chance": 10
+        }
     },
     "Ice Burn": {
         "name": "Ice Burn",
@@ -5279,7 +5283,10 @@
         "pp": 35,
         "power": 0,
         "accuracy": 75,
-        "description": "The user scatters a cloud of poisonous dust that poisons the target."
+        "description": "The user scatters a cloud of poisonous dust that poisons the target.",
+        "status": {
+            "condition": "poison"
+        }
     },
     "Poison Sting": {
         "name": "Poison Sting",
@@ -7007,7 +7014,10 @@
         "pp": 15,
         "power": 0,
         "accuracy": 100,
-        "description": "The user scatters bursts of spores that induce sleep."
+        "description": "The user scatters bursts of spores that induce sleep.",
+        "status": {
+            "condition": "sleep"
+        }
     },
     "Spotlight": {
         "name": "Spotlight",
@@ -7760,7 +7770,10 @@
         "pp": 20,
         "power": 0,
         "accuracy": 90,
-        "description": "The user launches a weak jolt of electricity that paralyzes the target."
+        "description": "The user launches a weak jolt of electricity that paralyzes the target.",
+        "status": {
+            "condition": "paralysis"
+        }
     },
     "Thunderbolt": {
         "name": "Thunderbolt",
@@ -7842,7 +7855,10 @@
         "pp": 10,
         "power": 0,
         "accuracy": 90,
-        "description": "A move that leaves the target badly poisoned. Its poison damage worsens every turn."
+        "description": "A move that leaves the target badly poisoned. Its poison damage worsens every turn.",
+        "status": {
+            "condition": "toxic"
+        }
     },
     "Toxic Spikes": {
         "name": "Toxic Spikes",
@@ -7861,7 +7877,13 @@
         "pp": 20,
         "power": 0,
         "accuracy": 100,
-        "description": "The user shoots poisonous threads to poison the target and lower the target's Speed stat."
+        "description": "The user shoots poisonous threads to poison the target and lower the target's Speed stat.",
+        "target_stat_changes": {
+            "Spe": -1
+        },
+        "status": {
+            "condition": "poison"
+        }
     },
     "Trailblaze": {
         "name": "Trailblaze",
@@ -8305,7 +8327,10 @@
         "pp": 15,
         "power": 0,
         "accuracy": 85,
-        "description": "The user shoots a sinister flame at the target to inflict a burn."
+        "description": "The user shoots a sinister flame at the target to inflict a burn.",
+        "status": {
+            "condition": "burn"
+        }
     },
     "Wing Attack": {
         "name": "Wing Attack",

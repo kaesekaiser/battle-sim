@@ -1,14 +1,24 @@
 from moves import *
 from items import *
-from random import choices
-import re
 
 
-genders = male, female, genderless = "Male", "Female", "Genderless"
 six_stats = ["HP", "Atk", "Def", "SpA", "SpD", "Spe"]
 stat_names = {
     "Atk": "Attack", "Def": "Defense", "SpA": "Special Attack", "SpD": "Special Defense", "Spe": "Speed",
     "Acc": "accuracy", "Eva": "evasion"
+}
+
+
+genders = male, female, genderless = "Male", "Female", "Genderless"
+status_conditions = burn, freeze, paralysis, mild_poison, bad_poison, sleep = \
+    "burn", "freeze", "paralysis", "poison", "toxic", "sleep"
+status_condition_adjectives = {
+    burn: "Burned",
+    freeze: "Frozen",
+    paralysis: "Paralyzed",
+    mild_poison: "Poisoned",
+    bad_poison: "Badly poisoned",
+    sleep: "Asleep"
 }
 
 
@@ -98,7 +108,7 @@ class Species:
         if self.gender_ratio in genders:
             return self.gender_ratio
         else:
-            return choices([female, male], [int(c) for c in self.gender_ratio.split(":")])[0]
+            return random.choices([female, male], [int(c) for c in self.gender_ratio.split(":")])[0]
 
 
 class Evolution:
@@ -473,7 +483,7 @@ class FieldMon(MiniMon):
             ({"nickname": self.nickname} if self.nickname else {}) | \
             ({"remaining_hp": self.remaining_hp} if self.hp != self.remaining_hp else {}) | \
             ({"status_condition": self.status_condition} if self.status_condition else {}) | \
-            ({"status_timer": self.status_timer} if self.status_timer else {}) | \
+            ({"status_timer": self.status_timer} if self.status_condition == sleep else {}) | \
             ({"terastallized": True} if self.terastallized else {}) | \
             ({"id": self.id} if self.id != -1 else {}) | \
             ({"team_id": self.team_id} if self.team_id != -1 else {}) | \
@@ -526,6 +536,18 @@ class FieldMon(MiniMon):
 
     def inline_display(self, hp_percentage: bool = False):
         return f"{self.verbose_name} {self.hp_display(hp_percentage)}"
+
+    def battle_info(self) -> list[str]:
+        ret = []
+
+        for k, v in self.stat_stages.items():
+            if v != 0:
+                ret.append(f"{'+' if v > 0 else ''}{v} {k}")
+
+        if self.status_condition is not None:
+            ret.append(status_condition_adjectives[self.status_condition])
+
+        return ret
 
     def staged_stat(self, stat: str, doubled_after: int = 2) -> int:
         return round(
