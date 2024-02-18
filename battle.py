@@ -232,6 +232,8 @@ class Battle:
                 mon.status_timer += 1
                 self.damage(mon, ceil(mon.hp * mon.status_timer / 16), "damage from poison")
 
+            self.teams[mon.team_id].update_mon(mon)
+
     def send_out_replacements(self):
         for mon in self.fielded_mons:
             if mon.fainted:

@@ -15,10 +15,10 @@ def join_and_wrap(ls: list[str], joiner: str, line_width: int, indented_prefix: 
     ret = []
     line = ls[0]
     for s in ls[1:]:
-        if len((line + joiner + s)) <= line_width:
+        if len(line + joiner + s + joiner.rstrip()) <= line_width:
             line += joiner + s
         else:
-            ret.append(line.ljust(line_width))
+            ret.append(line + joiner.rstrip())
             line = s
     ret.append(line.ljust(line_width))
     if indented_prefix and ret:
@@ -79,7 +79,7 @@ class Field:
                     f"{'---' if not self.at(n) else self.at(n).species_and_form}"
                     f"{'' if not self.at(n) or not include_hp else (' ' + self.at(n).hp_display())}"
                     f"{'<-' if n in select else '  '}",
-                    *join_and_wrap(self.at(n).battle_info(), "; ", 16, "   └  ")
+                    *join_and_wrap(self.at(n).battle_info(), "; ", 24, "   └  ")
                 ] for n in row
             ] for row in positions
         ]

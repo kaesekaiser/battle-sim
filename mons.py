@@ -12,13 +12,21 @@ stat_names = {
 genders = male, female, genderless = "Male", "Female", "Genderless"
 status_conditions = burn, freeze, paralysis, mild_poison, bad_poison, sleep = \
     "burn", "freeze", "paralysis", "poison", "toxic", "sleep"
-status_condition_adjectives = {
+status_adjectives = {
     burn: "Burned",
     freeze: "Frozen",
     paralysis: "Paralyzed",
     mild_poison: "Poisoned",
     bad_poison: "Badly poisoned",
     sleep: "Asleep"
+}
+status_abbreviations = {
+    burn: "BRN",
+    freeze: "FRZ",
+    paralysis: "PAR",
+    mild_poison: "PSN",
+    bad_poison: "TOX",
+    sleep: "SLP"
 }
 
 
@@ -482,9 +490,9 @@ class FieldMon(MiniMon):
             "field_status": self.field_status} | \
             ({"nickname": self.nickname} if self.nickname else {}) | \
             ({"remaining_hp": self.remaining_hp} if self.hp != self.remaining_hp else {}) | \
-            ({"status_condition": self.status_condition} if self.status_condition else {}) | \
-            ({"status_timer": self.status_timer} if self.status_condition == sleep else {}) | \
-            ({"terastallized": True} if self.terastallized else {}) | \
+            ({"status_condition": self.status_condition} if (self.status_condition and not self.fainted) else {}) | \
+            ({"status_timer": self.status_timer} if (self.status_condition == sleep and not self.fainted) else {}) | \
+            ({"terastallized": True} if (self.terastallized and not self.fainted) else {}) | \
             ({"id": self.id} if self.id != -1 else {}) | \
             ({"team_id": self.team_id} if self.team_id != -1 else {}) | \
             ({"fainted": True} if self.fainted else {})
@@ -535,7 +543,9 @@ class FieldMon(MiniMon):
         return f"[{round(100 * self.remaining_hp / self.hp)}%]" if percentage else f"[{self.remaining_hp}/{self.hp}]"
 
     def inline_display(self, hp_percentage: bool = False):
-        return f"{self.verbose_name} {self.hp_display(hp_percentage)}"
+        return f"{self.verbose_name} " \
+               f"{('[' + status_abbreviations[self.status_condition] + '] ') if self.status_condition else ''}" \
+               f"{self.hp_display(hp_percentage)}"
 
     def battle_info(self) -> list[str]:
         ret = []
@@ -545,7 +555,7 @@ class FieldMon(MiniMon):
                 ret.append(f"{'+' if v > 0 else ''}{v} {k}")
 
         if self.status_condition is not None:
-            ret.append(status_condition_adjectives[self.status_condition])
+            ret.append(status_adjectives[self.status_condition])
 
         return ret
 

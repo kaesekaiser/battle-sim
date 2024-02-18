@@ -39,6 +39,10 @@ class Team:
             self.set_mon(mon, len(self.mons))
             self.order.append(len(self.order))
 
+    def update_mon(self, mon: FieldMon):
+        if mon.id in self.mons:
+            self.mons[mon.id] = mon.json()
+
     def recall_mon(self, mon: FieldMon):
         if mon.id in self.mons:
             self.mons[mon.id] = mon.json() | {"field_status": "fainted" if mon.fainted else "benched"}
