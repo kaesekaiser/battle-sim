@@ -454,7 +454,11 @@
         "pp": 10,
         "power": 60,
         "accuracy": 100,
-        "description": "The user launches countless toxic barbs to inflict damage. This may also poison the target. This move's power is doubled if the target is already poisoned."
+        "description": "The user launches countless toxic barbs to inflict damage. This may also poison the target. This move's power is doubled if the target is already poisoned.",
+        "status": {
+            "condition": "poison",
+            "chance": 30
+        }
     },
     "Barrage": {
         "name": "Barrage",
@@ -621,7 +625,11 @@
         "power": 85,
         "accuracy": 90,
         "description": "The user launches a kick that has a heightened chance of landing a critical hit. This may also leave the target with a burn.",
-        "crit_rate_modifier": 1
+        "crit_rate_modifier": 1,
+        "status": {
+            "condition": "burn",
+            "chance": 10
+        }
     },
     "Blazing Torque": {
         "name": "Blazing Torque",
@@ -630,7 +638,11 @@
         "pp": 10,
         "power": 80,
         "accuracy": 100,
-        "description": "This move is only used by a Starmobile. It may burn the opponent."
+        "description": "This move is only used by a Starmobile. It may burn the opponent.",
+        "status": {
+            "condition": "burn",
+            "chance": 30
+        }
     },
     "Bleakwind Storm": {
         "name": "Bleakwind Storm",
@@ -650,7 +662,11 @@
         "power": 110,
         "accuracy": 70,
         "description": "A howling blizzard is summoned to strike opposing Pok\u00e9mon. This may also leave the opposing Pok\u00e9mon frozen.",
-        "target": "all-adj-foe"
+        "target": "all-adj-foe",
+        "status": {
+            "condition": "freeze",
+            "chance": 10
+        }
     },
     "Block": {
         "name": "Block",
@@ -686,7 +702,11 @@
         "pp": 5,
         "power": 130,
         "accuracy": 85,
-        "description": "The user attacks by engulfing the target in an intense, yet beautiful, blue flame. This may also leave the target with a burn."
+        "description": "The user attacks by engulfing the target in an intense, yet beautiful, blue flame. This may also leave the target with a burn.",
+        "status": {
+            "condition": "burn",
+            "chance": 20
+        }
     },
     "Body Press": {
         "name": "Body Press",
@@ -705,7 +725,11 @@
         "pp": 15,
         "power": 85,
         "accuracy": 100,
-        "description": "The user attacks by dropping onto the target with its full body weight. This may also leave the target with paralysis."
+        "description": "The user attacks by dropping onto the target with its full body weight. This may also leave the target with paralysis.",
+        "status": {
+            "condition": "paralysis",
+            "chance": 30
+        }
     },
     "Bolt Beak": {
         "name": "Bolt Beak",
@@ -723,7 +747,11 @@
         "pp": 5,
         "power": 130,
         "accuracy": 85,
-        "description": "The user surrounds itself with a great amount of electricity and charges the target. This may also leave the target with paralysis."
+        "description": "The user surrounds itself with a great amount of electricity and charges the target. This may also leave the target with paralysis.",
+        "status": {
+            "condition": "paralysis",
+            "chance": 20
+        }
     },
     "Bone Club": {
         "name": "Bone Club",
@@ -770,7 +798,11 @@
         "power": 85,
         "accuracy": 85,
         "description": "The user bounces up high on the first turn, then drops onto the target on the next turn. This may also leave the target with paralysis.",
-        "target": "any"
+        "target": "any",
+        "status": {
+            "condition": "paralysis",
+            "chance": 30
+        }
     },
     "Bouncy Bubble": {
         "name": "Bouncy Bubble",
@@ -959,7 +991,10 @@
         "pp": 20,
         "power": 60,
         "accuracy": 100,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "status": {
+            "condition": "paralysis"
+        }
     },
     "Calm Mind": {
         "name": "Calm Mind",
@@ -1196,7 +1231,11 @@
         "pp": 10,
         "power": 100,
         "accuracy": 100,
-        "description": "This move is only used by a Starmobile. It may paralyze the opponent."
+        "description": "This move is only used by a Starmobile. It may paralyze the opponent.",
+        "status": {
+            "condition": "paralysis",
+            "chance": 30
+        }
     },
     "Comet Punch": {
         "name": "Comet Punch",
@@ -1417,7 +1456,11 @@
         "power": 70,
         "accuracy": 100,
         "description": "A slashing attack with a poisonous blade that may also poison the target. This move has a heightened chance of landing a critical hit.",
-        "crit_rate_modifier": 1
+        "crit_rate_modifier": 1,
+        "status": {
+            "condition": "poison",
+            "chance": 10
+        }
     },
     "Crunch": {
         "name": "Crunch",
@@ -1483,7 +1526,10 @@
         "power": 0,
         "accuracy": 50,
         "description": "Opposing Pok\u00e9mon are dragged into a world of total darkness that puts them to sleep.",
-        "target": "all-adj-foe"
+        "target": "all-adj-foe",
+        "status": {
+            "condition": "sleep"
+        }
     },
     "Darkest Lariat": {
         "name": "Darkest Lariat",
@@ -1598,7 +1644,15 @@
         "power": 80,
         "accuracy": 100,
         "description": "The user lashes out at the target with ruinous claws. This may also leave the target poisoned, paralyzed, or asleep.",
-        "crit_rate_modifier": 1
+        "crit_rate_modifier": 1,
+        "status": {
+            "multi": [
+                "paralysis",
+                "poison",
+                "sleep"
+            ],
+            "chance": 50
+        }
     },
     "Disable": {
         "name": "Disable",
@@ -1627,7 +1681,11 @@
         "power": 80,
         "accuracy": 100,
         "description": "The user strikes everything around it by letting loose a flare of electricity. This may also leave those hit by the attack with paralysis.",
-        "target": "all-adj"
+        "target": "all-adj",
+        "status": {
+            "condition": "paralysis",
+            "chance": 30
+        }
     },
     "Dive": {
         "name": "Dive",
@@ -1755,7 +1813,11 @@
         "pp": 20,
         "power": 60,
         "accuracy": 100,
-        "description": "The user exhales a mighty gust that inflicts damage. This may also leave the target with paralysis."
+        "description": "The user exhales a mighty gust that inflicts damage. This may also leave the target with paralysis.",
+        "status": {
+            "condition": "paralysis",
+            "chance": 30
+        }
     },
     "Dragon Cheer": {
         "name": "Dragon Cheer",
@@ -2070,7 +2132,11 @@
         "pp": 25,
         "power": 40,
         "accuracy": 100,
-        "description": "The target is attacked with small flames. This may also leave the target with a burn."
+        "description": "The target is attacked with small flames. This may also leave the target with a burn.",
+        "status": {
+            "condition": "burn",
+            "chance": 10
+        }
     },
     "Encore": {
         "name": "Encore",
@@ -2357,7 +2423,11 @@
         "pp": 15,
         "power": 65,
         "accuracy": 95,
-        "description": "The user bites with flame-cloaked fangs. This may also make the target flinch or leave it with a burn."
+        "description": "The user bites with flame-cloaked fangs. This may also make the target flinch or leave it with a burn.",
+        "status": {
+            "condition": "burn",
+            "chance": 10
+        }
     },
     "Fire Lash": {
         "name": "Fire Lash",
@@ -2384,7 +2454,11 @@
         "pp": 15,
         "power": 75,
         "accuracy": 100,
-        "description": "The target is attacked with a fiery punch. This may also leave the target with a burn."
+        "description": "The target is attacked with a fiery punch. This may also leave the target with a burn.",
+        "status": {
+            "condition": "burn",
+            "chance": 10
+        }
     },
     "Fire Spin": {
         "name": "Fire Spin",
@@ -2456,7 +2530,11 @@
         "pp": 25,
         "power": 60,
         "accuracy": 100,
-        "description": "The user attacks by cloaking itself in fire and charging at the target. This may also leave the target with a burn."
+        "description": "The user attacks by cloaking itself in fire and charging at the target. This may also leave the target with a burn.",
+        "status": {
+            "condition": "burn",
+            "chance": 10
+        }
     },
     "Flamethrower": {
         "name": "Flamethrower",
@@ -2465,7 +2543,11 @@
         "pp": 15,
         "power": 90,
         "accuracy": 100,
-        "description": "The target is scorched with an intense blast of fire. This may also leave the target with a burn."
+        "description": "The target is scorched with an intense blast of fire. This may also leave the target with a burn.",
+        "status": {
+            "condition": "burn",
+            "chance": 10
+        }
     },
     "Flare Blitz": {
         "name": "Flare Blitz",
@@ -2474,7 +2556,11 @@
         "pp": 15,
         "power": 120,
         "accuracy": 100,
-        "description": "The user cloaks itself in fire and charges the target to inflict damage. This also damages the user quite a lot and may leave the target with a burn."
+        "description": "The user cloaks itself in fire and charges the target to inflict damage. This also damages the user quite a lot and may leave the target with a burn.",
+        "status": {
+            "condition": "burn",
+            "chance": 10
+        }
     },
     "Flash": {
         "name": "Flash",
@@ -2637,7 +2723,11 @@
         "pp": 10,
         "power": 60,
         "accuracy": 100,
-        "description": "The target is attacked with a shock wave. This may also leave the target with paralysis."
+        "description": "The target is attacked with a shock wave. This may also leave the target with paralysis.",
+        "status": {
+            "condition": "paralysis",
+            "chance": 30
+        }
     },
     "Foresight": {
         "name": "Foresight",
@@ -2674,7 +2764,11 @@
         "pp": 5,
         "power": 140,
         "accuracy": 90,
-        "description": "The turn after using this move, the user hits the target with electrically charged ice to inflict damage. This may also leave the target with paralysis."
+        "description": "The turn after using this move, the user hits the target with electrically charged ice to inflict damage. This may also leave the target with paralysis.",
+        "status": {
+            "condition": "paralysis",
+            "chance": 30
+        }
     },
     "Freeze-Dry": {
         "name": "Freeze-Dry",
@@ -2683,7 +2777,11 @@
         "pp": 20,
         "power": 70,
         "accuracy": 100,
-        "description": "The user rapidly cools the target. This may also leave the target frozen. This move is super effective on Water types."
+        "description": "The user rapidly cools the target. This may also leave the target frozen. This move is super effective on Water types.",
+        "status": {
+            "condition": "freeze",
+            "chance": 10
+        }
     },
     "Freezing Glare": {
         "name": "Freezing Glare",
@@ -2692,7 +2790,11 @@
         "pp": 10,
         "power": 90,
         "accuracy": 100,
-        "description": "The user shoots its psychic power from its eyes to attack. This may also leave the target frozen."
+        "description": "The user shoots its psychic power from its eyes to attack. This may also leave the target frozen.",
+        "status": {
+            "condition": "freeze",
+            "chance": 10
+        }
     },
     "Freezy Frost": {
         "name": "Freezy Frost",
@@ -2904,7 +3006,10 @@
         "pp": 30,
         "power": 0,
         "accuracy": 100,
-        "description": "The user intimidates the target with the pattern on its belly to cause paralysis."
+        "description": "The user intimidates the target with the pattern on its belly to cause paralysis.",
+        "status": {
+            "condition": "paralysis"
+        }
     },
     "Glitzy Glow": {
         "name": "Glitzy Glow",
@@ -2940,7 +3045,10 @@
         "pp": 15,
         "power": 0,
         "accuracy": 55,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "status": {
+            "condition": "sleep"
+        }
     },
     "Grassy Glide": {
         "name": "Grassy Glide",
@@ -3053,7 +3161,11 @@
         "pp": 5,
         "power": 120,
         "accuracy": 80,
-        "description": "The user shoots filthy garbage at the target to attack. This may also poison the target."
+        "description": "The user shoots filthy garbage at the target to attack. This may also poison the target.",
+        "status": {
+            "condition": "poison",
+            "chance": 30
+        }
     },
     "Gust": {
         "name": "Gust",
@@ -3253,7 +3365,11 @@
         "power": 95,
         "accuracy": 90,
         "description": "The user attacks by exhaling hot breath on opposing Pok\u00e9mon. This may also leave them with a burn.",
-        "target": "all-adj-foe"
+        "target": "all-adj-foe",
+        "status": {
+            "condition": "burn",
+            "chance": 10
+        }
     },
     "Heavy Slam": {
         "name": "Heavy Slam",
@@ -3484,7 +3600,10 @@
         "pp": 20,
         "power": 0,
         "accuracy": 60,
-        "description": "The user employs hypnotic suggestion to make the target fall asleep."
+        "description": "The user employs hypnotic suggestion to make the target fall asleep.",
+        "status": {
+            "condition": "sleep"
+        }
     },
     "Ice Ball": {
         "name": "Ice Ball",
@@ -3515,7 +3634,11 @@
         "pp": 5,
         "power": 140,
         "accuracy": 90,
-        "description": "The turn after using this move, the user surrounds the target with an ultracold, freezing wind to inflict damage. This may also leave the target with a burn."
+        "description": "The turn after using this move, the user surrounds the target with an ultracold, freezing wind to inflict damage. This may also leave the target with a burn.",
+        "status": {
+            "condition": "burn",
+            "chance": 30
+        }
     },
     "Ice Fang": {
         "name": "Ice Fang",
@@ -3524,7 +3647,11 @@
         "pp": 15,
         "power": 65,
         "accuracy": 95,
-        "description": "The user bites with cold-infused fangs. This may also make the target flinch or leave it frozen."
+        "description": "The user bites with cold-infused fangs. This may also make the target flinch or leave it frozen.",
+        "status": {
+            "condition": "freeze",
+            "chance": 10
+        }
     },
     "Ice Hammer": {
         "name": "Ice Hammer",
@@ -3542,7 +3669,11 @@
         "pp": 15,
         "power": 75,
         "accuracy": 100,
-        "description": "The target is attacked with an icy punch. This may also leave the target frozen."
+        "description": "The target is attacked with an icy punch. This may also leave the target frozen.",
+        "status": {
+            "condition": "freeze",
+            "chance": 10
+        }
     },
     "Ice Shard": {
         "name": "Ice Shard",
@@ -3617,7 +3748,11 @@
         "pp": 15,
         "power": 60,
         "accuracy": 100,
-        "description": "The user attacks with myriad fireballs. This may also leave the target with a burn. This move's power is doubled if the target has a status condition."
+        "description": "The user attacks with myriad fireballs. This may also leave the target with a burn. This move's power is doubled if the target has a status condition.",
+        "status": {
+            "condition": "burn",
+            "chance": 30
+        }
     },
     "Inferno": {
         "name": "Inferno",
@@ -3626,7 +3761,10 @@
         "pp": 5,
         "power": 100,
         "accuracy": 50,
-        "description": "The user attacks by engulfing the target in an intense fire. This leaves the target with a burn."
+        "description": "The user attacks by engulfing the target in an intense fire. This leaves the target with a burn.",
+        "status": {
+            "condition": "burn"
+        }
     },
     "Inferno Overdrive": {
         "name": "Inferno Overdrive",
@@ -3864,7 +4002,11 @@
         "power": 80,
         "accuracy": 100,
         "description": "The user torches everything around it in an inferno of scarlet flames. This may also leave those it hits with a burn.",
-        "target": "all-adj"
+        "target": "all-adj",
+        "status": {
+            "condition": "burn",
+            "chance": 30
+        }
     },
     "Leaf Blade": {
         "name": "Leaf Blade",
@@ -3950,7 +4092,11 @@
         "pp": 30,
         "power": 30,
         "accuracy": 100,
-        "description": "The user licks the target with a long tongue to inflict damage. This may also leave the target with paralysis."
+        "description": "The user licks the target with a long tongue to inflict damage. This may also leave the target with paralysis.",
+        "status": {
+            "condition": "paralysis",
+            "chance": 30
+        }
     },
     "Life Dew": {
         "name": "Life Dew",
@@ -4015,7 +4161,10 @@
         "pp": 10,
         "power": 0,
         "accuracy": 75,
-        "description": "With a scary face, the user tries to kiss the target. If it succeeds, the target falls asleep."
+        "description": "With a scary face, the user tries to kiss the target. If it succeeds, the target falls asleep.",
+        "status": {
+            "condition": "sleep"
+        }
     },
     "Low Kick": {
         "name": "Low Kick",
@@ -4222,7 +4371,11 @@
         "pp": 5,
         "power": 100,
         "accuracy": 100,
-        "description": "The user pours toxins into the target by wrapping them in a toxic, corrosive chain. This may also leave the target badly poisoned."
+        "description": "The user pours toxins into the target by wrapping them in a toxic, corrosive chain. This may also leave the target badly poisoned.",
+        "status": {
+            "condition": "toxic",
+            "chance": 50
+        }
     },
     "Mat Block": {
         "name": "Mat Block",
@@ -4242,7 +4395,11 @@
         "power": 80,
         "accuracy": 90,
         "description": "The user fires a blast of tea that it mixed. The user's HP is restored by up to half the damage taken by the target. This may also leave the target with a burn.",
-        "target": "all-adj-foe"
+        "target": "all-adj-foe",
+        "status": {
+            "condition": "burn",
+            "chance": 20
+        }
     },
     "Max Airstream": {
         "name": "Max Airstream",
@@ -4761,7 +4918,10 @@
         "power": 30,
         "accuracy": 100,
         "description": "The user performs a spin attack that can also eliminate the effects of such moves as Bind, Wrap, and Leech Seed. This also poisons opposing Pok\u00e9mon.",
-        "target": "all-adj-foe"
+        "target": "all-adj-foe",
+        "status": {
+            "condition": "poison"
+        }
     },
     "Mountain Gale": {
         "name": "Mountain Gale",
@@ -4965,7 +5125,11 @@
         "pp": 10,
         "power": 100,
         "accuracy": 100,
-        "description": "This move is only used by a Starmobile. It may poison the opponent."
+        "description": "This move is only used by a Starmobile. It may poison the opponent.",
+        "status": {
+            "condition": "poison",
+            "chance": 30
+        }
     },
     "Nuzzle": {
         "name": "Nuzzle",
@@ -4974,7 +5138,10 @@
         "pp": 20,
         "power": 20,
         "accuracy": 100,
-        "description": "The user attacks by nuzzling its electrified cheeks against the target. This also leaves the target with paralysis."
+        "description": "The user attacks by nuzzling its electrified cheeks against the target. This also leaves the target with paralysis.",
+        "status": {
+            "condition": "paralysis"
+        }
     },
     "Oblivion Wing": {
         "name": "Oblivion Wing",
@@ -5255,7 +5422,11 @@
         "pp": 15,
         "power": 50,
         "accuracy": 100,
-        "description": "The user bites the target with toxic fangs. This may also leave the target badly poisoned."
+        "description": "The user bites the target with toxic fangs. This may also leave the target badly poisoned.",
+        "status": {
+            "condition": "toxic",
+            "chance": 50
+        }
     },
     "Poison Gas": {
         "name": "Poison Gas",
@@ -5265,7 +5436,10 @@
         "power": 0,
         "accuracy": 90,
         "description": "A cloud of poison gas is sprayed in the faces of opposing Pok\u00e9mon, poisoning those it hits.",
-        "target": "all-adj-foe"
+        "target": "all-adj-foe",
+        "status": {
+            "condition": "poison"
+        }
     },
     "Poison Jab": {
         "name": "Poison Jab",
@@ -5274,7 +5448,11 @@
         "pp": 20,
         "power": 80,
         "accuracy": 100,
-        "description": "The target is stabbed with a tentacle, an arm, or the like steeped in poison. This may also poison the target."
+        "description": "The target is stabbed with a tentacle, an arm, or the like steeped in poison. This may also poison the target.",
+        "status": {
+            "condition": "poison",
+            "chance": 30
+        }
     },
     "Poison Powder": {
         "name": "Poison Powder",
@@ -5295,7 +5473,11 @@
         "pp": 35,
         "power": 15,
         "accuracy": 100,
-        "description": "The user stabs the target with a poisonous stinger to inflict damage. This may also poison the target."
+        "description": "The user stabs the target with a poisonous stinger to inflict damage. This may also poison the target.",
+        "status": {
+            "condition": "poison",
+            "chance": 30
+        }
     },
     "Poison Tail": {
         "name": "Poison Tail",
@@ -5305,7 +5487,11 @@
         "power": 50,
         "accuracy": 100,
         "description": "The user hits the target with its tail. This move has a heightened chance of landing a critical hit and may also poison the target.",
-        "crit_rate_modifier": 1
+        "crit_rate_modifier": 1,
+        "status": {
+            "condition": "poison",
+            "chance": 10
+        }
     },
     "Pollen Puff": {
         "name": "Pollen Puff",
@@ -5369,7 +5555,11 @@
         "power": 40,
         "accuracy": 100,
         "description": "The user attacks with a chilling gust of powdery snow. This may also leave opposing Pok\u00e9mon frozen.",
-        "target": "all-adj-foe"
+        "target": "all-adj-foe",
+        "status": {
+            "condition": "freeze",
+            "chance": 10
+        }
     },
     "Power Gem": {
         "name": "Power Gem",
@@ -5656,7 +5846,11 @@
         "pp": 5,
         "power": 120,
         "accuracy": 90,
-        "description": "The user attacks by igniting a small stone and launching it as a fiery ball at the target. This may also leave the target with a burn."
+        "description": "The user attacks by igniting a small stone and launching it as a fiery ball at the target. This may also leave the target with a burn.",
+        "status": {
+            "condition": "burn",
+            "chance": 10
+        }
     },
     "Quash": {
         "name": "Quash",
@@ -5850,7 +6044,11 @@
         "power": 75,
         "accuracy": 100,
         "description": "The user sings an ancient song and attacks by appealing to the hearts of the listening opposing Pok\u00e9mon. This may also induce sleep.",
-        "target": "all-adj-foe"
+        "target": "all-adj-foe",
+        "status": {
+            "condition": "sleep",
+            "chance": 10
+        }
     },
     "Rest": {
         "name": "Rest",
@@ -6090,7 +6288,11 @@
         "pp": 5,
         "power": 100,
         "accuracy": 95,
-        "description": "The target is razed with a mystical fire of great intensity. This may also leave the target with a burn."
+        "description": "The target is razed with a mystical fire of great intensity. This may also leave the target with a burn.",
+        "status": {
+            "condition": "burn",
+            "chance": 50
+        }
     },
     "Sacred Sword": {
         "name": "Sacred Sword",
@@ -6183,7 +6385,11 @@
         "pp": 15,
         "power": 80,
         "accuracy": 100,
-        "description": "The user attacks by shooting boiling hot water at the target. This may also leave the target with a burn."
+        "description": "The user attacks by shooting boiling hot water at the target. This may also leave the target with a burn.",
+        "status": {
+            "condition": "burn",
+            "chance": 30
+        }
     },
     "Scale Shot": {
         "name": "Scale Shot",
@@ -6210,7 +6416,11 @@
         "pp": 10,
         "power": 70,
         "accuracy": 100,
-        "description": "The user throws scorching sand at the target to attack. This may also leave the target with a burn."
+        "description": "The user throws scorching sand at the target to attack. This may also leave the target with a burn.",
+        "status": {
+            "condition": "burn",
+            "chance": 30
+        }
     },
     "Scratch": {
         "name": "Scratch",
@@ -6238,7 +6448,11 @@
         "power": 100,
         "accuracy": 100,
         "description": "The user torches everything around it in an inferno of scarlet flames. This may also leave those it hits with a burn.",
-        "target": "all-adj"
+        "target": "all-adj",
+        "status": {
+            "condition": "burn",
+            "chance": 30
+        }
     },
     "Searing Sunraze Smash": {
         "name": "Searing Sunraze Smash",
@@ -6405,7 +6619,11 @@
         "pp": 10,
         "power": 90,
         "accuracy": 100,
-        "description": "This move is either physical or special-whichever will inflict more damage. This may also poison the target."
+        "description": "This move is either physical or special-whichever will inflict more damage. This may also poison the target.",
+        "status": {
+            "condition": "poison",
+            "chance": 20
+        }
     },
     "Shell Smash": {
         "name": "Shell Smash",
@@ -6510,7 +6728,10 @@
         "pp": 15,
         "power": 0,
         "accuracy": 55,
-        "description": "A soothing lullaby is sung in a beautiful voice that puts the target to sleep."
+        "description": "A soothing lullaby is sung in a beautiful voice that puts the target to sleep.",
+        "status": {
+            "condition": "sleep"
+        }
     },
     "Sinister Arrow Raid": {
         "name": "Sinister Arrow Raid",
@@ -6528,7 +6749,10 @@
         "pp": 20,
         "power": 60,
         "accuracy": 100,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "status": {
+            "condition": "burn"
+        }
     },
     "Sketch": {
         "name": "Sketch",
@@ -6632,7 +6856,10 @@
         "pp": 15,
         "power": 0,
         "accuracy": 75,
-        "description": "The user scatters a cloud of soporific dust that puts the target to sleep."
+        "description": "The user scatters a cloud of soporific dust that puts the target to sleep.",
+        "status": {
+            "condition": "sleep"
+        }
     },
     "Sleep Talk": {
         "name": "Sleep Talk",
@@ -6651,7 +6878,11 @@
         "pp": 20,
         "power": 65,
         "accuracy": 100,
-        "description": "The user hurls unsanitary sludge at the target to inflict damage. This may also poison the target."
+        "description": "The user hurls unsanitary sludge at the target to inflict damage. This may also poison the target.",
+        "status": {
+            "condition": "poison",
+            "chance": 30
+        }
     },
     "Sludge Bomb": {
         "name": "Sludge Bomb",
@@ -6660,7 +6891,11 @@
         "pp": 10,
         "power": 90,
         "accuracy": 100,
-        "description": "The user hurls unsanitary sludge at the target to inflict damage. This may also poison the target."
+        "description": "The user hurls unsanitary sludge at the target to inflict damage. This may also poison the target.",
+        "status": {
+            "condition": "poison",
+            "chance": 30
+        }
     },
     "Sludge Wave": {
         "name": "Sludge Wave",
@@ -6670,7 +6905,11 @@
         "power": 95,
         "accuracy": 100,
         "description": "The user strikes everything around it by swamping the area with a giant sludge wave. This may also poison those it hits.",
-        "target": "all-adj"
+        "target": "all-adj",
+        "status": {
+            "condition": "poison",
+            "chance": 10
+        }
     },
     "Smack Down": {
         "name": "Smack Down",
@@ -6706,7 +6945,11 @@
         "pp": 20,
         "power": 30,
         "accuracy": 70,
-        "description": "The target is attacked with a discharge of filthy gases. This may also poison the target."
+        "description": "The target is attacked with a discharge of filthy gases. This may also poison the target.",
+        "status": {
+            "condition": "poison",
+            "chance": 40
+        }
     },
     "Smokescreen": {
         "name": "Smokescreen",
@@ -6847,7 +7090,11 @@
         "pp": 20,
         "power": 65,
         "accuracy": 100,
-        "description": "The user attacks the target with an electrically charged tackle. This may also leave the target with paralysis."
+        "description": "The user attacks the target with an electrically charged tackle. This may also leave the target with paralysis.",
+        "status": {
+            "condition": "paralysis",
+            "chance": 30
+        }
     },
     "Sparkling Aria": {
         "name": "Sparkling Aria",
@@ -7005,7 +7252,11 @@
         "power": 90,
         "accuracy": 100,
         "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
-        "target": "all-adj-foe"
+        "target": "all-adj-foe",
+        "status": {
+            "condition": "paralysis",
+            "chance": 30
+        }
     },
     "Spore": {
         "name": "Spore",
@@ -7055,7 +7306,11 @@
         "pp": 5,
         "power": 110,
         "accuracy": 95,
-        "description": "The user immerses the target in superheated steam. This may also leave the target with a burn."
+        "description": "The user immerses the target in superheated steam. This may also leave the target with a burn.",
+        "status": {
+            "condition": "burn",
+            "chance": 30
+        }
     },
     "Steamroller": {
         "name": "Steamroller",
@@ -7120,7 +7375,10 @@
         "pp": 1,
         "power": 175,
         "accuracy": 0,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "status": {
+            "condition": "paralysis"
+        }
     },
     "Stomp": {
         "name": "Stomp",
@@ -7252,7 +7510,10 @@
         "pp": 30,
         "power": 0,
         "accuracy": 75,
-        "description": "The user scatters a cloud of numbing powder that paralyzes the target."
+        "description": "The user scatters a cloud of numbing powder that paralyzes the target.",
+        "status": {
+            "condition": "paralysis"
+        }
     },
     "Submission": {
         "name": "Submission",
@@ -7725,7 +7986,11 @@
         "pp": 10,
         "power": 110,
         "accuracy": 70,
-        "description": "A wicked thunderbolt is dropped on the target to inflict damage. This may also leave the target with paralysis."
+        "description": "A wicked thunderbolt is dropped on the target to inflict damage. This may also leave the target with paralysis.",
+        "status": {
+            "condition": "paralysis",
+            "chance": 30
+        }
     },
     "Thunder Cage": {
         "name": "Thunder Cage",
@@ -7743,7 +8008,11 @@
         "pp": 15,
         "power": 65,
         "accuracy": 95,
-        "description": "The user bites with electrified fangs. This may also make the target flinch or leave it with paralysis."
+        "description": "The user bites with electrified fangs. This may also make the target flinch or leave it with paralysis.",
+        "status": {
+            "condition": "paralysis",
+            "chance": 10
+        }
     },
     "Thunder Punch": {
         "name": "Thunder Punch",
@@ -7752,7 +8021,11 @@
         "pp": 15,
         "power": 75,
         "accuracy": 100,
-        "description": "The target is attacked with an electrified punch. This may also leave the target with paralysis."
+        "description": "The target is attacked with an electrified punch. This may also leave the target with paralysis.",
+        "status": {
+            "condition": "paralysis",
+            "chance": 10
+        }
     },
     "Thunder Shock": {
         "name": "Thunder Shock",
@@ -7761,7 +8034,11 @@
         "pp": 30,
         "power": 40,
         "accuracy": 100,
-        "description": "The user attacks the target with a jolt of electricity. This may also leave the target with paralysis."
+        "description": "The user attacks the target with a jolt of electricity. This may also leave the target with paralysis.",
+        "status": {
+            "condition": "paralysis",
+            "chance": 10
+        }
     },
     "Thunder Wave": {
         "name": "Thunder Wave",
@@ -7782,7 +8059,11 @@
         "pp": 15,
         "power": 90,
         "accuracy": 100,
-        "description": "The user attacks the target with a strong electric blast. This may also leave the target with paralysis."
+        "description": "The user attacks the target with a strong electric blast. This may also leave the target with paralysis.",
+        "status": {
+            "condition": "paralysis",
+            "chance": 10
+        }
     },
     "Thunderclap": {
         "name": "Thunderclap",
@@ -7910,7 +8191,15 @@
         "pp": 10,
         "power": 80,
         "accuracy": 100,
-        "description": "The user strikes with a simultaneous three-beam attack. This may also burn, freeze, or paralyze the target."
+        "description": "The user strikes with a simultaneous three-beam attack. This may also burn, freeze, or paralyze the target.",
+        "status": {
+            "multi": [
+                "burn",
+                "freeze",
+                "paralysis"
+            ],
+            "chance": 20
+        }
     },
     "Trick": {
         "name": "Trick",
@@ -8011,7 +8300,11 @@
         "pp": 20,
         "power": 25,
         "accuracy": 100,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "status": {
+            "condition": "poison",
+            "chance": 20
+        }
     },
     "Twinkle Tackle": {
         "name": "Twinkle Tackle",
@@ -8159,7 +8452,11 @@
         "pp": 15,
         "power": 120,
         "accuracy": 100,
-        "description": "The user electrifies itself and charges the target to inflict damage. This also damages the user quite a lot and may leave the target with paralysis."
+        "description": "The user electrifies itself and charges the target to inflict damage. This also damages the user quite a lot and may leave the target with paralysis.",
+        "status": {
+            "condition": "paralysis",
+            "chance": 10
+        }
     },
     "Wake-Up Slap": {
         "name": "Wake-Up Slap",
@@ -8289,7 +8586,11 @@
         "pp": 10,
         "power": 80,
         "accuracy": 100,
-        "description": "This move is only used by a Starmobile. It may cause the opponent to fall asleep."
+        "description": "This move is only used by a Starmobile. It may cause the opponent to fall asleep.",
+        "status": {
+            "condition": "sleep",
+            "chance": 10
+        }
     },
     "Wide Guard": {
         "name": "Wide Guard",
@@ -8318,7 +8619,11 @@
         "power": 100,
         "accuracy": 80,
         "description": "The user summons a thunderous tempest and savagely attacks with lightning and wind. This may also leave opposing Pok\u00e9mon with paralysis.",
-        "target": "all-adj-foe"
+        "target": "all-adj-foe",
+        "status": {
+            "condition": "paralysis",
+            "chance": 30
+        }
     },
     "Will-O-Wisp": {
         "name": "Will-O-Wisp",
@@ -8443,7 +8748,10 @@
         "pp": 5,
         "power": 120,
         "accuracy": 50,
-        "description": "The user attacks by firing an electric blast like a cannon. This also leaves the target with paralysis."
+        "description": "The user attacks by firing an electric blast like a cannon. This also leaves the target with paralysis.",
+        "status": {
+            "condition": "paralysis"
+        }
     },
     "Zen Headbutt": {
         "name": "Zen Headbutt",
