@@ -179,6 +179,10 @@ class Move:
             self.target_stat_changes, self.user_stat_changes, self.status_condition
         ])
 
+    @property
+    def thaws_target(self):
+        return (self.type == fire and self.category != status) or self["thaws_target"]
+
 
 all_moves = {g: Move.from_json(j) for g, j in json.load(open("data/moves.json", "r")).items()}
 fixed_moves = {fix(g): g for g in all_moves}

@@ -962,7 +962,8 @@
         "pp": 5,
         "power": 130,
         "accuracy": 100,
-        "description": "To inflict massive damage, the user burns itself out. After using this move, the user will no longer be Fire type."
+        "description": "To inflict massive damage, the user burns itself out. After using this move, the user will no longer be Fire type.",
+        "thaws_user": true
     },
     "Burning Bulwark": {
         "name": "Burning Bulwark",
@@ -2534,7 +2535,8 @@
         "status": {
             "condition": "burn",
             "chance": 10
-        }
+        },
+        "thaws_user": true
     },
     "Flamethrower": {
         "name": "Flamethrower",
@@ -2560,7 +2562,8 @@
         "status": {
             "condition": "burn",
             "chance": 10
-        }
+        },
+        "thaws_user": true
     },
     "Flash": {
         "name": "Flash",
@@ -2876,7 +2879,8 @@
         "pp": 5,
         "power": 100,
         "accuracy": 100,
-        "description": "The user brings down a giant flame. This move's power is boosted when influenced by an enormous lightning bolt."
+        "description": "The user brings down a giant flame. This move's power is boosted when influenced by an enormous lightning bolt.",
+        "thaws_user": true
     },
     "Future Sight": {
         "name": "Future Sight",
@@ -4399,7 +4403,9 @@
         "status": {
             "condition": "burn",
             "chance": 20
-        }
+        },
+        "thaws_user": true,
+        "thaws_target": true
     },
     "Max Airstream": {
         "name": "Max Airstream",
@@ -5850,7 +5856,8 @@
         "status": {
             "condition": "burn",
             "chance": 10
-        }
+        },
+        "thaws_user": true
     },
     "Quash": {
         "name": "Quash",
@@ -6292,7 +6299,8 @@
         "status": {
             "condition": "burn",
             "chance": 50
-        }
+        },
+        "thaws_user": true
     },
     "Sacred Sword": {
         "name": "Sacred Sword",
@@ -6389,7 +6397,9 @@
         "status": {
             "condition": "burn",
             "chance": 30
-        }
+        },
+        "thaws_user": true,
+        "thaws_target": true
     },
     "Scale Shot": {
         "name": "Scale Shot",
@@ -6420,7 +6430,9 @@
         "status": {
             "condition": "burn",
             "chance": 30
-        }
+        },
+        "thaws_user": true,
+        "thaws_target": true
     },
     "Scratch": {
         "name": "Scratch",
@@ -7310,7 +7322,9 @@
         "status": {
             "condition": "burn",
             "chance": 30
-        }
+        },
+        "thaws_user": true,
+        "thaws_target": true
     },
     "Steamroller": {
         "name": "Steamroller",

@@ -107,8 +107,8 @@ class Battle:
     def can_execute(self, attacker: FieldMon, move: Move):
         """Checks that prevent the execution of a move (e.g. being frozen, priority on PTerrain) before it happens."""
         if attacker.status_condition == freeze:
-            if random.random() < 0.2:
-                attacker.status_condition = None
+            if move["thaws_user"] or (random.random() < 0.2):  # note to self: prevent thawing if Burn Up would fail
+                self.apply_status(attacker, None)
                 self.output(f"{attacker.name} thawed out!")
             else:
                 self.output(f"{attacker.name} is frozen solid!")
@@ -161,6 +161,10 @@ class Battle:
             self.output(f"{mon.name} {status_condition_texts[condition]}!")
 
     def move_effects(self, attacker: FieldMon, defender: FieldMon, move: Move):
+        if defender.status_condition == freeze and move.thaws_target:
+            self.apply_status(defender, None)
+            self.output(f"{defender.name} was thawed out!")
+
         if move.user_stat_changes:
             if random.random() < move.user_stat_changes.chance / 100:
                 changes = attacker.apply(move.user_stat_changes)
