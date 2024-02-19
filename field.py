@@ -12,6 +12,7 @@ weather_names = {
     extreme_sun: "Extremely harsh sunlight",
     winds: "Strong winds"
 }
+terrains = electric_terrain, grassy_terrain, misty_terrain, psychic_terrain = "electric", "grassy", "misty", "psychic"
 
 
 def raw_damage(attacker_level: int, attacking_stat: int, defending_stat: int, power: int):
@@ -53,6 +54,8 @@ class Field:
         self.positions = {}  # position (int): mon (FieldMon | None)
         self.weather = None
         self.weather_timer = 0
+        self.terrain = None
+        self.terrain_timer = 0
 
     def deploy_mon(self, mon: FieldMon | None, position: int):
         self.positions[position] = mon
@@ -95,6 +98,8 @@ class Field:
         ret = []
         if self.weather:
             ret.append(f"{weather_names[self.weather]}: {self.weather_timer} {plural('turn', self.weather_timer)}")
+        if self.terrain:
+            ret.append(f"{self.terrain.title()} Terrain: {self.terrain_timer} {plural('turn', self.terrain_timer)}")
         return "\n".join(ret)
 
     def diagram(self, select: list[int] = (), from_side: int = 0, include_hp: bool = True):
@@ -106,7 +111,7 @@ class Field:
                 [  # lines
                     f"{'->' if n in select else '  '}[{n + 1}] "
                     f"{'---' if not self.at(n) else self.at(n).species_and_form}"
-                    f"{'' if not self.at(n) or not include_hp else (' ' + self.at(n).hp_display())}"
+                    f"{'' if not self.at(n) or not include_hp else (' [' + self.at(n).hp_display() + ']')}"
                     f"{'<-' if n in select else '  '}",
                     *join_and_wrap((self.at(n).battle_info() if self.at(n) else []), "; ", 24, "   └  ")
                 ] for n in row
@@ -121,11 +126,21 @@ class Field:
             for row in ret for line in range(len(row[0]))
         )
 
-    def meets_conditional(self, conditional: dict[str]) -> bool:
+    def meets_conditional(self, user: FieldMon, conditional: dict[str]) -> bool:
         condition = conditional["condition"]
-        if condition.get("weather") is not None and self.weather != condition.get("weather"):
+        if condition.get("weather") is not None and self.weather != condition["weather"]:
             return False
+        if condition.get("user_in_terrain") is not None:
+            if self.terrain != condition["user_in_terrain"] or not self.is_grounded(user):
+                return False
         return True
+
+    def apply_conditionals(self, user: FieldMon, move: Move) -> Move:
+        overwrites = {}
+        for conditional in move.conditionals:
+            if self.meets_conditional(user, conditional):
+                overwrites.update(conditional)
+        return move.clone(overwrites)
 
     def move_effectiveness(self, attacker: FieldMon, defender: FieldMon, move: Move) -> float:
         overwrites = {}
@@ -213,6 +228,8 @@ class Field:
     def can_apply_status(self, attacker: FieldMon, defender: FieldMon, condition: str) -> bool:
         if defender.status_condition is not None:
             return False
+        if self.terrain == misty_terrain and self.is_grounded(defender):
+            return False
         if condition == burn:
             if fire in defender.types:
                 return False
@@ -224,9 +241,19 @@ class Field:
         if condition == paralysis:
             if electric in defender.types:
                 return False
-        if condition == mild_poison:
+        if condition in [mild_poison, bad_poison]:
             if poison in defender.types or steel in defender.types:
                 return False
+        if condition == sleep:
+            if self.terrain == electric_terrain and self.is_grounded(defender):
+                return False
+        return True
+
+    def is_grounded(self, mon: FieldMon):
+        # ungrounded if: has Levitate, holding Air Balloon, under Magnet Rise or Telekinesis, in semi-invulnerable turn
+        # re-grounded if: holding Iron Ball, under Ingrain or Smack Down or Thousand Arrows, Gravity in effect
+        if flying in mon.types:
+            return False
         return True
 
     def can_change_weather(self, weather: str | None):
@@ -237,3 +264,7 @@ class Field:
     def set_weather(self, weather: str | None, turns: int = 5):
         self.weather = weather
         self.weather_timer = turns if weather else 0
+
+    def set_terrain(self, terrain: str | None, turns: int = 5):
+        self.terrain = terrain
+        self.terrain_timer = turns if terrain else 0

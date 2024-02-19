@@ -76,7 +76,7 @@ class Player(Controller):
                 if not mon.moves[move].remaining_pp:
                     print(f"{move} has no PP remaining!")
                     continue
-                if targets := self.get_targets(mon.position, all_moves[move]):
+                if targets := self.get_targets(mon.position, self.field.apply_conditionals(mon, all_moves[move])):
                     mon.next_action = move
                     mon.targets = targets
                     return

@@ -2080,7 +2080,8 @@
         "power": 0,
         "accuracy": 0,
         "description": "The user turns the ground into Electric Terrain for five turns, powering up Electric-type moves. Pok\u00e9mon on the ground can no longer fall asleep.",
-        "target": "all"
+        "target": "all",
+        "change_terrain": "electric"
     },
     "Electrify": {
         "name": "Electrify",
@@ -2232,7 +2233,16 @@
         "pp": 10,
         "power": 80,
         "accuracy": 100,
-        "description": "The user attacks the target with its psychic power. When the ground is Psychic Terrain, this move's power is boosted and it damages all opposing Pok\u00e9mon."
+        "description": "The user attacks the target with its psychic power. When the ground is Psychic Terrain, this move's power is boosted and it damages all opposing Pok\u00e9mon.",
+        "conditionals": [
+            {
+                "condition": {
+                    "user_in_terrain": "psychic"
+                },
+                "power": 120,
+                "target": "all-foe"
+            }
+        ]
     },
     "Explosion": {
         "name": "Explosion",
@@ -3072,7 +3082,15 @@
         "pp": 20,
         "power": 55,
         "accuracy": 100,
-        "description": "Gliding on the ground, the user attacks the target. This move always goes first on Grassy Terrain."
+        "description": "Gliding on the ground, the user attacks the target. This move always goes first on Grassy Terrain.",
+        "conditionals": [
+            {
+                "condition": {
+                    "user_in_terrain": "grassy"
+                },
+                "priority": 1
+            }
+        ]
     },
     "Grassy Terrain": {
         "name": "Grassy Terrain",
@@ -3082,7 +3100,8 @@
         "power": 0,
         "accuracy": 0,
         "description": "The user turns the ground into Grassy Terrain for five turns. This restores the HP of Pok\u00e9mon on the ground a little every turn and powers up Grass-type moves.",
-        "target": "all"
+        "target": "all",
+        "change_terrain": "grassy"
     },
     "Grav Apple": {
         "name": "Grav Apple",
@@ -4906,7 +4925,15 @@
         "power": 100,
         "accuracy": 100,
         "description": "The user attacks everything around it and faints upon using this move. This move's power is boosted on Misty Terrain.",
-        "target": "all-adj"
+        "target": "all-adj",
+        "conditionals": [
+            {
+                "condition": {
+                    "user_in_terrain": "misty"
+                },
+                "power": 150
+            }
+        ]
     },
     "Misty Terrain": {
         "name": "Misty Terrain",
@@ -4916,7 +4943,8 @@
         "power": 0,
         "accuracy": 0,
         "description": "This protects Pok\u00e9mon on the ground from status conditions and halves damage from Dragon-type moves for five turns.",
-        "target": "all"
+        "target": "all",
+        "change_terrain": "misty"
     },
     "Moonblast": {
         "name": "Moonblast",
@@ -5781,7 +5809,8 @@
         "power": 0,
         "accuracy": 0,
         "description": "This protects Pok\u00e9mon on the ground from priority moves and powers up Psychic-type moves for five turns.",
-        "target": "all"
+        "target": "all",
+        "change_terrain": "psychic"
     },
     "Psycho Boost": {
         "name": "Psycho Boost",
@@ -7987,7 +8016,37 @@
         "pp": 10,
         "power": 50,
         "accuracy": 100,
-        "description": "The user utilizes the energy of the terrain to attack. This move's type and power change depending on the terrain at the time the move is used."
+        "description": "The user utilizes the energy of the terrain to attack. This move's type and power change depending on the terrain at the time the move is used.",
+        "conditionals": [
+            {
+                "condition": {
+                    "user_in_terrain": "electric"
+                },
+                "type": "Electric",
+                "power": 100
+            },
+            {
+                "condition": {
+                    "user_in_terrain": "grassy"
+                },
+                "type": "Grass",
+                "power": 100
+            },
+            {
+                "condition": {
+                    "user_in_terrain": "misty"
+                },
+                "type": "Fairy",
+                "power": 100
+            },
+            {
+                "condition": {
+                    "user_in_terrain": "psychic"
+                },
+                "type": "Psychic",
+                "power": 100
+            }
+        ]
     },
     "Thief": {
         "name": "Thief",

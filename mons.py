@@ -544,12 +544,12 @@ class FieldMon(MiniMon):
         ), 3)
 
     def hp_display(self, percentage: bool = False):
-        return f"[{round(100 * self.remaining_hp / self.hp)}%]" if percentage else f"[{self.remaining_hp}/{self.hp}]"
+        return f"{round(100 * self.remaining_hp / self.hp)}%" if percentage else f"{self.remaining_hp}/{self.hp}"
 
     def inline_display(self, hp_percentage: bool = False):
         return f"{self.verbose_name} " \
                f"{('[' + status_abbreviations[self.status_condition] + '] ') if self.status_condition else ''}" \
-               f"{self.hp_display(hp_percentage)}"
+               f"[{self.hp_display(hp_percentage)}]"
 
     def battle_info(self) -> list[str]:
         ret = []

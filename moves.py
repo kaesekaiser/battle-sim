@@ -179,10 +179,11 @@ class Move:
         return self.get("defending_stat", "Def" if self.category == physical else "SpD")
 
     @property
-    def total_effects(self):
-        return sum(1 if g else 0 for g in [
-            self.target_stat_changes, self.user_stat_changes, self.status_condition, self["change_weather"]
-        ])
+    def total_key_effects(self):
+        return len([g for g in [
+            self.target_stat_changes, self.user_stat_changes, self.status_condition,
+            self["change_weather"], self["change_terrain"]
+        ] if g])
 
     @property
     def thaws_target(self):

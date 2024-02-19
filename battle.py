@@ -32,6 +32,12 @@ weather_texts = {
     winds: ["Mysterious winds are protecting Flying-type Pok\u00e9mon!", "Mysterious winds continue to blow.",
             "The mysterious winds dissipated."]
 }
+terrain_texts = {
+    electric_terrain: "An electric current ran across the battlefield!",
+    grassy_terrain: "Grass grew to cover the battlefield!",
+    misty_terrain: "Mist swirled around the battlefield!",
+    psychic_terrain: "The battlefield got weird!"
+}
 
 
 class Battle:
@@ -103,21 +109,33 @@ class Battle:
     def double_check_targets(self, mon: FieldMon):
         if not mon.move_selection:
             return
-        possible_targets = self.field.targets(mon.position, mon.move_selection.target)
-        if not (new_targets := [g for g in mon.targets if g in possible_targets]):
-            if mon.move_selection.is_single_target:
-                if same_side_targets := [g for g in possible_targets if g // self.size == mon.targets[0] // self.size]:
-                    mon.targets = [same_side_targets[0]]
-                    return
-            mon["no_target"] = True
-            mon.targets = [mon.position]
-        else:
-            mon.targets = new_targets
+        move = self.field.apply_conditionals(mon, mon.move_selection)
+        possible_targets = self.field.targets(mon.position, move.target)
+        if "all" in move.targs:
+            if not possible_targets:
+                mon["no_target"] = True
+                mon.targets = [mon.position]
+            else:
+                mon.targets = possible_targets
+        elif "any" in move.targs:
+            if not (new_targets := [g for g in mon.targets if g in possible_targets]):
+                if mon.move_selection.is_single_target:
+                    if same_side := [g for g in possible_targets if g // self.size == mon.targets[0] // self.size]:
+                        mon.targets = [same_side[0]]
+                        return
+                mon["no_target"] = True
+                mon.targets = [mon.position]
+            else:
+                mon.targets = new_targets
 
     def damage(self, mon: FieldMon, damage: int, description: str = "damage"):
         damage_dealt = mon.damage(damage)
-        self.output(f"{mon.name} took {damage_dealt} {description}! (-> {mon.remaining_hp}/{mon.hp} HP)")
+        self.output(f"{mon.name} took {damage_dealt} {description}! (-> {mon.hp_display()} HP)")
         self.check_fainted(mon)
+
+    def heal(self, mon: FieldMon, healing: int, description: str = "HP"):
+        healing_done = mon.heal(healing)
+        self.output(f"{mon.name} regained {healing_done} {description}! (-> {mon.hp_display()} HP)")
 
     def can_execute(self, attacker: FieldMon, move: Move):
         """Checks that prevent the execution of a move (e.g. being frozen, priority on PTerrain) before it happens."""
@@ -145,13 +163,6 @@ class Battle:
             return False
         return True
 
-    def prepare_move(self, move: Move):
-        overwrites = {}
-        for conditional in move.conditionals:
-            if self.field.meets_conditional(conditional):
-                overwrites.update(conditional)
-        return move.clone(overwrites)
-
     def accuracy_check(self, attacker: FieldMon, defender: FieldMon, move: Move):
         if not move.accuracy:
             return True
@@ -162,18 +173,35 @@ class Battle:
     def but_it_failed(self, attacker: FieldMon, defender: FieldMon, move: Move) -> bool | None:
         if self.field.move_effectiveness(attacker, defender, move) == 0:
             return self.output(f"It doesn't affect {defender.name}...")
+        if self.field.terrain == psychic_terrain and move.priority > 0 and self.field.is_grounded(defender):
+            return self.output(f"{defender.name} is protected by Psychic Terrain!")
         if not self.accuracy_check(attacker, defender, move):
             if len(attacker.targets) > 1:
                 return self.output(f"{defender.name} avoided the attack!")
             else:
                 return self.output(f"{attacker.name}'s attack missed!")
-        if move.category == status and move.total_effects == 1 and len(attacker.targets) == 1:  # you had one job!
+        if move.category == status and move.total_key_effects == 1 and len(attacker.targets) == 1:  # you had one job!
             if move.status_condition and \
                     not self.field.can_apply_status(attacker, defender, move.status_condition.condition):
                 return self.output("But it failed!")
             if move["change_weather"] and not self.field.can_change_weather(move["change_weather"]):
                 return self.output("But it failed!")
+            if move["change_terrain"] is not None and self.field.terrain == move["change_terrain"]:
+                return self.output("But it failed!")
         return True
+
+    def move_modifications(self, attacker: FieldMon, defender: FieldMon, move: Move):
+        power_multipliers = []  # https://bulbapedia.bulbagarden.net/wiki/Power#Generation_IX
+        if self.field.terrain == misty_terrain and move.type == dragon and self.field.is_grounded(defender):
+            power_multipliers.append(0.5)
+        if self.field.terrain == electric_terrain and move.type == electric and self.field.is_grounded(attacker):
+            power_multipliers.append(1.3)
+        elif self.field.terrain == grassy_terrain and move.type == grass and self.field.is_grounded(attacker):
+            power_multipliers.append(1.3)
+        elif self.field.terrain == psychic_terrain and move.type == psychic and self.field.is_grounded(attacker):
+            power_multipliers.append(1.3)
+
+        move.power = round(move.power * product(power_multipliers))
 
     def display_stat_change(self, mon: FieldMon, stat_change: dict[str, int]):
         for stat, change in stat_change.items():
@@ -196,6 +224,14 @@ class Battle:
             self.output(weather_texts[self.field.weather][2])
             self.field.set_weather(None)
 
+    def change_terrain(self, terrain: str | None, turns: int = 5):
+        if terrain:
+            self.field.set_terrain(terrain, turns)
+            self.output(terrain_texts[terrain])
+        elif self.field.terrain is not None:
+            self.output(f"The {self.field.terrain} terrain dissipated.")
+            self.field.set_terrain(None)
+
     def move_effects(self, attacker: FieldMon, defender: FieldMon, move: Move):
         if defender.status_condition == freeze and move.thaws_target:
             self.apply_status(defender, None)
@@ -217,6 +253,9 @@ class Battle:
         if move["change_weather"] and self.field.can_change_weather(move["change_weather"]):
             self.change_weather(move["change_weather"])
 
+        if move["change_terrain"] and self.field.terrain != move["change_terrain"]:
+            self.change_terrain(move["change_terrain"])
+
     def use_move(self, attacker: FieldMon, defender: FieldMon, move: Move):
         if attacker["has_attempted"] and not attacker["has_executed"]:
             return  # if the mon previously failed to execute its move against a different target, don't try again
@@ -231,13 +270,15 @@ class Battle:
             move.deduct_pp()
             attacker["has_executed"] = True
 
-        move = self.prepare_move(move)
+        move = self.field.apply_conditionals(attacker, move)
 
         if not self.but_it_failed(attacker, defender, move):
             attacker["failed_attack"] = True
             return
         else:
             attacker["failed_attack"] = False
+
+        self.move_modifications(attacker, defender, move)
 
         if move.category != status:
             damage = self.field.damage_roll(attacker, defender, move)
@@ -282,6 +323,9 @@ class Battle:
             if mon.fainted:
                 return
 
+            if self.field.terrain == grassy_terrain and self.field.is_grounded(mon):
+                self.heal(mon, ceil(mon.hp / 16), "HP from Grassy Terrain")
+
             self.teams[mon.team_id].update_mon(mon)
 
     def send_out_replacements(self):
@@ -306,6 +350,10 @@ class Battle:
                 self.change_weather(None)
             else:
                 self.output(weather_texts[self.field.weather][1])
+        if self.field.terrain is not None and self.field.terrain_timer > 0:
+            self.field.terrain_timer -= 1
+            if self.field.terrain_timer == 0:
+                self.change_terrain(None)
 
         if self.last_output:
             self.output("", 0)
