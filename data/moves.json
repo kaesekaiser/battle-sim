@@ -666,7 +666,15 @@
         "status": {
             "condition": "freeze",
             "chance": 10
-        }
+        },
+        "conditionals": [
+            {
+                "condition": {
+                    "weather": "snow"
+                },
+                "accuracy": 0
+            }
+        ]
     },
     "Block": {
         "name": "Block",
@@ -3113,7 +3121,22 @@
         "power": 0,
         "accuracy": 0,
         "description": "The user's body grows all at once, boosting the Attack and Sp. Atk stats.",
-        "target": "user"
+        "target": "user",
+        "user_stat_changes": {
+            "Atk": 1,
+            "SpA": 1
+        },
+        "conditionals": [
+            {
+                "condition": {
+                    "weather": "sun"
+                },
+                "user_stat_changes": {
+                    "Atk": 2,
+                    "SpA": 2
+                }
+            }
+        ]
     },
     "Grudge": {
         "name": "Grudge",
@@ -3507,7 +3530,21 @@
         "power": 110,
         "accuracy": 70,
         "description": "The user attacks by wrapping the target in a fierce wind. This may also confuse the target.",
-        "target": "any"
+        "target": "any",
+        "conditionals": [
+            {
+                "condition": {
+                    "weather": "rain"
+                },
+                "accuracy": 0
+            },
+            {
+                "condition": {
+                    "weather": "sun"
+                },
+                "accuracy": 50
+            }
+        ]
     },
     "Hydro Cannon": {
         "name": "Hydro Cannon",
@@ -8011,7 +8048,21 @@
         "status": {
             "condition": "paralysis",
             "chance": 30
-        }
+        },
+        "conditionals": [
+            {
+                "condition": {
+                    "weather": "rain"
+                },
+                "accuracy": 0
+            },
+            {
+                "condition": {
+                    "weather": "sun"
+                },
+                "accuracy": 50
+            }
+        ]
     },
     "Thunder Cage": {
         "name": "Thunder Cage",
@@ -8570,7 +8621,37 @@
         "pp": 10,
         "power": 50,
         "accuracy": 100,
-        "description": "This move's type and power change depending on the weather at the time the move is used."
+        "description": "This move's type and power change depending on the weather at the time the move is used.",
+        "conditionals": [
+            {
+                "condition": {
+                    "weather": "rain"
+                },
+                "type": "Water",
+                "power": 100
+            },
+            {
+                "condition": {
+                    "weather": "sandstorm"
+                },
+                "type": "Rock",
+                "power": 100
+            },
+            {
+                "condition": {
+                    "weather": "snow"
+                },
+                "type": "Ice",
+                "power": 100
+            },
+            {
+                "condition": {
+                    "weather": "sun"
+                },
+                "type": "Fire",
+                "power": 100
+            }
+        ]
     },
     "Whirlpool": {
         "name": "Whirlpool",

@@ -40,6 +40,10 @@ def join_and_wrap(ls: list[str], joiner: str, line_width: int, indented_prefix: 
     return ret
 
 
+def plural(s: str, n: int | float, plural_form: str = "{}s"):
+    return s if n == 1 else plural_form.format(s)
+
+
 class Field:
     def __init__(self, size: int = 1):
         if not (1 <= size <= 3):
@@ -87,6 +91,12 @@ class Field:
 
         return possible_targets
 
+    def summary(self):
+        ret = []
+        if self.weather:
+            ret.append(f"{weather_names[self.weather]}: {self.weather_timer} {plural('turn', self.weather_timer)}")
+        return "\n".join(ret)
+
     def diagram(self, select: list[int] = (), from_side: int = 0, include_hp: bool = True):
         positions = [list(range(self.size, self.size * 2)), list(range(self.size))]
         if from_side == 1:
@@ -98,7 +108,7 @@ class Field:
                     f"{'---' if not self.at(n) else self.at(n).species_and_form}"
                     f"{'' if not self.at(n) or not include_hp else (' ' + self.at(n).hp_display())}"
                     f"{'<-' if n in select else '  '}",
-                    *join_and_wrap(self.at(n).battle_info(), "; ", 24, "   └  ")
+                    *join_and_wrap((self.at(n).battle_info() if self.at(n) else []), "; ", 24, "   └  ")
                 ] for n in row
             ] for row in positions
         ]
@@ -110,6 +120,12 @@ class Field:
             " ".join(cell[line].ljust(max_lengths[n]) for n, cell in enumerate(row))
             for row in ret for line in range(len(row[0]))
         )
+
+    def meets_conditional(self, conditional: dict[str]) -> bool:
+        condition = conditional["condition"]
+        if condition.get("weather") is not None and self.weather != condition.get("weather"):
+            return False
+        return True
 
     def move_effectiveness(self, attacker: FieldMon, defender: FieldMon, move: Move) -> float:
         overwrites = {}
@@ -206,7 +222,6 @@ class Field:
             if self.active_weather in [sun, extreme_sun]:
                 return False
         if condition == paralysis:
-            print("hi!")
             if electric in defender.types:
                 return False
         if condition == mild_poison:

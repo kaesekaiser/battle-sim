@@ -145,6 +145,13 @@ class Battle:
             return False
         return True
 
+    def prepare_move(self, move: Move):
+        overwrites = {}
+        for conditional in move.conditionals:
+            if self.field.meets_conditional(conditional):
+                overwrites.update(conditional)
+        return move.clone(overwrites)
+
     def accuracy_check(self, attacker: FieldMon, defender: FieldMon, move: Move):
         if not move.accuracy:
             return True
@@ -156,7 +163,10 @@ class Battle:
         if self.field.move_effectiveness(attacker, defender, move) == 0:
             return self.output(f"It doesn't affect {defender.name}...")
         if not self.accuracy_check(attacker, defender, move):
-            return self.output(f"{attacker.name}'s attack missed!")
+            if len(attacker.targets) > 1:
+                return self.output(f"{defender.name} avoided the attack!")
+            else:
+                return self.output(f"{attacker.name}'s attack missed!")
         if move.category == status and move.total_effects == 1 and len(attacker.targets) == 1:  # you had one job!
             if move.status_condition and \
                     not self.field.can_apply_status(attacker, defender, move.status_condition.condition):
@@ -221,7 +231,7 @@ class Battle:
             move.deduct_pp()
             attacker["has_executed"] = True
 
-        move = copy(move)  # create copy after deducting PP to avoid permanently changing move power, etc.
+        move = self.prepare_move(move)
 
         if not self.but_it_failed(attacker, defender, move):
             attacker["failed_attack"] = True
@@ -290,7 +300,6 @@ class Battle:
 
         if self.last_output:
             self.output("", 0)
-
         if self.field.weather is not None and self.field.weather_timer > 0:
             self.field.weather_timer -= 1
             if self.field.weather_timer == 0:
@@ -298,6 +307,8 @@ class Battle:
             else:
                 self.output(weather_texts[self.field.weather][1])
 
+        if self.last_output:
+            self.output("", 0)
         self.send_out_replacements()
 
     def check_fainted(self, mon: FieldMon):
@@ -326,7 +337,11 @@ class Battle:
 
         while True:
             self.turn_count += 1
-            self.output(self.spaced(f"[ TURN {self.turn_count} ]\n\n{self.field.diagram()}\n"))
+            self.output(self.spaced(
+                f"[ TURN {self.turn_count} ]\n\n" +
+                (f"{self.field.summary()}\n\n" if self.field.summary() else "") +
+                f"{self.field.diagram()}\n"
+            ))
 
             for team in self.teams:
                 team.set_actions()

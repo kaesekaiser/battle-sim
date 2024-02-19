@@ -97,6 +97,8 @@ class Move:
             if kwargs.get("target_stat_changes") else None
         self.status_condition = StatusCondition.from_json(kwargs["status"]) if kwargs.get("status") else None
 
+        self.conditionals = kwargs.get("conditionals", [])
+
         self.attributes = kwargs
 
     def __copy__(self):
@@ -139,6 +141,9 @@ class Move:
             "remaining_pp": self.remaining_pp, "power": self.power, "accuracy": self.accuracy,
             "priority": self.priority, "target": self.target, **self.attributes
         }
+
+    def clone(self, overwrites: dict[str] = ()):
+        return Move.from_json(self.json() | {k: v for k, v in dict(overwrites).items() if k != "condition"})
 
     def get(self, attribute: str, default_value=None):
         return self.attributes.get(attribute, default_value)
