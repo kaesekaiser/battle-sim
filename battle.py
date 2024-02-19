@@ -21,6 +21,17 @@ status_condition_texts = {
     bad_poison: "was badly poisoned",
     sleep: "fell asleep"
 }
+weather_texts = {
+    rain: ["It started to rain!", "Rain continues to fall.", "The rain stopped."],
+    heavy_rain: ["A heavy rain began to fall!", "Heavy rain continues to fall.", "The heavy rain stopped."],
+    sandstorm: ["A sandstorm kicked up!", "The sandstorm is raging.", "The sandstorm subsided."],
+    snow: ["It started to snow!", "Snow continues to fall.", "The snow stopped."],
+    sun: ["The sunlight turned harsh!", "The sunlight is strong.", "The harsh sunlight faded."],
+    extreme_sun: ["The sunlight turned extremely harsh!", "The sunlight is extremely strong.",
+                  "The extremely harsh sunlight faded."],
+    winds: ["Mysterious winds are protecting Flying-type Pok\u00e9mon!", "Mysterious winds continue to blow.",
+            "The mysterious winds dissipated."]
+}
 
 
 class Battle:
@@ -38,6 +49,7 @@ class Battle:
         self.teams[1].set_field(self.field)
 
         self.last_output = ""
+        self.turn_count = 0
 
     def output(self, text: str, sleep_time: float = 0.5) -> None:
         print(text)
@@ -67,6 +79,9 @@ class Battle:
     @property
     def fielded_mons(self) -> list[FieldMon]:
         return self.field.fielded_mons
+
+    def get_stat(self, mon: FieldMon, stat: str) -> int:
+        return self.field.get_stat(mon, stat)
 
     def init_battle(self):
         for n in range(self.size):
@@ -133,7 +148,7 @@ class Battle:
     def accuracy_check(self, attacker: FieldMon, defender: FieldMon, move: Move):
         if not move.accuracy:
             return True
-        if random.random() < move.accuracy / 100:
+        if random.random() < move.accuracy / 100 * self.get_stat(attacker, "Acc") / self.get_stat(defender, "Eva"):
             return True
         return False
 
@@ -142,9 +157,12 @@ class Battle:
             return self.output(f"It doesn't affect {defender.name}...")
         if not self.accuracy_check(attacker, defender, move):
             return self.output(f"{attacker.name}'s attack missed!")
-        if move.status_condition and move.category == status and move.total_effects == 1 and len(attacker.targets) < 2 \
-                and not self.field.can_apply_status(attacker, defender, move.status_condition.condition):
-            return self.output("But it failed!")
+        if move.category == status and move.total_effects == 1 and len(attacker.targets) == 1:  # you had one job!
+            if move.status_condition and \
+                    not self.field.can_apply_status(attacker, defender, move.status_condition.condition):
+                return self.output("But it failed!")
+            if move["change_weather"] and not self.field.can_change_weather(move["change_weather"]):
+                return self.output("But it failed!")
         return True
 
     def display_stat_change(self, mon: FieldMon, stat_change: dict[str, int]):
@@ -159,6 +177,14 @@ class Battle:
             mon.status_timer = 0
         if condition:
             self.output(f"{mon.name} {status_condition_texts[condition]}!")
+
+    def change_weather(self, weather: str | None, turns: int = 5):
+        if weather:
+            self.field.set_weather(weather, turns)
+            self.output(weather_texts[weather][0])
+        elif self.field.weather is not None:
+            self.output(weather_texts[self.field.weather][2])
+            self.field.set_weather(None)
 
     def move_effects(self, attacker: FieldMon, defender: FieldMon, move: Move):
         if defender.status_condition == freeze and move.thaws_target:
@@ -177,6 +203,9 @@ class Battle:
             if self.field.can_apply_status(attacker, defender, move.status_condition.condition) and \
                     (random.random() < move.status_condition.chance / 100):
                 self.apply_status(defender, move.status_condition.condition)
+
+        if move["change_weather"] and self.field.can_change_weather(move["change_weather"]):
+            self.change_weather(move["change_weather"])
 
     def use_move(self, attacker: FieldMon, defender: FieldMon, move: Move):
         if attacker["has_attempted"] and not attacker["has_executed"]:
@@ -235,6 +264,13 @@ class Battle:
             elif mon.status_condition == bad_poison:
                 mon.status_timer += 1
                 self.damage(mon, ceil(mon.hp * mon.status_timer / 16), "damage from poison")
+            if mon.fainted:
+                return
+
+            if self.field.active_weather == sandstorm and not mon.immune_to_sand:
+                self.damage(mon, ceil(mon.hp / 16), "damage from the sandstorm")
+            if mon.fainted:
+                return
 
             self.teams[mon.team_id].update_mon(mon)
 
@@ -249,8 +285,19 @@ class Battle:
     def end_of_turn(self):
         for mon in self.fielded_mons:
             self.individual_end_of_turn(mon)
+        if self.check_winner() is not None:
+            return
+
         if self.last_output:
             self.output("", 0)
+
+        if self.field.weather is not None and self.field.weather_timer > 0:
+            self.field.weather_timer -= 1
+            if self.field.weather_timer == 0:
+                self.change_weather(None)
+            else:
+                self.output(weather_texts[self.field.weather][1])
+
         self.send_out_replacements()
 
     def check_fainted(self, mon: FieldMon):
@@ -278,7 +325,8 @@ class Battle:
         self.init_battle()
 
         while True:
-            self.output(self.spaced(self.field.diagram() + "\n"))
+            self.turn_count += 1
+            self.output(self.spaced(f"[ TURN {self.turn_count} ]\n\n{self.field.diagram()}\n"))
 
             for team in self.teams:
                 team.set_actions()
@@ -296,3 +344,5 @@ class Battle:
                     self.output("", 0)
 
             self.end_of_turn()
+            if self.check_winner() is not None:
+                return self.output_winner()

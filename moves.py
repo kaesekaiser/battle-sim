@@ -37,6 +37,12 @@ class StatChange:
     def __mul__(self, other: int | float):
         return StatChange.from_json(self.json() | {"chance": min(max(round(self.chance * other), 0), 100)})
 
+    def __neg__(self):
+        return self ** -1
+
+    def __pow__(self, other: int | float, modulo: int | float = None):
+        return StatChange.from_json(self.json() | {g: round(j * other) for g, j in self.stats.items()})
+
     def json(self):
         return self.stats | ({"chance": self.chance} if self.chance != 100 else {})
 
@@ -84,6 +90,12 @@ class Move:
         self.accuracy = accuracy
         self.priority = kwargs.pop("priority", 0)
         self.target = kwargs.pop("target", "any-adj")
+
+        self.user_stat_changes = StatChange.from_json(kwargs["user_stat_changes"]) \
+            if kwargs.get("user_stat_changes") else None
+        self.target_stat_changes = StatChange.from_json(kwargs["target_stat_changes"]) \
+            if kwargs.get("target_stat_changes") else None
+        self.status_condition = StatusCondition.from_json(kwargs["status"]) if kwargs.get("status") else None
 
         self.attributes = kwargs
 
@@ -162,21 +174,9 @@ class Move:
         return self.get("defending_stat", "Def" if self.category == physical else "SpD")
 
     @property
-    def user_stat_changes(self) -> StatChange | None:
-        return StatChange.from_json(self["user_stat_changes"]) if self["user_stat_changes"] else None
-
-    @property
-    def target_stat_changes(self) -> StatChange | None:
-        return StatChange.from_json(self["target_stat_changes"]) if self["target_stat_changes"] else None
-
-    @property
-    def status_condition(self) -> StatusCondition | None:
-        return StatusCondition.from_json(self["status"]) if self["status"] else None
-
-    @property
     def total_effects(self):
         return sum(1 if g else 0 for g in [
-            self.target_stat_changes, self.user_stat_changes, self.status_condition
+            self.target_stat_changes, self.user_stat_changes, self.status_condition, self["change_weather"]
         ])
 
     @property

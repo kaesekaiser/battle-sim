@@ -521,6 +521,10 @@ class FieldMon(MiniMon):
     def field_status(self):
         return "fainted" if self.fainted else "on field" if self.position != -1 else "benched"
 
+    @property
+    def immune_to_sand(self):
+        return any(g in self.types for g in (rock, ground, steel))
+
     def heal(self, healing: int) -> int:
         initial_hp = self.remaining_hp
         self.remaining_hp = min(self.hp, self.remaining_hp + healing)

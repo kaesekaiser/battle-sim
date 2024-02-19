@@ -1778,7 +1778,10 @@
         "power": 0,
         "accuracy": 0,
         "description": "By moving rapidly, the user makes illusory copies of itself to boost its evasiveness.",
-        "target": "user"
+        "target": "user",
+        "user_stat_changes": {
+            "Eva": 1
+        }
     },
     "Double-Edge": {
         "name": "Double-Edge",
@@ -5952,7 +5955,8 @@
         "power": 0,
         "accuracy": 0,
         "description": "The user summons a heavy rain that falls for five turns, powering up Water-type attacks. The rain also lowers the power of Fire-type attacks.",
-        "target": "all"
+        "target": "all",
+        "change_weather": "rain"
     },
     "Rapid Spin": {
         "name": "Rapid Spin",
@@ -6366,7 +6370,8 @@
         "power": 0,
         "accuracy": 0,
         "description": "A five-turn sandstorm is summoned to damage all Pok\u00e9mon except Rock, Ground, and Steel types. The sandstorm also boosts the Sp. Def stats of Rock types.",
-        "target": "all"
+        "target": "all",
+        "change_weather": "sandstorm"
     },
     "Sappy Seed": {
         "name": "Sappy Seed",
@@ -7028,7 +7033,8 @@
         "power": 0,
         "accuracy": 0,
         "description": "The user summons a snowstorm lasting five turns. This boosts the Defense stats of Ice types.",
-        "target": "all"
+        "target": "all",
+        "change_weather": "snow"
     },
     "Soak": {
         "name": "Soak",
@@ -7574,7 +7580,8 @@
         "power": 0,
         "accuracy": 0,
         "description": "The user intensifies the sun for five turns, powering up Fire-type attacks. The sunlight also lowers the power of Water-type attacks.",
-        "target": "all"
+        "target": "all",
+        "change_weather": "sun"
     },
     "Sunsteel Strike": {
         "name": "Sunsteel Strike",
