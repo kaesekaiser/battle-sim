@@ -418,7 +418,8 @@ class MiniMon:
             "species_and_form": self.species_and_form, "level": self.level, "gender": self.gender,
             "nature": self.nature, "ivs": self.ivs, "evs": self.evs, "ability": self.ability,
             "held_item": (self.held_item.name if self.held_item else None), "tera_type": self.tera_type
-        } | ({"move_names": self.move_names} if include_move_names else {})
+        } | ({"move_names": self.move_names} if include_move_names else {}) | \
+            ({"nickname": self.nickname} if self.nickname else {})
 
     @staticmethod
     def from_mini_pack(mini_pack: dict):

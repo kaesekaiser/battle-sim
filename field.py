@@ -45,12 +45,41 @@ def plural(s: str, n: int | float, plural_form: str = "{}s"):
     return s if n == 1 else plural_form.format(s)
 
 
+class Fieldside:
+    def __init__(self):
+        self.reflect = False
+        self.reflect_timer = 0
+        self.light_screen = False
+        self.light_screen_timer = 0
+        self.aurora_veil = False
+        self.aurora_veil_timer = 0
+
+    def summary(self) -> list[str]:
+        ret = []
+        if self.reflect:
+            ret.append(f"Reflect: {self.reflect_timer} {plural('turn', self.reflect_timer)}")
+        if self.light_screen:
+            ret.append(f"Light Screen: {self.light_screen_timer} {plural('turn', self.light_screen_timer)}")
+        if self.aurora_veil:
+            ret.append(f"Aurora Veil: {self.aurora_veil_timer} {plural('turn', self.aurora_veil_timer)}")
+        return ret
+
+    def pretty_summary(self) -> list[str]:
+        if len(self.summary()) > 1:
+            end = len(self.summary()) - 1
+            return [f"{'└' if n == end else '┬' if n == 0 else '├'} {g}" for n, g in enumerate(self.summary())]
+        else:
+            return [f"─ {g}" for g in self.summary()]
+
+
+
 class Field:
     def __init__(self, size: int = 1):
         if not (1 <= size <= 3):
             raise ValueError("Size must be between 1 and 3.")
         self.size = size
 
+        self.sides = Fieldside(), Fieldside()
         self.positions = {}  # position (int): mon (FieldMon | None)
         self.weather = None
         self.weather_timer = 0
@@ -62,6 +91,12 @@ class Field:
 
     def at(self, position: int) -> FieldMon | None:
         return self.positions.get(position)
+
+    def side(self, team_id: int | FieldMon) -> Fieldside:
+        if isinstance(team_id, FieldMon):
+            return self.sides[team_id.team_id]
+        else:
+            return self.sides[team_id]
 
     @property
     def fielded_mons(self) -> list[FieldMon]:
@@ -79,7 +114,7 @@ class Field:
         if target == "user" or target == "all":
             return [from_position]
         if self.size == 1:
-            return [int(not from_position)]
+            return [from_position if "ally" in target else int(not from_position)]
 
         possible_targets = [g.position for g in self.living_mons]
         args = target.split("-")
@@ -110,19 +145,22 @@ class Field:
             [  # cells
                 [  # lines
                     f"{'->' if n in select else '  '}[{n + 1}] "
-                    f"{'---' if not self.at(n) else self.at(n).species_and_form}"
+                    f"{'---' if not self.at(n) else self.at(n).verbose_name}"
                     f"{'' if not self.at(n) or not include_hp else (' [' + self.at(n).hp_display() + ']')}"
                     f"{'<-' if n in select else '  '}",
                     *join_and_wrap((self.at(n).battle_info() if self.at(n) else []), "; ", 24, "   └  ")
                 ] for n in row
             ] for row in positions
         ]
+        if any(g.summary() for g in self.sides):
+            ret[0].append(self.side(1 - from_side).pretty_summary())
+            ret[1].append(self.side(from_side).pretty_summary())
         max_heights = [max(len(g) for g in row) for row in ret]  # align rows across cells by padding empty space
         ret = [[[*cell, *([""] * (max_heights[n] - len(cell)))] for cell in row] for n, row in enumerate(ret)]
-        columns = [[g for row in ret for g in row[column]] for column in range(self.size)]
+        columns = [[g for row in ret for g in row[column]] for column in range(len(ret[0]))]
         max_lengths = [max(len(g) for g in column) for column in columns]  # align lines within columns
         return "\n".join(
-            " ".join(cell[line].ljust(max_lengths[n]) for n, cell in enumerate(row))
+            " ".join(cell[line].ljust(max_lengths[n]) for n, cell in enumerate(row)).rstrip()
             for row in ret for line in range(len(row[0]))
         )
 
@@ -177,6 +215,11 @@ class Field:
                 crit = True
         if crit:
             multipliers.append(1.5)
+
+        if move.category == physical and (self.side(defender).reflect or self.side(defender).aurora_veil):
+            multipliers.append(2/3 if self.size > 1 else 0.5)
+        elif move.category == special and (self.side(defender).light_screen or self.side(defender).aurora_veil):
+            multipliers.append(2/3 if self.size > 1 else 0.5)
 
         multipliers.append(kwargs["force_random"] if kwargs.get("force_random") else (random.randrange(85, 101) / 100))
 

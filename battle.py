@@ -41,7 +41,7 @@ terrain_texts = {
 
 
 class Battle:
-    def __init__(self, teams: list[Controller], size: int = 1):
+    def __init__(self, teams: list[Controller], size: int = 1, pov: int = 0):
         self.teams = teams[:2]
         teams[0].change_id(0)
         teams[1].change_id(1)
@@ -49,6 +49,7 @@ class Battle:
         if not (1 <= size <= 3):
             raise ValueError("Size must be between 1 and 3.")
         self.size = size
+        self.pov = pov
 
         self.field = Field(size=self.size)
         self.teams[0].set_field(self.field)
@@ -75,12 +76,33 @@ class Battle:
             self.field.deploy_mon(FieldMon.from_json(mon | {"position": position}), position)
             mon["field_status"] = "on field"
             if announce:
-                self.output(f"{self.teams[team_id].trainer} sent out {self.at(position).name}!")
+                self.output(f"{self.teams[team_id].trainer} sent out {self.at(position).verbose_name}!")
         else:
             self.field.deploy_mon(None, position)
 
     def at(self, position: int) -> FieldMon | None:
         return self.field.at(position)
+
+    def team(self, side: int | FieldMon) -> Controller:
+        if isinstance(side, FieldMon):
+            return self.teams[side.team_id]
+        else:
+            return self.teams[side]
+
+    def possessive(self, team: int | FieldMon | Team, caps: bool = False) -> str:
+        if isinstance(team, FieldMon):
+            team_id = team.team_id
+        elif isinstance(team, Team):
+            team_id = team.id
+        else:
+            team_id = team
+        return f"{'Y' if caps else 'y'}our" if team_id == self.pov else f"{'T' if caps else 't'}he opposing"
+
+    def name(self, mon: FieldMon, caps: bool = True) -> str:
+        if mon.team_id == self.pov:
+            return mon.name
+        else:
+            return f"{self.possessive(mon, caps)} {mon.name}"
 
     @property
     def fielded_mons(self) -> list[FieldMon]:
@@ -130,36 +152,36 @@ class Battle:
 
     def damage(self, mon: FieldMon, damage: int, description: str = "damage"):
         damage_dealt = mon.damage(damage)
-        self.output(f"{mon.name} took {damage_dealt} {description}! (-> {mon.hp_display()} HP)")
+        self.output(f"{self.name(mon)} took {damage_dealt} {description}! (-> {mon.hp_display()} HP)")
         self.check_fainted(mon)
 
     def heal(self, mon: FieldMon, healing: int, description: str = "HP"):
         healing_done = mon.heal(healing)
-        self.output(f"{mon.name} regained {healing_done} {description}! (-> {mon.hp_display()} HP)")
+        self.output(f"{self.name(mon)} regained {healing_done} {description}! (-> {mon.hp_display()} HP)")
 
     def can_execute(self, attacker: FieldMon, move: Move):
         """Checks that prevent the execution of a move (e.g. being frozen, priority on PTerrain) before it happens."""
         if attacker.status_condition == freeze:
             if move["thaws_user"] or (random.random() < 0.2):  # note to self: prevent thawing if Burn Up would fail
                 self.apply_status(attacker, None)
-                self.output(f"{attacker.name} thawed out!")
+                self.output(f"{self.name(attacker)} thawed out!")
             else:
-                self.output(f"{attacker.name} is frozen solid!")
+                self.output(f"{self.name(attacker)} is frozen solid!")
                 return False
         elif attacker.status_condition == paralysis:
             if random.random() < 0.25:
-                self.output(f"{attacker.name} is paralyzed! It can't move!")
+                self.output(f"{self.name(attacker)} is paralyzed! It can't move!")
                 return False
         elif attacker.status_condition == sleep:
             if attacker.status_timer == 0:
-                self.output(f"{attacker.name} woke up!")
+                self.output(f"{self.name(attacker)} woke up!")
                 self.apply_status(attacker, None)
             else:
-                self.output(f"{attacker.name} is fast asleep.")
+                self.output(f"{self.name(attacker)} is fast asleep.")
                 attacker.status_timer -= 1
                 return False
         if attacker["no_target"]:
-            self.output(f"{attacker.name} has no valid targets for {move.name}!")
+            self.output(f"{self.name(attacker)} has no valid targets for {move.name}!")
             return False
         return True
 
@@ -171,15 +193,15 @@ class Battle:
         return False
 
     def but_it_failed(self, attacker: FieldMon, defender: FieldMon, move: Move) -> bool | None:
-        if self.field.move_effectiveness(attacker, defender, move) == 0:
-            return self.output(f"It doesn't affect {defender.name}...")
+        if self.field.move_effectiveness(attacker, defender, move) == 0 and move.category != status:
+            return self.output(f"It doesn't affect {self.name(defender, False)}...")
         if self.field.terrain == psychic_terrain and move.priority > 0 and self.field.is_grounded(defender):
-            return self.output(f"{defender.name} is protected by Psychic Terrain!")
+            return self.output(f"{self.name(defender)} is protected by Psychic Terrain!")
         if not self.accuracy_check(attacker, defender, move):
             if len(attacker.targets) > 1:
-                return self.output(f"{defender.name} avoided the attack!")
+                return self.output(f"{self.name(defender)} avoided the attack!")
             else:
-                return self.output(f"{attacker.name}'s attack missed!")
+                return self.output(f"{self.name(attacker)}'s attack missed!")
         if move.category == status and move.total_key_effects == 1 and len(attacker.targets) == 1:  # you had one job!
             if move.status_condition and \
                     not self.field.can_apply_status(attacker, defender, move.status_condition.condition):
@@ -188,6 +210,12 @@ class Battle:
                 return self.output("But it failed!")
             if move["change_terrain"] is not None and self.field.terrain == move["change_terrain"]:
                 return self.output("But it failed!")
+        if move["reflect"] and self.field.side(attacker).reflect:
+            return self.output("But it failed!")
+        if move["light_screen"] and self.field.side(attacker).light_screen:
+            return self.output("But it failed!")
+        if move["aurora_veil"] and (self.field.side(attacker).aurora_veil or self.field.weather != snow):
+            return self.output("But it failed!")
         return True
 
     def move_modifications(self, attacker: FieldMon, defender: FieldMon, move: Move):
@@ -205,7 +233,7 @@ class Battle:
 
     def display_stat_change(self, mon: FieldMon, stat_change: dict[str, int]):
         for stat, change in stat_change.items():
-            self.output(f"{mon.name}'s {stat_names[stat]} {stat_change_texts[change]}!")
+            self.output(f"{self.name(mon)}'s {stat_names[stat]} {stat_change_texts[change]}!")
 
     def apply_status(self, mon: FieldMon, condition: str | None):
         mon.status_condition = condition
@@ -214,7 +242,7 @@ class Battle:
         else:
             mon.status_timer = 0
         if condition:
-            self.output(f"{mon.name} {status_condition_texts[condition]}!")
+            self.output(f"{self.name(mon)} {status_condition_texts[condition]}!")
 
     def change_weather(self, weather: str | None, turns: int = 5):
         if weather:
@@ -235,7 +263,7 @@ class Battle:
     def move_effects(self, attacker: FieldMon, defender: FieldMon, move: Move):
         if defender.status_condition == freeze and move.thaws_target:
             self.apply_status(defender, None)
-            self.output(f"{defender.name} was thawed out!")
+            self.output(f"{self.name(defender)} was thawed out!")
 
         if move.user_stat_changes:
             if random.random() < move.user_stat_changes.chance / 100:
@@ -256,6 +284,21 @@ class Battle:
         if move["change_terrain"] and self.field.terrain != move["change_terrain"]:
             self.change_terrain(move["change_terrain"])
 
+        if move["reflect"] and not self.field.side(attacker).reflect:
+            self.field.side(attacker).reflect = True
+            self.field.side(attacker).reflect_timer = 5
+            self.output(f"Reflect raised {self.possessive(attacker)} team's Defense!")
+
+        if move["light_screen"] and not self.field.side(attacker).light_screen:
+            self.field.side(attacker).light_screen = True
+            self.field.side(attacker).light_screen_timer = 5
+            self.output(f"Light Screen raised {self.possessive(attacker)} team's Special Defense!")
+
+        if move["aurora_veil"] and not self.field.side(attacker).aurora_veil:
+            self.field.side(attacker).aurora_veil = True
+            self.field.side(attacker).aurora_veil_timer = 5
+            self.output(f"Aurora Veil raised {self.possessive(attacker)} team's Defense and Special Defense!")
+
     def use_move(self, attacker: FieldMon, defender: FieldMon, move: Move):
         if attacker["has_attempted"] and not attacker["has_executed"]:
             return  # if the mon previously failed to execute its move against a different target, don't try again
@@ -266,7 +309,7 @@ class Battle:
             return
 
         if not attacker["has_executed"]:
-            self.output(f"{attacker.name} used {move.name}!")
+            self.output(f"{self.name(attacker)} used {move.name}!")
             move.deduct_pp()
             attacker["has_executed"] = True
 
@@ -284,16 +327,19 @@ class Battle:
             damage = self.field.damage_roll(attacker, defender, move)
 
             if damage["crit"]:
-                self.output(f"A critical hit on {defender.name}!" if len(attacker.targets) > 1 else "A critical hit!")
+                self.output(
+                    f"A critical hit on {self.name(defender, False)}!"
+                    if len(attacker.targets) > 1 else "A critical hit!"
+                )
 
             if damage["effectiveness"] > 1:
                 self.output(
-                    f"It's super effective on {defender.name}!"
+                    f"It's super effective on {self.name(defender, False)}!"
                     if len(attacker.targets) > 1 else "It's super effective!"
                 )
             elif damage["effectiveness"] < 1:
                 self.output(
-                    f"It's not very effective on {defender.name}..."
+                    f"It's not very effective on {self.name(defender, False)}..."
                     if len(attacker.targets) > 1 else "It's not very effective..."
                 )
 
@@ -326,13 +372,13 @@ class Battle:
             if self.field.terrain == grassy_terrain and self.field.is_grounded(mon):
                 self.heal(mon, ceil(mon.hp / 16), "HP from Grassy Terrain")
 
-            self.teams[mon.team_id].update_mon(mon)
+            self.team(mon).update_mon(mon)
 
     def send_out_replacements(self):
         for mon in self.fielded_mons:
             if mon.fainted:
-                if self.teams[mon.team_id].reserves:
-                    self.deploy_mon(mon.team_id, self.teams[mon.team_id].get_replacement(mon.position), mon.position)
+                if self.team(mon).reserves:
+                    self.deploy_mon(mon.team_id, self.team(mon).get_replacement(mon.position), mon.position)
                 else:
                     self.field.deploy_mon(None, mon.position)
 
@@ -341,6 +387,23 @@ class Battle:
             self.individual_end_of_turn(mon)
         if self.check_winner() is not None:
             return
+
+        for n, side in enumerate(self.field.sides):
+            if side.reflect and side.reflect_timer > 0:
+                side.reflect_timer -= 1
+                if side.reflect_timer == 0:
+                    side.reflect = False
+                    self.output(("Your team's" if n == self.pov else "Opponent's") + " Reflect wore off!")
+            if side.light_screen and side.light_screen_timer > 0:
+                side.light_screen_timer -= 1
+                if side.light_screen_timer == 0:
+                    side.light_screen = False
+                    self.output(("Your team's" if n == self.pov else "Opponent's") + " Light Screen wore off!")
+            if side.aurora_veil and side.aurora_veil_timer > 0:
+                side.aurora_veil_timer -= 1
+                if side.aurora_veil_timer == 0:
+                    side.aurora_veil = False
+                    self.output(("Your team's" if n == self.pov else "Opponent's") + " Aurora Veil wore off!")
 
         if self.last_output:
             self.output("", 0)
@@ -362,8 +425,8 @@ class Battle:
     def check_fainted(self, mon: FieldMon):
         if mon.remaining_hp == 0 and not mon.fainted:
             mon.fainted = True
-            self.output(f"{mon.name} fainted!")
-            self.teams[mon.team_id].recall_mon(mon)
+            self.output(f"{self.name(mon)} fainted!")
+            self.team(mon).recall_mon(mon)
 
     def check_winner(self) -> int | None:
         for n, t in enumerate(self.teams):
@@ -372,11 +435,11 @@ class Battle:
 
     def output_winner(self):
         if (winner := self.check_winner()) is not None:
-            return self.output(self.spaced(f"{self.teams[winner].trainer} wins!"), 0)
+            return self.output(self.spaced(f"{self.team(winner).trainer} wins!"), 0)
 
     def special_actions(self, mon: FieldMon):
         if mon.next_action == "!unplugged":
-            self.output(f"{mon.name}'s Controller is unplugged. Try using a Player or BasicAI object.")
+            self.output(f"{self.name(mon)}'s Controller is unplugged. Try using a Player or BasicAI object.")
         if mon.next_action == "!switch":
             self.deploy_mon(mon.team_id, mon.targets[0], mon.position)
 
@@ -388,7 +451,7 @@ class Battle:
             self.output(self.spaced(
                 f"[ TURN {self.turn_count} ]\n\n" +
                 (f"{self.field.summary()}\n\n" if self.field.summary() else "") +
-                f"{self.field.diagram()}\n"
+                f"{self.field.diagram(from_side=self.pov)}\n"
             ))
 
             for team in self.teams:

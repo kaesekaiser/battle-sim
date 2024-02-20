@@ -389,7 +389,8 @@
         "power": 0,
         "accuracy": 0,
         "description": "This move reduces damage from physical and special moves for five turns. This can be used only when it is snowing.",
-        "target": "user-all-ally"
+        "target": "user-all-ally",
+        "aurora_veil": true
     },
     "Autotomize": {
         "name": "Autotomize",
@@ -4188,7 +4189,8 @@
         "power": 0,
         "accuracy": 0,
         "description": "A wondrous wall of light is put up to reduce damage from special moves for five turns.",
-        "target": "user-all-ally"
+        "target": "user-all-ally",
+        "light_screen": true
     },
     "Light That Burns the Sky": {
         "name": "Light That Burns the Sky",
@@ -6092,7 +6094,8 @@
         "power": 0,
         "accuracy": 0,
         "description": "A wondrous wall of light is put up to reduce damage from physical moves for five turns.",
-        "target": "user-all-ally"
+        "target": "user-all-ally",
+        "reflect": true
     },
     "Reflect Type": {
         "name": "Reflect Type",
