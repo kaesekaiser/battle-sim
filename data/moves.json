@@ -868,7 +868,8 @@
         "pp": 15,
         "power": 75,
         "accuracy": 100,
-        "description": "The user attacks with a swift chop. This move can also break barriers, such as Light Screen and Reflect."
+        "description": "The user attacks with a swift chop. This move can also break barriers, such as Light Screen and Reflect.",
+        "removes_screens": true
     },
     "Brine": {
         "name": "Brine",
@@ -1596,7 +1597,8 @@
         "pp": 15,
         "power": 0,
         "accuracy": 0,
-        "description": "A strong wind blows away the target's barriers such as Reflect or Light Screen. This also lowers the target's evasiveness."
+        "description": "A strong wind blows away the target's barriers such as Reflect or Light Screen. This also lowers the target's evasiveness.",
+        "removes_screens": true
     },
     "Destiny Bond": {
         "name": "Destiny Bond",
@@ -5792,7 +5794,8 @@
         "pp": 10,
         "power": 85,
         "accuracy": 100,
-        "description": "The user attacks by biting the target with its psychic capabilities. This move can also break barriers, such as Light Screen and Reflect."
+        "description": "The user attacks by biting the target with its psychic capabilities. This move can also break barriers, such as Light Screen and Reflect.",
+        "removes_screens": true
     },
     "Psychic Noise": {
         "name": "Psychic Noise",
@@ -6003,7 +6006,8 @@
         "pp": 10,
         "power": 90,
         "accuracy": 100,
-        "description": "The user performs a tackle like a raging bull. This move's type depends on the user's form. It can also break barriers, such as Light Screen and Reflect."
+        "description": "The user performs a tackle like a raging bull. This move's type depends on the user's form. It can also break barriers, such as Light Screen and Reflect.",
+        "removes_screens": true
     },
     "Raging Fury": {
         "name": "Raging Fury",

@@ -71,6 +71,17 @@ class Fieldside:
         else:
             return [f"─ {g}" for g in self.summary()]
 
+    def set_reflect(self, set_to: bool = True, turns: int = 5):
+        self.reflect = set_to
+        self.reflect_timer = turns if set_to else 0
+
+    def set_light_screen(self, set_to: bool = True, turns: int = 5):
+        self.light_screen = set_to
+        self.light_screen_timer = turns if set_to else 0
+
+    def set_aurora_veil(self, set_to: bool = True, turns: int = 5):
+        self.aurora_veil = set_to
+        self.aurora_veil_timer = turns if set_to else 0
 
 
 class Field:
@@ -216,10 +227,11 @@ class Field:
         if crit:
             multipliers.append(1.5)
 
-        if move.category == physical and (self.side(defender).reflect or self.side(defender).aurora_veil):
-            multipliers.append(2/3 if self.size > 1 else 0.5)
-        elif move.category == special and (self.side(defender).light_screen or self.side(defender).aurora_veil):
-            multipliers.append(2/3 if self.size > 1 else 0.5)
+        if not crit:
+            if move.category == physical and (self.side(defender).reflect or self.side(defender).aurora_veil):
+                multipliers.append(2/3 if self.size > 1 else 0.5)
+            elif move.category == special and (self.side(defender).light_screen or self.side(defender).aurora_veil):
+                multipliers.append(2/3 if self.size > 1 else 0.5)
 
         multipliers.append(kwargs["force_random"] if kwargs.get("force_random") else (random.randrange(85, 101) / 100))
 

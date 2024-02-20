@@ -260,6 +260,18 @@ class Battle:
             self.output(f"The {self.field.terrain} terrain dissipated.")
             self.field.set_terrain(None)
 
+    def pre_hit_effects(self, attacker: FieldMon, defender: FieldMon, move: Move):
+        if move["removes_screens"]:
+            if self.field.side(defender).reflect:
+                self.field.side(defender).set_reflect(False)
+                self.output(f"{self.possessive(defender, True)} team's Reflect was removed!")
+            if self.field.side(defender).light_screen:
+                self.field.side(defender).set_light_screen(False)
+                self.output(f"{self.possessive(defender, True)} team's Light Screen was removed!")
+            if self.field.side(defender).aurora_veil:
+                self.field.side(defender).set_aurora_veil(False)
+                self.output(f"{self.possessive(defender, True)} team's Aurora Veil was removed!")
+
     def move_effects(self, attacker: FieldMon, defender: FieldMon, move: Move):
         if defender.status_condition == freeze and move.thaws_target:
             self.apply_status(defender, None)
@@ -285,18 +297,15 @@ class Battle:
             self.change_terrain(move["change_terrain"])
 
         if move["reflect"] and not self.field.side(attacker).reflect:
-            self.field.side(attacker).reflect = True
-            self.field.side(attacker).reflect_timer = 5
+            self.field.side(attacker).set_reflect()
             self.output(f"Reflect raised {self.possessive(attacker)} team's Defense!")
 
         if move["light_screen"] and not self.field.side(attacker).light_screen:
-            self.field.side(attacker).light_screen = True
-            self.field.side(attacker).light_screen_timer = 5
+            self.field.side(attacker).set_light_screen()
             self.output(f"Light Screen raised {self.possessive(attacker)} team's Special Defense!")
 
         if move["aurora_veil"] and not self.field.side(attacker).aurora_veil:
-            self.field.side(attacker).aurora_veil = True
-            self.field.side(attacker).aurora_veil_timer = 5
+            self.field.side(attacker).set_aurora_veil()
             self.output(f"Aurora Veil raised {self.possessive(attacker)} team's Defense and Special Defense!")
 
     def use_move(self, attacker: FieldMon, defender: FieldMon, move: Move):
@@ -322,6 +331,8 @@ class Battle:
             attacker["failed_attack"] = False
 
         self.move_modifications(attacker, defender, move)
+
+        self.pre_hit_effects(attacker, defender, move)
 
         if move.category != status:
             damage = self.field.damage_roll(attacker, defender, move)
@@ -392,17 +403,17 @@ class Battle:
             if side.reflect and side.reflect_timer > 0:
                 side.reflect_timer -= 1
                 if side.reflect_timer == 0:
-                    side.reflect = False
+                    side.set_reflect(False)
                     self.output(("Your team's" if n == self.pov else "Opponent's") + " Reflect wore off!")
             if side.light_screen and side.light_screen_timer > 0:
                 side.light_screen_timer -= 1
                 if side.light_screen_timer == 0:
-                    side.light_screen = False
+                    side.set_light_screen(False)
                     self.output(("Your team's" if n == self.pov else "Opponent's") + " Light Screen wore off!")
             if side.aurora_veil and side.aurora_veil_timer > 0:
                 side.aurora_veil_timer -= 1
                 if side.aurora_veil_timer == 0:
-                    side.aurora_veil = False
+                    side.set_aurora_veil(False)
                     self.output(("Your team's" if n == self.pov else "Opponent's") + " Aurora Veil wore off!")
 
         if self.last_output:
