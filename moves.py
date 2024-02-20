@@ -80,7 +80,7 @@ class StatusCondition:
 
 
 class Move:
-    def __init__(self, name: str, type: str, category: str, pp: int, power: int | str, accuracy: int, **kwargs):
+    def __init__(self, name: str, type: str | None, category: str, pp: int, power: int | str, accuracy: int, **kwargs):
         self.name = name
         self.type = type
         self.category = category
@@ -182,7 +182,7 @@ class Move:
     def total_key_effects(self):
         return len([g for g in [
             self.target_stat_changes, self.user_stat_changes, self.status_condition,
-            self["change_weather"], self["change_terrain"]
+            self["change_weather"], self["change_terrain"], self["confuse"]
         ] if g])
 
     @property
@@ -199,3 +199,6 @@ def find_move(s: str) -> Move:
         return copy(fixed_moves[fix(s)])
     except KeyError:
         raise ValueError(f"Invalid move: {s}")
+
+
+confusion_self_attack = Move("", None, physical, 1, 40, 0, unmodified_damage=True)

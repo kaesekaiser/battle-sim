@@ -562,6 +562,9 @@ class FieldMon(MiniMon):
         if self.status_condition is not None:
             ret.append(status_adjectives[self.status_condition])
 
+        if self["confused"]:
+            ret.append("Confused")
+
         return ret
 
     def staged_stat(self, stat: str, doubled_after: int = 2) -> int:

@@ -180,6 +180,20 @@ class Battle:
                 self.output(f"{self.name(attacker)} is fast asleep.")
                 attacker.status_timer -= 1
                 return False
+
+        if attacker["confused"]:
+            attacker["confusion_timer"] -= 1
+            if attacker["confusion_timer"] == 0:
+                self.output(f"{self.name(attacker)} snapped out of its confusion!")
+                attacker["confused"] = False
+            else:
+                self.output(f"{self.name(attacker)} is confused!")
+                if random.random() < 1/3:
+                    self.output("It hurt itself in its confusion!")
+                    damage = self.field.damage_roll(attacker, attacker, confusion_self_attack, allow_crit=False)
+                    self.damage(attacker, damage["damage"])
+                    return False
+
         if attacker["no_target"]:
             self.output(f"{self.name(attacker)} has no valid targets for {move.name}!")
             return False
@@ -209,6 +223,8 @@ class Battle:
             if move["change_weather"] and not self.field.can_change_weather(move["change_weather"]):
                 return self.output("But it failed!")
             if move["change_terrain"] is not None and self.field.terrain == move["change_terrain"]:
+                return self.output("But it failed!")
+            if move["confuse"] is not None and not self.field.can_confuse(defender):
                 return self.output("But it failed!")
         if move["reflect"] and self.field.side(attacker).reflect:
             return self.output("But it failed!")
@@ -307,6 +323,12 @@ class Battle:
         if move["aurora_veil"] and not self.field.side(attacker).aurora_veil:
             self.field.side(attacker).set_aurora_veil()
             self.output(f"Aurora Veil raised {self.possessive(attacker)} team's Defense and Special Defense!")
+
+        if move["confuse"] and self.field.can_confuse(defender):
+            if random.random() < move["confuse"] / 100:
+                defender["confused"] = True
+                defender["confusion_timer"] = random.choice([2, 3, 4])
+                self.output(f"{self.name(defender)} became confused!")
 
     def use_move(self, attacker: FieldMon, defender: FieldMon, move: Move):
         if attacker["has_attempted"] and not attacker["has_executed"]:

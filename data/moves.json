@@ -418,7 +418,8 @@
         "pp": 10,
         "power": 120,
         "accuracy": 90,
-        "description": "The user attacks by kicking up into the air and slamming its heel down upon the target. This may also confuse the target. If it misses, the user takes damage instead."
+        "description": "The user attacks by kicking up into the air and slamming its heel down upon the target. This may also confuse the target. If it misses, the user takes damage instead.",
+        "confuse": 30
     },
     "Baby-Doll Eyes": {
         "name": "Baby-Doll Eyes",
@@ -1101,7 +1102,8 @@
         "power": 65,
         "accuracy": 100,
         "description": "The user attacks the target with sound waves of deafening chatter. This also confuses the target.",
-        "target": "any"
+        "target": "any",
+        "confuse": 100
     },
     "Chilling Water": {
         "name": "Chilling Water",
@@ -1283,7 +1285,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 100,
-        "description": "The target is exposed to a sinister ray that causes confusion."
+        "description": "The target is exposed to a sinister ray that causes confusion.",
+        "confuse": 100
     },
     "Confusion": {
         "name": "Confusion",
@@ -1292,7 +1295,8 @@
         "pp": 25,
         "power": 50,
         "accuracy": 100,
-        "description": "The target is hit with a weak telekinetic force to inflict damage. This may also confuse the target."
+        "description": "The target is hit with a weak telekinetic force to inflict damage. This may also confuse the target.",
+        "confuse": 10
     },
     "Constrict": {
         "name": "Constrict",
@@ -1715,7 +1719,8 @@
         "pp": 10,
         "power": 70,
         "accuracy": 100,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "confuse": 20
     },
     "Doodle": {
         "name": "Doodle",
@@ -2018,7 +2023,8 @@
         "pp": 5,
         "power": 100,
         "accuracy": 50,
-        "description": "The user attacks by punching the target with full concentrated power. This also confuses the target."
+        "description": "The user attacks by punching the target with full concentrated power. This also confuses the target.",
+        "confuse": 100
     },
     "Earth Power": {
         "name": "Earth Power",
@@ -2618,7 +2624,11 @@
         "pp": 15,
         "power": 0,
         "accuracy": 100,
-        "description": "Flattery is used to confuse the target. However, this also boosts the target's Sp. Atk stat."
+        "description": "Flattery is used to confuse the target. However, this also boosts the target's Sp. Atk stat.",
+        "target_stat_changes": {
+            "SpA": 1
+        },
+        "confuse": 100
     },
     "Fleur Cannon": {
         "name": "Fleur Cannon",
@@ -3553,6 +3563,7 @@
         "accuracy": 70,
         "description": "The user attacks by wrapping the target in a fierce wind. This may also confuse the target.",
         "target": "any",
+        "confuse": 30,
         "conditionals": [
             {
                 "condition": {
@@ -4362,7 +4373,8 @@
         "pp": 10,
         "power": 100,
         "accuracy": 100,
-        "description": "This move is only used by a Starmobile. It may confuse the opponent."
+        "description": "This move is only used by a Starmobile. It may confuse the opponent.",
+        "confuse": 100
     },
     "Magma Storm": {
         "name": "Magma Storm",
@@ -5758,7 +5770,8 @@
         "pp": 20,
         "power": 65,
         "accuracy": 100,
-        "description": "The target is attacked with a peculiar ray. This may also confuse the target."
+        "description": "The target is attacked with a peculiar ray. This may also confuse the target.",
+        "confuse": 10
     },
     "Psyblade": {
         "name": "Psyblade",
@@ -6242,7 +6255,8 @@
         "pp": 20,
         "power": 90,
         "accuracy": 85,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "confuse": 20
     },
     "Rock Polish": {
         "name": "Rock Polish",
@@ -6781,7 +6795,8 @@
         "pp": 15,
         "power": 75,
         "accuracy": 100,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "confuse": 10
     },
     "Silk Trap": {
         "name": "Silk Trap",
@@ -7536,7 +7551,8 @@
         "pp": 10,
         "power": 90,
         "accuracy": 95,
-        "description": "The user attacks the target by emitting steam. This may also confuse the target."
+        "description": "The user attacks the target by emitting steam. This may also confuse the target.",
+        "confuse": 20
     },
     "Strength": {
         "name": "Strength",
@@ -7699,7 +7715,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 55,
-        "description": "The user generates odd sound waves from its body that confuse the target."
+        "description": "The user generates odd sound waves from its body that confuse the target.",
+        "confuse": 100
     },
     "Supersonic Skystrike": {
         "name": "Supersonic Skystrike",
@@ -7737,7 +7754,11 @@
         "pp": 15,
         "power": 0,
         "accuracy": 85,
-        "description": "The user enrages and confuses the target. However, this also sharply boosts the target's Attack stat."
+        "description": "The user enrages and confuses the target. However, this also sharply boosts the target's Attack stat.",
+        "target_stat_changes": {
+            "Atk": 2
+        },
+        "confuse": 100
     },
     "Swallow": {
         "name": "Swallow",
@@ -7756,7 +7777,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 75,
-        "description": "The user kisses the target with a sweet, angelic cuteness that causes confusion."
+        "description": "The user kisses the target with a sweet, angelic cuteness that causes confusion.",
+        "confuse": 100
     },
     "Sweet Scent": {
         "name": "Sweet Scent",
@@ -7968,7 +7990,8 @@
         "power": 0,
         "accuracy": 100,
         "description": "The user performs a wobbly dance that confuses every Pok\u00e9mon around it.",
-        "target": "all-adj"
+        "target": "all-adj",
+        "confuse": 100
     },
     "Telekinesis": {
         "name": "Telekinesis",
@@ -8631,7 +8654,8 @@
         "power": 60,
         "accuracy": 100,
         "description": "The user attacks the target with a pulsing blast of water. This may also confuse the target.",
-        "target": "any"
+        "target": "any",
+        "confuse": 20
     },
     "Water Shuriken": {
         "name": "Water Shuriken",

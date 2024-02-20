@@ -250,11 +250,16 @@ class Field:
         multipliers.append(stab)
 
         attack_stat = self.get_stat(
-            defender if move["use_target_offense"] else attacker, move.attacking_stat, ignore_negative_stages=True
+            defender if move["use_target_offense"] else attacker, move.attacking_stat, ignore_negative_stages=crit
         )
-        defense_stat = self.get_stat(defender, move.defending_stat, ignore_positive_stages=True)
+        defense_stat = self.get_stat(
+            defender, move.defending_stat, ignore_positive_stages=crit
+        )
 
-        damage = max(1, round(raw_damage(attacker.level, attack_stat, defense_stat, move.power) * product(multipliers)))
+        damage = raw_damage(attacker.level, attack_stat, defense_stat, move.power)
+        if not move["unmodified_damage"]:
+            damage = max(1, round(damage * product(multipliers)))
+
         return {"damage": damage, "effectiveness": type_eff, "crit": crit}
 
     def get_stat(self, mon: FieldMon, stat: str, **kwargs) -> int:
@@ -323,3 +328,8 @@ class Field:
     def set_terrain(self, terrain: str | None, turns: int = 5):
         self.terrain = terrain
         self.terrain_timer = turns if terrain else 0
+
+    def can_confuse(self, mon: FieldMon):
+        if self.terrain == misty_terrain:
+            return False
+        return True
