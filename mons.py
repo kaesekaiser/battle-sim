@@ -498,6 +498,9 @@ class FieldMon(MiniMon):
             ({"team_id": self.team_id} if self.team_id != -1 else {}) | \
             ({"fainted": True} if self.fainted else {})
 
+    def get(self, item: str, default_value=None):
+        return self.other_data.get(item, default_value)
+
     @property
     def types(self):
         return tuple(g for g in [self.type1, self.type2, self.type3] if g is not None)

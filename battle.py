@@ -207,6 +207,8 @@ class Battle:
         return False
 
     def but_it_failed(self, attacker: FieldMon, defender: FieldMon, move: Move) -> bool | None:
+        if defender["protecting"]:
+            return self.output(f"{self.name(defender)} protected itself!")
         if self.field.move_effectiveness(attacker, defender, move) == 0 and move.category != status:
             return self.output(f"It doesn't affect {self.name(defender, False)}...")
         if self.field.terrain == psychic_terrain and move.priority > 0 and self.field.is_grounded(defender):
@@ -216,22 +218,24 @@ class Battle:
                 return self.output(f"{self.name(defender)} avoided the attack!")
             else:
                 return self.output(f"{self.name(attacker)}'s attack missed!")
-        if move.category == status and move.total_key_effects == 1 and len(attacker.targets) == 1:  # you had one job!
-            if move.status_condition and \
-                    not self.field.can_apply_status(attacker, defender, move.status_condition.condition):
+        if move.category == status and len(attacker.targets) == 1:
+            if move.total_key_effects == 1:  # moves that have exactly one job
+                if move.status_condition and \
+                        not self.field.can_apply_status(attacker, defender, move.status_condition.condition):
+                    return self.output("But it failed!")
+                if move["change_weather"] and not self.field.can_change_weather(move["change_weather"]):
+                    return self.output("But it failed!")
+                if move["change_terrain"] is not None and self.field.terrain == move["change_terrain"]:
+                    return self.output("But it failed!")
+                if move["confuse"] is not None and not self.field.can_confuse(defender):
+                    return self.output("But it failed!")
+        if not attacker["has_landed"]:  # moves with multiple targets that only actually fire once, e.g. Reflect
+            if move["reflect"] and self.field.side(attacker).reflect:
                 return self.output("But it failed!")
-            if move["change_weather"] and not self.field.can_change_weather(move["change_weather"]):
+            if move["light_screen"] and self.field.side(attacker).light_screen:
                 return self.output("But it failed!")
-            if move["change_terrain"] is not None and self.field.terrain == move["change_terrain"]:
+            if move["aurora_veil"] and (self.field.side(attacker).aurora_veil or self.field.weather != snow):
                 return self.output("But it failed!")
-            if move["confuse"] is not None and not self.field.can_confuse(defender):
-                return self.output("But it failed!")
-        if move["reflect"] and self.field.side(attacker).reflect:
-            return self.output("But it failed!")
-        if move["light_screen"] and self.field.side(attacker).light_screen:
-            return self.output("But it failed!")
-        if move["aurora_veil"] and (self.field.side(attacker).aurora_veil or self.field.weather != snow):
-            return self.output("But it failed!")
         return True
 
     def move_modifications(self, attacker: FieldMon, defender: FieldMon, move: Move):
@@ -314,21 +318,30 @@ class Battle:
 
         if move["reflect"] and not self.field.side(attacker).reflect:
             self.field.side(attacker).set_reflect()
-            self.output(f"Reflect raised {self.possessive(attacker)} team's Defense!")
+            self.output(f"Reflect protected {self.possessive(attacker)} team against physical moves!")
 
         if move["light_screen"] and not self.field.side(attacker).light_screen:
             self.field.side(attacker).set_light_screen()
-            self.output(f"Light Screen raised {self.possessive(attacker)} team's Special Defense!")
+            self.output(f"Light Screen protected {self.possessive(attacker)} team against special moves!")
 
         if move["aurora_veil"] and not self.field.side(attacker).aurora_veil:
             self.field.side(attacker).set_aurora_veil()
-            self.output(f"Aurora Veil raised {self.possessive(attacker)} team's Defense and Special Defense!")
+            self.output(f"Aurora Veil protected {self.possessive(attacker)} team against physical and special moves!")
 
         if move["confuse"] and self.field.can_confuse(defender):
             if random.random() < move["confuse"] / 100:
                 defender["confused"] = True
                 defender["confusion_timer"] = random.choice([2, 3, 4])
                 self.output(f"{self.name(defender)} became confused!")
+
+        if move["protect"]:
+            if random.random() < 1 / (3 ** attacker.get("successive_uses", 0)):
+                attacker["protecting"] = True
+                attacker["successive_uses"] = attacker.get("successive_uses", 0) + 1
+                self.output(f"{self.name(attacker)} protected itself!")
+            else:
+                attacker["successive_uses"] = 0
+                self.output("But it failed!")
 
     def use_move(self, attacker: FieldMon, defender: FieldMon, move: Move):
         if attacker["has_attempted"] and not attacker["has_executed"]:
@@ -355,6 +368,8 @@ class Battle:
         self.move_modifications(attacker, defender, move)
 
         self.pre_hit_effects(attacker, defender, move)
+
+        attacker["has_landed"] = True
 
         if move.category != status:
             damage = self.field.damage_roll(attacker, defender, move)
@@ -384,8 +399,12 @@ class Battle:
         if not mon.fainted:
             mon["has_attempted"] = False
             mon["has_executed"] = False
+            mon["has_landed"] = False
             mon.next_action = None
             mon.targets = []
+
+            if mon["protecting"]:
+                mon["protecting"] = False
 
             if mon.status_condition == burn:
                 self.damage(mon, ceil(mon.hp / 16), "damage from its burn")
