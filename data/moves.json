@@ -147,7 +147,8 @@
         "power": 75,
         "accuracy": 95,
         "description": "The user attacks with a blade of air that slices even the sky. This may also make the target flinch.",
-        "target": "any"
+        "target": "any",
+        "flinch": 30
     },
     "All-Out Pummeling": {
         "name": "All-Out Pummeling",
@@ -332,7 +333,8 @@
         "power": 30,
         "accuracy": 100,
         "description": "The user attacks the target by crying out in a startling fashion. This may also make the target flinch.",
-        "contact": true
+        "contact": true,
+        "flinch": 30
     },
     "Astral Barrage": {
         "name": "Astral Barrage",
@@ -600,7 +602,8 @@
         "power": 60,
         "accuracy": 100,
         "description": "The target is bitten with viciously sharp fangs. This may also make the target flinch.",
-        "contact": true
+        "contact": true,
+        "flinch": 30
     },
     "Bitter Blade": {
         "name": "Bitter Blade",
@@ -795,7 +798,8 @@
         "pp": 20,
         "power": 65,
         "accuracy": 85,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "flinch": 10
     },
     "Bone Rush": {
         "name": "Bone Rush",
@@ -1585,7 +1589,8 @@
         "power": 80,
         "accuracy": 100,
         "description": "The user releases a horrible aura imbued with ill intent. This may also make the target flinch.",
-        "target": "any"
+        "target": "any",
+        "flinch": 20
     },
     "Dark Void": {
         "name": "Dark Void",
@@ -1820,7 +1825,8 @@
         "power": 60,
         "accuracy": 100,
         "description": "The user uses the hex nut in its chest as an axis to spin, striking the target with its arms twice in a row. This may also make the target flinch.",
-        "contact": true
+        "contact": true,
+        "flinch": 30
     },
     "Double Kick": {
         "name": "Double Kick",
@@ -1993,7 +1999,8 @@
         "power": 100,
         "accuracy": 75,
         "description": "The user tackles the target while exhibiting overwhelming menace. This may also make the target flinch.",
-        "contact": true
+        "contact": true,
+        "flinch": 20
     },
     "Dragon Tail": {
         "name": "Dragon Tail",
@@ -2351,7 +2358,8 @@
         "pp": 20,
         "power": 80,
         "accuracy": 100,
-        "description": "The user attacks with an odd, unseeable power. This may also make the target flinch."
+        "description": "The user attacks with an odd, unseeable power. This may also make the target flinch.",
+        "flinch": 10
     },
     "Extreme Evoboost": {
         "name": "Extreme Evoboost",
@@ -2410,7 +2418,10 @@
         "power": 40,
         "accuracy": 100,
         "description": "This attack hits first and makes the target flinch. It works only on the first turn each time the user enters battle.",
-        "contact": true
+        "priority": 3,
+        "contact": true,
+        "flinch": 100,
+        "first_turn_only": true
     },
     "Fake Tears": {
         "name": "Fake Tears",
@@ -2505,7 +2516,8 @@
         "power": 90,
         "accuracy": 100,
         "description": "The user transforms its wrath into a fire-like aura to attack. This may also make opposing Pok\u00e9mon flinch.",
-        "target": "all-adj-foe"
+        "target": "all-adj-foe",
+        "flinch": 20
     },
     "Fillet Away": {
         "name": "Fillet Away",
@@ -2547,7 +2559,8 @@
             "condition": "burn",
             "chance": 10
         },
-        "contact": true
+        "contact": true,
+        "flinch": 10
     },
     "Fire Lash": {
         "name": "Fire Lash",
@@ -2763,7 +2776,8 @@
         "power": 90,
         "accuracy": 95,
         "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
-        "contact": true
+        "contact": true,
+        "flinch": 30
     },
     "Floral Healing": {
         "name": "Floral Healing",
@@ -3451,7 +3465,8 @@
         "power": 70,
         "accuracy": 100,
         "description": "The user sticks out its head and attacks by charging straight into the target. This may also make the target flinch.",
-        "contact": true
+        "contact": true,
+        "flinch": 30
     },
     "Headlong Rush": {
         "name": "Headlong Rush",
@@ -3521,7 +3536,8 @@
         "power": 60,
         "accuracy": 100,
         "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
-        "contact": true
+        "contact": true,
+        "flinch": 30
     },
     "Heart Swap": {
         "name": "Heart Swap",
@@ -3772,7 +3788,8 @@
         "power": 80,
         "accuracy": 90,
         "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
-        "contact": true
+        "contact": true,
+        "flinch": 10
     },
     "Hyper Voice": {
         "name": "Hyper Voice",
@@ -3862,7 +3879,8 @@
             "condition": "freeze",
             "chance": 10
         },
-        "contact": true
+        "contact": true,
+        "flinch": 10
     },
     "Ice Hammer": {
         "name": "Ice Hammer",
@@ -3914,7 +3932,8 @@
         "pp": 10,
         "power": 85,
         "accuracy": 90,
-        "description": "The user attacks by crashing large icicles onto the target. This may also make the target flinch."
+        "description": "The user attacks by crashing large icicles onto the target. This may also make the target flinch.",
+        "flinch": 30
     },
     "Icicle Spear": {
         "name": "Icicle Spear",
@@ -4049,7 +4068,8 @@
         "power": 80,
         "accuracy": 100,
         "description": "The user slams the target with its steel-hard head. This may also make the target flinch.",
-        "contact": true
+        "contact": true,
+        "flinch": 30
     },
     "Iron Tail": {
         "name": "Iron Tail",
@@ -5185,7 +5205,8 @@
         "pp": 10,
         "power": 100,
         "accuracy": 85,
-        "description": "The user hurls giant chunks of ice at the target to inflict damage. This may also make the target flinch."
+        "description": "The user hurls giant chunks of ice at the target to inflict damage. This may also make the target flinch.",
+        "flinch": 30
     },
     "Mud Bomb": {
         "name": "Mud Bomb",
@@ -5308,7 +5329,8 @@
         "power": 60,
         "accuracy": 100,
         "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
-        "contact": true
+        "contact": true,
+        "flinch": 30
     },
     "Never-Ending Nightmare": {
         "name": "Never-Ending Nightmare",
@@ -6481,7 +6503,8 @@
         "power": 75,
         "accuracy": 90,
         "description": "Large boulders are hurled at opposing Pok\u00e9mon to inflict damage. This may also make the opposing Pok\u00e9mon flinch.",
-        "target": "all-adj-foe"
+        "target": "all-adj-foe",
+        "flinch": 30
     },
     "Rock Smash": {
         "name": "Rock Smash",
@@ -6537,7 +6560,8 @@
         "power": 60,
         "accuracy": 85,
         "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
-        "contact": true
+        "contact": true,
+        "flinch": 30
     },
     "Rollout": {
         "name": "Rollout",
@@ -7123,7 +7147,8 @@
         "accuracy": 90,
         "description": "The user attacks the turn after using this move. This move has a heightened chance of landing a critical hit and may also make the target flinch.",
         "target": "any",
-        "crit_rate_modifier": 1
+        "crit_rate_modifier": 1,
+        "flinch": 30
     },
     "Sky Drop": {
         "name": "Sky Drop",
@@ -7337,7 +7362,8 @@
         "pp": 15,
         "power": 50,
         "accuracy": 100,
-        "description": "This attack can be used only if the user is asleep. The harsh noise may also make the target flinch."
+        "description": "This attack can be used only if the user is asleep. The harsh noise may also make the target flinch.",
+        "flinch": 30
     },
     "Snowscape": {
         "name": "Snowscape",
@@ -7662,7 +7688,8 @@
         "power": 65,
         "accuracy": 100,
         "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
-        "contact": true
+        "contact": true,
+        "flinch": 30
     },
     "Steel Beam": {
         "name": "Steel Beam",
@@ -7733,7 +7760,8 @@
         "power": 65,
         "accuracy": 100,
         "description": "The user attacks by stomping on the target with a big foot. This may also make the target flinch.",
-        "contact": true
+        "contact": true,
+        "flinch": 30
     },
     "Stomping Tantrum": {
         "name": "Stomping Tantrum",
@@ -8431,7 +8459,8 @@
             "condition": "paralysis",
             "chance": 10
         },
-        "contact": true
+        "contact": true,
+        "flinch": 10
     },
     "Thunder Punch": {
         "name": "Thunder Punch",
@@ -8659,7 +8688,8 @@
         "power": 90,
         "accuracy": 100,
         "description": "The user kicks, then fires three arrows. This move has a heightened chance of landing a critical hit and may also lower the target's Defense stat or make it flinch.",
-        "crit_rate_modifier": 1
+        "crit_rate_modifier": 1,
+        "flinch": 30
     },
     "Triple Axel": {
         "name": "Triple Axel",
@@ -8750,7 +8780,8 @@
         "power": 40,
         "accuracy": 100,
         "description": "The user whips up a vicious tornado to tear at opposing Pok\u00e9mon. This may also make them flinch.",
-        "target": "all-adj-foe"
+        "target": "all-adj-foe",
+        "flinch": 20
     },
     "U-turn": {
         "name": "U-turn",
@@ -8969,7 +9000,8 @@
         "power": 80,
         "accuracy": 100,
         "description": "The user charges at the target and may make it flinch.",
-        "contact": true
+        "contact": true,
+        "flinch": 20
     },
     "Wave Crash": {
         "name": "Wave Crash",
@@ -9237,7 +9269,8 @@
         "power": 80,
         "accuracy": 90,
         "description": "The user focuses its willpower to its head and attacks the target. This may also make the target flinch.",
-        "contact": true
+        "contact": true,
+        "flinch": 20
     },
     "Zing Zap": {
         "name": "Zing Zap",
@@ -9247,7 +9280,8 @@
         "power": 80,
         "accuracy": 100,
         "description": "The user crashes into the target, delivering a powerful electric shock. This may also make the target flinch.",
-        "contact": true
+        "contact": true,
+        "flinch": 30
     },
     "Zippy Zap": {
         "name": "Zippy Zap",

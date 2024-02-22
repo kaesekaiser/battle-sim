@@ -467,6 +467,7 @@ class FieldMon(MiniMon):
         self.position = kwargs.pop("position", -1)
         self.next_action = ""
         self.targets = []
+        self.turn_on_field = 0
 
         self.fainted = kwargs.pop("fainted", False)  # set manually to keep from sending multiple "x fainted!" messages
         self.other_data = kwargs

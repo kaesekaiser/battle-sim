@@ -181,6 +181,10 @@ class Battle:
                 attacker.status_timer -= 1
                 return False
 
+        if attacker["flinching"]:
+            self.output(f"{self.name(attacker)} flinched!")
+            return False
+
         if attacker["confused"]:
             attacker["confusion_timer"] -= 1
             if attacker["confusion_timer"] == 0:
@@ -207,6 +211,9 @@ class Battle:
         return False
 
     def but_it_failed(self, attacker: FieldMon, defender: FieldMon, move: Move) -> bool | None:
+        if move["first_turn_only"] and attacker.turn_on_field > 1:
+            return self.output("But it failed!")
+
         if defender["protecting"]:
             return self.output(f"{self.name(defender)} protected itself!")
         if self.field.move_effectiveness(attacker, defender, move) == 0 and move.category != status:
@@ -218,6 +225,7 @@ class Battle:
                 return self.output(f"{self.name(defender)} avoided the attack!")
             else:
                 return self.output(f"{self.name(attacker)}'s attack missed!")
+
         if move.category == status and len(attacker.targets) == 1:
             if move.total_key_effects == 1:  # moves that have exactly one job
                 if move.status_condition and \
@@ -229,6 +237,7 @@ class Battle:
                     return self.output("But it failed!")
                 if move["confuse"] is not None and not self.field.can_confuse(defender):
                     return self.output("But it failed!")
+
         if not attacker["has_landed"]:  # moves with multiple targets that only actually fire once, e.g. Reflect
             if move["reflect"] and self.field.side(attacker).reflect:
                 return self.output("But it failed!")
@@ -236,6 +245,7 @@ class Battle:
                 return self.output("But it failed!")
             if move["aurora_veil"] and (self.field.side(attacker).aurora_veil or self.field.weather != snow):
                 return self.output("But it failed!")
+
         return True
 
     def move_modifications(self, attacker: FieldMon, defender: FieldMon, move: Move):
@@ -334,6 +344,10 @@ class Battle:
                 defender["confusion_timer"] = random.choice([2, 3, 4])
                 self.output(f"{self.name(defender)} became confused!")
 
+        if move["flinch"]:
+            if random.random() < move["flinch"] / 100:
+                defender["flinching"] = True
+
         if move["protect"]:
             if random.random() < 1 / (3 ** attacker.get("successive_uses", 0)):
                 attacker["protecting"] = True
@@ -405,6 +419,8 @@ class Battle:
 
             if mon["protecting"]:
                 mon["protecting"] = False
+            if mon["flinching"]:
+                mon["flinching"] = False
 
             if mon.status_condition == burn:
                 self.damage(mon, ceil(mon.hp / 16), "damage from its burn")
@@ -500,6 +516,8 @@ class Battle:
 
         while True:
             self.turn_count += 1
+            for mon in self.fielded_mons:
+                mon.turn_on_field += 1
             self.output(self.spaced(
                 f"[ TURN {self.turn_count} ]\n\n" +
                 (f"{self.field.summary()}\n\n" if self.field.summary() else "") +
