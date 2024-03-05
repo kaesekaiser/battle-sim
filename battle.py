@@ -38,6 +38,9 @@ terrain_texts = {
     misty_terrain: "Mist swirled around the battlefield!",
     psychic_terrain: "The battlefield got weird!"
 }
+announce_on_send_out = [  # Abilities that either proc immediately or should be announced when a mon is sent out.
+    "Intimidate"
+]
 
 
 class Battle:
@@ -67,16 +70,18 @@ class Battle:
     def spaced(self, text: str) -> str:
         return ("\n" if self.last_output else "") + text
 
-    def deploy_mon(self, team_id: int, mon_id: int, position: int, announce: bool = True):
-        if mon := self.teams[team_id][mon_id]:
+    def deploy_mon(self, team_id: int, mon_id: int, position: int, announce: bool = True, proc_ability: bool = True):
+        if packed_mon := self.teams[team_id][mon_id]:
             if self.at(position):
                 if announce:
                     self.output(f"{self.teams[team_id].trainer} recalled {self.at(position).name}!")
                 self.teams[team_id].recall_mon(self.at(position))
-            self.field.deploy_mon(FieldMon.from_json(mon | {"position": position}), position)
-            mon["field_status"] = "on field"
+            self.field.deploy_mon(FieldMon.from_json(packed_mon | {"position": position}), position)
+            packed_mon["field_status"] = "on field"
             if announce:
                 self.output(f"{self.teams[team_id].trainer} sent out {self.at(position).verbose_name}!")
+                if proc_ability:
+                    self.proc_ability_on_send_out(self.at(position))
         else:
             self.field.deploy_mon(None, position)
 
@@ -113,9 +118,12 @@ class Battle:
 
     def init_battle(self):
         for n in range(self.size):
-            self.deploy_mon(0, n, n)
+            self.deploy_mon(0, n, n, proc_ability=False)
         for n in range(self.size, self.size * 2):
-            self.deploy_mon(1, n % self.size + 6, self.size * 3 - 1 - n)  # deploy to trainer's left
+            self.deploy_mon(1, n % self.size + 6, self.size * 3 - 1 - n, proc_ability=False)  # deploy to trainer's left
+
+        for mon in self.turn_order():  # proc any send-out abilities in normal move order AFTER all mons are deployed
+            self.proc_ability_on_send_out(mon)
 
     def turn_order(self) -> list[FieldMon]:
         priorities = [
@@ -158,6 +166,26 @@ class Battle:
     def heal(self, mon: FieldMon, healing: int, description: str = "HP"):
         healing_done = mon.heal(healing)
         self.output(f"{self.name(mon)} regained {healing_done} {description}! (-> {mon.hp_display()} HP)")
+
+    def announce_ability(self, mon: FieldMon):
+        self.output(f"== {self.name(mon)}'s {mon.ability}! ==")
+
+    def proc_ability_on_send_out(self, mon: FieldMon):
+        if not mon.has_ability(*announce_on_send_out):
+            return
+        self.announce_ability(mon)
+
+        if mon.has_ability("Intimidate"):
+            for opponent in self.team(mon).opponent_mons:
+                if self.are_adjacent(mon, opponent):
+                    self.apply_stat_change(opponent, StatChange(Atk=-1))
+
+    def are_adjacent(self, pos1: int | FieldMon, pos2: int | FieldMon) -> bool:
+        if isinstance(pos1, FieldMon):
+            pos1 = pos1.position
+        if isinstance(pos2, FieldMon):
+            pos2 = pos2.position
+        return abs((pos1 % self.size) - (pos2 % self.size)) <= 1
 
     def can_execute(self, attacker: FieldMon, move: Move):
         """Checks that prevent the execution of a move (e.g. being frozen, priority on PTerrain) before it happens."""
@@ -261,6 +289,10 @@ class Battle:
 
         move.power = round(move.power * product(power_multipliers))
 
+    def apply_stat_change(self, mon: FieldMon, stat_change: StatChange):
+        changes = mon.apply(stat_change)
+        self.display_stat_change(mon, changes)
+
     def display_stat_change(self, mon: FieldMon, stat_change: dict[str, int]):
         for stat, change in stat_change.items():
             self.output(f"{self.name(mon)}'s {stat_names[stat]} {stat_change_texts[change]}!")
@@ -309,12 +341,10 @@ class Battle:
 
         if move.user_stat_changes:
             if random.random() < move.user_stat_changes.chance / 100:
-                changes = attacker.apply(move.user_stat_changes)
-                self.display_stat_change(attacker, changes)
+                self.apply_stat_change(attacker, move.user_stat_changes)
         if move.target_stat_changes:
             if random.random() < move.target_stat_changes.chance / 100:
-                changes = defender.apply(move.target_stat_changes)
-                self.display_stat_change(defender, changes)
+                self.apply_stat_change(defender, move.target_stat_changes)
         if move.status_condition:
             if self.field.can_apply_status(attacker, defender, move.status_condition.condition) and \
                     (random.random() < move.status_condition.chance / 100):

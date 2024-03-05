@@ -530,6 +530,9 @@ class FieldMon(MiniMon):
     def immune_to_sand(self):
         return any(g in self.types for g in (rock, ground, steel))
 
+    def has_ability(self, *abilities: str) -> bool:
+        return bool({self.ability}.intersection(set(abilities)))
+
     def heal(self, healing: int) -> int:
         initial_hp = self.remaining_hp
         self.remaining_hp = min(self.hp, self.remaining_hp + healing)

@@ -175,6 +175,9 @@ class Field:
             for row in ret for line in range(len(row[0]))
         )
 
+    def ability_on_field(self, *abilities: str) -> bool:
+        return any(g.has_ability(*abilities) for g in self.living_mons)
+
     def meets_conditional(self, user: FieldMon, conditional: dict[str]) -> bool:
         condition = conditional["condition"]
         if condition.get("weather") is not None and self.weather != condition["weather"]:
