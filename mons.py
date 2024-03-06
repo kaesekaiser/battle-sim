@@ -30,6 +30,14 @@ status_abbreviations = {
 }
 
 
+ruinous_abilities = {
+    "Vessel of Ruin": "SpA",
+    "Sword of Ruin": "Def",
+    "Tablets of Ruin": "Atk",
+    "Beads of Ruin": "SpD"
+}
+
+
 def sign(n: int | float) -> int:
     return 1 if n > 0 else -1 if n < 0 else 0
 
@@ -244,7 +252,7 @@ class MiniMon:
             else kwargs.get("nature")
         self.ivs = kwargs.get("ivs", [31, 31, 31, 31, 31, 31])
         self.evs = kwargs.get("evs", [0, 0, 0, 0, 0, 0])
-        self.ability = self.form.primary_ability if kwargs.get("ability") not in self.form.legal_abilities \
+        self.ability = self.form.primary_ability if not kwargs.get("ability") \
             else kwargs.get("ability")
         self.held_item = None if kwargs.get("held_item") not in all_items \
             else all_items[kwargs.get("held_item")]

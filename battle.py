@@ -39,7 +39,8 @@ terrain_texts = {
     psychic_terrain: "The battlefield got weird!"
 }
 announce_on_send_out = [  # Abilities that either proc immediately or should be announced when a mon is sent out.
-    "Intimidate"
+    "Intimidate",
+    *list(ruinous_abilities)
 ]
 
 
@@ -179,6 +180,11 @@ class Battle:
             for opponent in self.team(mon).opponent_mons:
                 if self.are_adjacent(mon, opponent):
                     self.apply_stat_change(opponent, StatChange(Atk=-1))
+        if mon.has_ability(*list(ruinous_abilities)):
+            self.output(
+                f"{self.name(mon)} lowered the {stat_names[ruinous_abilities[mon.ability]]} "
+                f"of surrounding Pok\u00e9mon!"
+            )
 
     def are_adjacent(self, pos1: int | FieldMon, pos2: int | FieldMon) -> bool:
         if isinstance(pos1, FieldMon):

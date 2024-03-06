@@ -268,13 +268,25 @@ class Field:
     def get_stat(self, mon: FieldMon, stat: str, **kwargs) -> int:
         multipliers = []
 
+        if stat == "Atk":
+            if self.ability_on_field("Tablets of Ruin") and not mon.has_ability("Tablets of Ruin"):
+                multipliers.append(0.75)
+
         if stat == "Def":
             if self.active_weather == snow and ice in mon.types:
                 multipliers.append(1.5)
+            if self.ability_on_field("Sword of Ruin") and not mon.has_ability("Sword of Ruin"):
+                multipliers.append(0.75)
+
+        if stat == "SpA":
+            if self.ability_on_field("Vessel of Ruin") and not mon.has_ability("Vessel of Ruin"):
+                multipliers.append(0.75)
 
         if stat == "SpD":
             if self.active_weather == sandstorm and rock in mon.types:
                 multipliers.append(1.5)
+            if self.ability_on_field("Beads of Ruin") and not mon.has_ability("Beads of Ruin"):
+                multipliers.append(0.75)
 
         if stat == "Spe":
             if mon.status_condition == paralysis:
