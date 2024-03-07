@@ -4551,7 +4551,7 @@
         "power": 100,
         "accuracy": 100,
         "description": "This move is only used by a Starmobile. It may confuse the opponent.",
-        "confuse": 100
+        "confuse": 30
     },
     "Magma Storm": {
         "name": "Magma Storm",

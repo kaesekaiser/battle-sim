@@ -40,7 +40,7 @@ terrain_texts = {
 }
 announce_on_send_out = [  # Abilities that either proc immediately or should be announced when a mon is sent out.
     "Intimidate",
-    *list(ruinous_abilities)
+    *list(ruinous_abilities), *list(weather_spawning_abilities), *list(terrain_spawning_abilities)
 ]
 
 
@@ -185,6 +185,11 @@ class Battle:
                 f"{self.name(mon)} lowered the {stat_names[ruinous_abilities[mon.ability]]} "
                 f"of surrounding Pok\u00e9mon!"
             )
+        if mon.has_ability(*list(weather_spawning_abilities)):
+            if self.field.can_change_weather(weather_spawning_abilities[mon.ability]):
+                self.change_weather(weather_spawning_abilities[mon.ability])
+        if mon.has_ability(*list(terrain_spawning_abilities)):
+            self.change_terrain(terrain_spawning_abilities[mon.ability])
 
     def are_adjacent(self, pos1: int | FieldMon, pos2: int | FieldMon) -> bool:
         if isinstance(pos1, FieldMon):

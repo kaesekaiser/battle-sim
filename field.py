@@ -15,6 +15,20 @@ weather_names = {
 terrains = electric_terrain, grassy_terrain, misty_terrain, psychic_terrain = "electric", "grassy", "misty", "psychic"
 
 
+weather_spawning_abilities = {
+    "Drizzle": rain,
+    "Drought": sun,
+    "Sand Stream": sandstorm,
+    "Snow Warning": snow
+}
+terrain_spawning_abilities = {
+    "Electric Surge": electric_terrain,
+    "Grassy Surge": grassy_terrain,
+    "Misty Surge": misty_terrain,
+    "Psychic Surge": psychic_terrain
+}
+
+
 def raw_damage(attacker_level: int, attacking_stat: int, defending_stat: int, power: int):
     return round((2 * attacker_level / 5 + 2) * power * attacking_stat / defending_stat / 50 + 2)
 
