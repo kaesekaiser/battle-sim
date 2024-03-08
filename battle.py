@@ -126,6 +126,12 @@ class Battle:
         for mon in self.turn_order():  # proc any send-out abilities in normal move order AFTER all mons are deployed
             self.proc_ability_on_send_out(mon)
 
+    def next_to_move(self) -> FieldMon | None:
+        try:
+            return self.turn_order()[0]
+        except IndexError:
+            return None
+
     def turn_order(self) -> list[FieldMon]:
         priorities = [
             [
@@ -133,7 +139,7 @@ class Battle:
                 self.field.get_stat(g, "Spe"),
                 random.random(),
                 g.position
-            ] for g in self.fielded_mons
+            ] for g in self.fielded_mons if not g.has_taken_turn and not g.fainted
         ]
         return [self.at(g[3]) for g in sorted(priorities, reverse=True)]
 
@@ -277,7 +283,7 @@ class Battle:
                 if move["confuse"] is not None and not self.field.can_confuse(defender):
                     return self.output("But it failed!")
 
-        if not attacker["has_landed"]:  # moves with multiple targets that only actually fire once, e.g. Reflect
+        if not attacker.has_landed_move:  # moves with multiple targets that only actually fire once, e.g. Reflect
             if move["reflect"] and self.field.side(attacker).reflect:
                 return self.output("But it failed!")
             if move["light_screen"] and self.field.side(attacker).light_screen:
@@ -399,18 +405,18 @@ class Battle:
                 self.output("But it failed!")
 
     def use_move(self, attacker: FieldMon, defender: FieldMon, move: Move):
-        if attacker["has_attempted"] and not attacker["has_executed"]:
+        if attacker.has_taken_turn and not attacker.has_executed_move:
             return  # if the mon previously failed to execute its move against a different target, don't try again
 
-        attacker["has_attempted"] = True
+        attacker.has_taken_turn = True
 
-        if not (attacker["has_executed"] or self.can_execute(attacker, move)):
+        if not (attacker.has_executed_move or self.can_execute(attacker, move)):
             return
 
-        if not attacker["has_executed"]:
+        if not attacker.has_executed_move:
             self.output(f"{self.name(attacker)} used {move.name}!")
             move.deduct_pp()
-            attacker["has_executed"] = True
+            attacker.has_executed_move = True
 
         move = self.field.apply_conditionals(attacker, move)
 
@@ -424,7 +430,7 @@ class Battle:
 
         self.pre_hit_effects(attacker, defender, move)
 
-        attacker["has_landed"] = True
+        attacker.has_landed_move = True
 
         if move.category != status:
             damage = self.field.damage_roll(attacker, defender, move)
@@ -452,9 +458,9 @@ class Battle:
 
     def individual_end_of_turn(self, mon: FieldMon):
         if not mon.fainted:
-            mon["has_attempted"] = False
-            mon["has_executed"] = False
-            mon["has_landed"] = False
+            mon.has_taken_turn = False
+            mon.has_executed_move = False
+            mon.has_landed_move = False
             mon.next_action = None
             mon.targets = []
 
@@ -568,17 +574,16 @@ class Battle:
             for team in self.teams:
                 team.set_actions()
 
-            for mon in self.turn_order():
-                if not mon.fainted:
-                    if mon.next_action.startswith("!"):
-                        self.special_actions(mon)
-                    else:
-                        self.double_check_targets(mon)
-                        for target in mon.targets:
-                            self.use_move(mon, self.at(target), mon.moves[mon.next_action])
-                            if self.check_winner() is not None:
-                                return self.output_winner()
-                    self.output("", 0)
+            while mon := self.next_to_move():  # dynamic turn order - iterate over each mon once
+                if mon.next_action.startswith("!"):
+                    self.special_actions(mon)
+                else:
+                    self.double_check_targets(mon)
+                    for target in mon.targets:
+                        self.use_move(mon, self.at(target), mon.moves[mon.next_action])
+                        if self.check_winner() is not None:
+                            return self.output_winner()
+                self.output("", 0)
 
             self.end_of_turn()
             if self.check_winner() is not None:
