@@ -480,6 +480,7 @@ class FieldMon(MiniMon):
         self.has_taken_turn = False
         self.has_executed_move = False
         self.has_landed_move = False
+        self.failed_last_attack = False
 
         self.fainted = kwargs.pop("fainted", False)  # set manually to keep from sending multiple "x fainted!" messages
         self.other_data = kwargs
@@ -513,6 +514,10 @@ class FieldMon(MiniMon):
 
     def get(self, item: str, default_value=None):
         return self.other_data.get(item, default_value)
+
+    def clear(self, item: str):
+        if item in self.other_data:
+            del self.other_data[item]
 
     @property
     def types(self):

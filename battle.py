@@ -148,22 +148,15 @@ class Battle:
             return
         move = self.field.apply_conditionals(mon, mon.move_selection)
         possible_targets = self.field.targets(mon.position, move.target)
-        if "all" in move.targs:
-            if not possible_targets:
-                mon["no_target"] = True
-                mon.targets = [mon.position]
-            else:
-                mon.targets = possible_targets
-        elif "any" in move.targs:
-            if not (new_targets := [g for g in mon.targets if g in possible_targets]):
-                if mon.move_selection.is_single_target:
-                    if same_side := [g for g in possible_targets if g // self.size == mon.targets[0] // self.size]:
-                        mon.targets = [same_side[0]]
-                        return
-                mon["no_target"] = True
-                mon.targets = [mon.position]
-            else:
-                mon.targets = new_targets
+
+        if move.is_single_target:
+            if not mon.targets[0] not in possible_targets:  # if the mon's original target is no longer valid
+                if same_side := [g for g in possible_targets if g // self.size == mon.targets[0] // self.size]:
+                    mon.targets = [same_side[0]]  # try to target to a valid mon on the same side
+                else:
+                    mon.targets = []  # this will prevent move execution entirely
+        else:
+            mon.targets = possible_targets
 
     def damage(self, mon: FieldMon, damage: int, description: str = "damage"):
         damage_dealt = mon.damage(damage)
@@ -234,7 +227,8 @@ class Battle:
             attacker["confusion_timer"] -= 1
             if attacker["confusion_timer"] == 0:
                 self.output(f"{self.name(attacker)} snapped out of its confusion!")
-                attacker["confused"] = False
+                attacker.clear("confused")
+                attacker.clear("confusion_timer")
             else:
                 self.output(f"{self.name(attacker)} is confused!")
                 if random.random() < 1/3:
@@ -243,9 +237,6 @@ class Battle:
                     self.damage(attacker, damage["damage"])
                     return False
 
-        if attacker["no_target"]:
-            self.output(f"{self.name(attacker)} has no valid targets for {move.name}!")
-            return False
         return True
 
     def accuracy_check(self, attacker: FieldMon, defender: FieldMon, move: Move):
@@ -401,7 +392,7 @@ class Battle:
                 attacker["successive_uses"] = attacker.get("successive_uses", 0) + 1
                 self.output(f"{self.name(attacker)} protected itself!")
             else:
-                attacker["successive_uses"] = 0
+                attacker.clear("successive_uses")
                 self.output("But it failed!")
 
     def use_move(self, attacker: FieldMon, defender: FieldMon, move: Move):
@@ -421,10 +412,10 @@ class Battle:
         move = self.field.apply_conditionals(attacker, move)
 
         if not self.but_it_failed(attacker, defender, move):
-            attacker["failed_attack"] = True
+            attacker.failed_last_attack = True
             return
         else:
-            attacker["failed_attack"] = False
+            attacker.failed_last_attack = False
 
         self.move_modifications(attacker, defender, move)
 
@@ -464,10 +455,8 @@ class Battle:
             mon.next_action = None
             mon.targets = []
 
-            if mon["protecting"]:
-                mon["protecting"] = False
-            if mon["flinching"]:
-                mon["flinching"] = False
+            mon.clear("protecting")
+            mon.clear("flinching")
 
             if mon.status_condition == burn:
                 self.damage(mon, ceil(mon.hp / 16), "damage from its burn")
@@ -579,10 +568,13 @@ class Battle:
                     self.special_actions(mon)
                 else:
                     self.double_check_targets(mon)
-                    for target in mon.targets:
-                        self.use_move(mon, self.at(target), mon.moves[mon.next_action])
-                        if self.check_winner() is not None:
-                            return self.output_winner()
+                    if not mon.targets:
+                        self.output(f"{self.name(mon)} has no valid targets for {mon.move_selection.name}!")
+                    else:
+                        for target in mon.targets:
+                            self.use_move(mon, self.at(target), mon.moves[mon.next_action])
+                            if self.check_winner() is not None:
+                                return self.output_winner()
                 self.output("", 0)
 
             self.end_of_turn()
