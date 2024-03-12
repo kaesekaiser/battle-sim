@@ -116,7 +116,8 @@
         "pp": 15,
         "power": 0,
         "accuracy": 0,
-        "description": "The user helps the target and makes it use its move right after the user."
+        "description": "The user helps the target and makes it use its move right after the user.",
+        "after_you": true
     },
     "Agility": {
         "name": "Agility",
@@ -8669,7 +8670,9 @@
         "power": 0,
         "accuracy": 0,
         "description": "The user creates a bizarre area in which slower Pok\u00e9mon get to move first for five turns.",
-        "target": "all"
+        "target": "all",
+        "priority": -7,
+        "trick_room": true
     },
     "Trick-or-Treat": {
         "name": "Trick-or-Treat",

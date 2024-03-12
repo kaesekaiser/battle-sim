@@ -110,6 +110,8 @@ class Field:
         self.weather_timer = 0
         self.terrain = None
         self.terrain_timer = 0
+        self.trick_room = False
+        self.trick_room_timer = 0
 
     def deploy_mon(self, mon: FieldMon | None, position: int):
         self.positions[position] = mon
@@ -160,6 +162,8 @@ class Field:
             ret.append(f"{weather_names[self.weather]}: {self.weather_timer} {plural('turn', self.weather_timer)}")
         if self.terrain:
             ret.append(f"{self.terrain.title()} Terrain: {self.terrain_timer} {plural('turn', self.terrain_timer)}")
+        if self.trick_room:
+            ret.append(f"Trick Room: {self.trick_room_timer} {plural('turn', self.trick_room_timer)}")
         return "\n".join(ret)
 
     def diagram(self, select: list[int] = (), from_side: int = 0, include_hp: bool = True):
@@ -357,6 +361,10 @@ class Field:
     def set_terrain(self, terrain: str | None, turns: int = 5):
         self.terrain = terrain
         self.terrain_timer = turns if terrain else 0
+
+    def toggle_trick_room(self):
+        self.trick_room = not self.trick_room
+        self.trick_room_timer = 5 * int(self.trick_room)
 
     def can_confuse(self, mon: FieldMon):
         if self.terrain == misty_terrain:

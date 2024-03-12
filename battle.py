@@ -136,7 +136,7 @@ class Battle:
         priorities = [
             [
                 g.next_action_priority,
-                self.field.get_stat(g, "Spe"),
+                self.field.get_stat(g, "Spe") * (-1 if self.field.trick_room else 1),
                 random.random(),
                 g.position
             ] for g in self.fielded_mons if not g.has_taken_turn and not g.fainted
@@ -395,6 +395,17 @@ class Battle:
                 attacker.clear("successive_uses")
                 self.output("But it failed!")
 
+        if move["after_you"]:
+            defender["moving_next"] = True
+            self.output(f"{self.name(defender)} took the kind offer!")
+
+        if move["trick_room"]:
+            self.field.toggle_trick_room()
+            if self.field.trick_room:
+                self.output(f"{self.name(attacker)} twisted the dimensions!")
+            else:
+                self.output("The twisted dimensions returned to normal.")
+
     def use_move(self, attacker: FieldMon, defender: FieldMon, move: Move):
         if attacker.has_taken_turn and not attacker.has_executed_move:
             return  # if the mon previously failed to execute its move against a different target, don't try again
@@ -521,6 +532,11 @@ class Battle:
             self.field.terrain_timer -= 1
             if self.field.terrain_timer == 0:
                 self.change_terrain(None)
+        if self.field.trick_room:
+            self.field.trick_room_timer -= 1
+            if self.field.trick_room_timer == 0:
+                self.field.trick_room = False
+                self.output("The twisted dimensions returned to normal.")
 
         if self.last_output:
             self.output("", 0)
@@ -542,6 +558,7 @@ class Battle:
             return self.output(self.spaced(f"{self.team(winner).trainer} wins!"), 0)
 
     def special_actions(self, mon: FieldMon):
+        mon.has_taken_turn = True
         if mon.next_action == "!unplugged":
             self.output(f"{self.name(mon)}'s Controller is unplugged. Try using a Player or BasicAI object.")
         if mon.next_action == "!switch":
@@ -564,6 +581,7 @@ class Battle:
                 team.set_actions()
 
             while mon := self.next_to_move():  # dynamic turn order - iterate over each mon once
+                mon.clear("moving_next")
                 if mon.next_action.startswith("!"):
                     self.special_actions(mon)
                 else:

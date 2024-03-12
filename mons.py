@@ -533,6 +533,8 @@ class FieldMon(MiniMon):
 
     @property
     def next_action_priority(self):
+        if self["moving_next"]:
+            return 12
         if self.next_action in self.moves:
             return self.moves[self.next_action].priority
         if self.next_action.startswith("!switch"):
