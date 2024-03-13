@@ -520,12 +520,12 @@ class FieldMon(MiniMon):
             del self.other_data[item]
 
     @property
-    def types(self):
+    def original_types(self):
         return tuple(g for g in [self.type1, self.type2, self.type3] if g is not None)
 
     @property
-    def defensive_types(self):
-        return (self.tera_type, ) if self.terastallized else self.types
+    def types(self):
+        return (self.tera_type, ) if self.terastallized else self.original_types
 
     @property
     def move_selection(self) -> Move | None:
@@ -567,7 +567,7 @@ class FieldMon(MiniMon):
             return 1
         return round(product(
             dict(overwrites).get((attacking_type, g), type_effectiveness[attacking_type][g])
-            for g in self.defensive_types
+            for g in self.types
         ), 3)
 
     def hp_display(self, percentage: bool = False):
@@ -600,7 +600,9 @@ class FieldMon(MiniMon):
             (doubled_after - min(self.stat_stages[stat], 0))
         )
 
-    def apply(self, stat_change: StatChange) -> dict[str, int]:
+    def apply(self, stat_change: StatChange | dict) -> dict[str, int]:
+        if isinstance(stat_change, dict):
+            stat_change = StatChange.from_json(stat_change)
         ret = {}
         for stat, change in stat_change.items():
             if actual_change := (min(max(self.stat_stages[stat] + change, -6), 6) - self.stat_stages[stat]):

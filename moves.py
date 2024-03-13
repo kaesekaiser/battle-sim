@@ -89,6 +89,7 @@ class Move:
         self.power = power
         self.accuracy = accuracy
         self.priority = kwargs.pop("priority", 0)
+        self.contact = kwargs.pop("contact", False)
         self.target = kwargs.pop("target", "any-adj")
 
         self.user_stat_changes = StatChange.from_json(kwargs["user_stat_changes"]) \
@@ -139,7 +140,7 @@ class Move:
         return {
             "name": self.name, "type": self.type, "category": self.category, "pp": self.pp,
             "remaining_pp": self.remaining_pp, "power": self.power, "accuracy": self.accuracy,
-            "priority": self.priority, "target": self.target, **self.attributes
+            "priority": self.priority, "target": self.target, "contact": self.contact, **self.attributes
         }
 
     def clone(self, overwrites: dict[str] = ()):

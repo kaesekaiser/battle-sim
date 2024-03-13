@@ -178,7 +178,7 @@ class Battle:
         if mon.has_ability("Intimidate"):
             for opponent in self.team(mon).opponent_mons:
                 if self.are_adjacent(mon, opponent):
-                    self.apply_stat_change(opponent, StatChange(Atk=-1))
+                    self.apply_stat_change(opponent, {"Atk": -1})
         if mon.has_ability(*list(ruinous_abilities)):
             self.output(
                 f"{self.name(mon)} lowered the {stat_names[ruinous_abilities[mon.ability]]} "
@@ -297,7 +297,7 @@ class Battle:
 
         move.power = round(move.power * product(power_multipliers))
 
-    def apply_stat_change(self, mon: FieldMon, stat_change: StatChange):
+    def apply_stat_change(self, mon: FieldMon, stat_change: StatChange | dict):
         changes = mon.apply(stat_change)
         self.display_stat_change(mon, changes)
 
@@ -346,6 +346,40 @@ class Battle:
         if defender.status_condition == freeze and move.thaws_target:
             self.apply_status(defender, None)
             self.output(f"{self.name(defender)} was thawed out!")
+
+        if move.contact:
+            if defender.has_ability("Aftermath") and defender.fainted:
+                self.announce_ability(defender)
+                self.damage(attacker, ceil(attacker.hp / 4))
+            if defender.has_ability("Effect Spore") and (r := random.random()) < 0.3:
+                if not (grass in attacker.types):
+                    if r < 0.1 and self.field.can_apply_status(defender, attacker, mild_poison):
+                        self.announce_ability(defender)
+                        self.apply_status(attacker, mild_poison)
+                    elif 0.1 <= r < 0.2 and self.field.can_apply_status(defender, attacker, paralysis):
+                        self.announce_ability(defender)
+                        self.apply_status(attacker, paralysis)
+                    elif 0.2 <= r and self.field.can_apply_status(defender, attacker, sleep):
+                        self.announce_ability(defender)
+                        self.apply_status(attacker, sleep)
+            if defender.has_ability("Flame Body") and random.random() < 0.3:
+                if self.field.can_apply_status(defender, attacker, burn):
+                    self.announce_ability(defender)
+                    self.apply_status(attacker, burn)
+            if defender.has_ability("Gooey", "Tangling Hair"):
+                self.announce_ability(defender)
+                self.apply_stat_change(attacker, {"Spe": -1})
+            if defender.has_ability("Iron Barbs", "Rough Skin"):
+                self.announce_ability(defender)
+                self.damage(attacker, ceil(attacker.hp / 8))
+            if defender.has_ability("Poison Point") and random.random() < 0.3:
+                if self.field.can_apply_status(defender, attacker, mild_poison):
+                    self.announce_ability(defender)
+                    self.apply_status(attacker, mild_poison)
+            if defender.has_ability("Static") and random.random() < 0.3:
+                if self.field.can_apply_status(defender, attacker, paralysis):
+                    self.announce_ability(defender)
+                    self.apply_status(attacker, paralysis)
 
         if move.user_stat_changes:
             if random.random() < move.user_stat_changes.chance / 100:

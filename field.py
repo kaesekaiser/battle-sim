@@ -263,7 +263,7 @@ class Field:
         if attacker.terastallized:
             if move.type == attacker.tera_type:
                 stab += 0.5
-            if move.type in attacker.types:
+            if move.type in attacker.original_types:
                 stab += 0.5
         else:
             if move.type in attacker.types:
@@ -367,6 +367,8 @@ class Field:
         self.trick_room_timer = 5 * int(self.trick_room)
 
     def can_confuse(self, mon: FieldMon):
+        if mon.fainted:
+            return False
         if self.terrain == misty_terrain:
             return False
         return True
