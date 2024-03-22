@@ -217,6 +217,9 @@ class Field:
         return defender.type_effectiveness(move.type, overwrites)
 
     def damage_roll(self, attacker: FieldMon, defender: FieldMon, move: Move, **kwargs) -> dict[str]:
+        if move["exact_damage"]:
+            return {"damage": move["exact_damage"]}
+
         multipliers = []
         if len(attacker.targets) > 1:
             multipliers.append(0.75)

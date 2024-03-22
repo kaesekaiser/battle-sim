@@ -249,6 +249,8 @@ class Battle:
     def but_it_failed(self, attacker: FieldMon, defender: FieldMon, move: Move) -> bool | None:
         if move["first_turn_only"] and attacker.turn_on_field > 1:
             return self.output("But it failed!")
+        if move["after_you"] and defender.has_taken_turn:
+            return self.output("But it failed!")
 
         if defender["protecting"]:
             return self.output(f"{self.name(defender)} protected itself!")
@@ -440,6 +442,10 @@ class Battle:
             else:
                 self.output("The twisted dimensions returned to normal.")
 
+        if move["absorbent"]:
+            self.output(f"{self.name(defender)} had its energy drained!")
+            self.heal(attacker, ceil(defender.get("last_damage_taken", 0) * 0.5))
+
     def use_move(self, attacker: FieldMon, defender: FieldMon, move: Move):
         if attacker.has_taken_turn and not attacker.has_executed_move:
             return  # if the mon previously failed to execute its move against a different target, don't try again
@@ -471,24 +477,25 @@ class Battle:
         if move.category != status:
             damage = self.field.damage_roll(attacker, defender, move)
 
-            if damage["crit"]:
+            if damage.get("crit"):
                 self.output(
                     f"A critical hit on {self.name(defender, False)}!"
                     if len(attacker.targets) > 1 else "A critical hit!"
                 )
 
-            if damage["effectiveness"] > 1:
+            if damage.get("effectiveness", 1) > 1:
                 self.output(
                     f"It's super effective on {self.name(defender, False)}!"
                     if len(attacker.targets) > 1 else "It's super effective!"
                 )
-            elif damage["effectiveness"] < 1:
+            elif damage.get("effectiveness", 1) < 1:
                 self.output(
                     f"It's not very effective on {self.name(defender, False)}..."
                     if len(attacker.targets) > 1 else "It's not very effective..."
                 )
 
             self.damage(defender, damage["damage"])
+            defender["last_damage_taken"] = damage["damage"]
 
         self.move_effects(attacker, defender, move)
 

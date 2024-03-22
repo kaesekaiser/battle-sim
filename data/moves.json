@@ -16,7 +16,8 @@
         "pp": 25,
         "power": 20,
         "accuracy": 100,
-        "description": "A nutrient-draining attack. The user's HP is restored by up to half the damage taken by the target."
+        "description": "A nutrient-draining attack. The user's HP is restored by up to half the damage taken by the target.",
+        "absorbent": true
     },
     "Accelerock": {
         "name": "Accelerock",
@@ -614,7 +615,8 @@
         "power": 90,
         "accuracy": 100,
         "description": "The user focuses its bitter feelings toward the world of the living into a slashing attack. The user's HP is restored by up to half the damage taken by the target.",
-        "contact": true
+        "contact": true,
+        "absorbent": true
     },
     "Bitter Malice": {
         "name": "Bitter Malice",
@@ -853,7 +855,8 @@
         "power": 60,
         "accuracy": 100,
         "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
-        "target": "all-adj-foe"
+        "target": "all-adj-foe",
+        "absorbent": true
     },
     "Branch Poke": {
         "name": "Branch Poke",
@@ -1912,7 +1915,8 @@
         "status": {
             "condition": "paralysis",
             "chance": 30
-        }
+        },
+        "exact_damage": 40
     },
     "Dragon Cheer": {
         "name": "Dragon Cheer",
@@ -2021,7 +2025,8 @@
         "power": 75,
         "accuracy": 100,
         "description": "The user attacks with an energy-draining punch. The user's HP is restored by up to half the damage taken by the target.",
-        "contact": true
+        "contact": true,
+        "absorbent": true
     },
     "Draining Kiss": {
         "name": "Draining Kiss",
@@ -2031,7 +2036,8 @@
         "power": 50,
         "accuracy": 100,
         "description": "The user steals the target's HP with a kiss. The user's HP is restored by over half the damage taken by the target.",
-        "contact": true
+        "contact": true,
+        "absorbent": true
     },
     "Dream Eater": {
         "name": "Dream Eater",
@@ -2040,7 +2046,8 @@
         "pp": 15,
         "power": 100,
         "accuracy": 100,
-        "description": "The user eats the dreams of a sleeping target. The user's HP is restored by up to half the damage taken by the target."
+        "description": "The user eats the dreams of a sleeping target. The user's HP is restored by up to half the damage taken by the target.",
+        "absorbent": true
     },
     "Drill Peck": {
         "name": "Drill Peck",
@@ -3103,7 +3110,8 @@
         "pp": 10,
         "power": 75,
         "accuracy": 100,
-        "description": "A nutrient-draining attack. The user's HP is restored by up to half the damage taken by the target."
+        "description": "A nutrient-draining attack. The user's HP is restored by up to half the damage taken by the target.",
+        "absorbent": true
     },
     "Giga Impact": {
         "name": "Giga Impact",
@@ -3689,7 +3697,8 @@
         "power": 75,
         "accuracy": 100,
         "description": "The user drains the target's energy with its horns. The user's HP is restored by up to half the damage taken by the target.",
-        "contact": true
+        "contact": true,
+        "absorbent": true
     },
     "Howl": {
         "name": "Howl",
@@ -4300,7 +4309,8 @@
         "power": 80,
         "accuracy": 100,
         "description": "The user drains the target's blood. The user's HP is restored by up to half the damage taken by the target.",
-        "contact": true
+        "contact": true,
+        "absorbent": true
     },
     "Leech Seed": {
         "name": "Leech Seed",
@@ -4309,7 +4319,8 @@
         "pp": 10,
         "power": 0,
         "accuracy": 90,
-        "description": "A seed is planted on the target. It steals some HP from the target every turn."
+        "description": "A seed is planted on the target. It steals some HP from the target every turn.",
+        "absorbent": true
     },
     "Leer": {
         "name": "Leer",
@@ -4659,7 +4670,8 @@
             "chance": 20
         },
         "thaws_user": true,
-        "thaws_target": true
+        "thaws_target": true,
+        "absorbent": true
     },
     "Max Airstream": {
         "name": "Max Airstream",
@@ -4887,7 +4899,8 @@
         "pp": 15,
         "power": 40,
         "accuracy": 100,
-        "description": "A nutrient-draining attack. The user's HP is restored by up to half the damage taken by the target."
+        "description": "A nutrient-draining attack. The user's HP is restored by up to half the damage taken by the target.",
+        "absorbent": true
     },
     "Mega Kick": {
         "name": "Mega Kick",
@@ -5433,7 +5446,8 @@
         "power": 80,
         "accuracy": 100,
         "description": "The user absorbs the target's HP. The user's HP is restored by over half the damage taken by the target.",
-        "target": "any"
+        "target": "any",
+        "absorbent": true
     },
     "Obstruct": {
         "name": "Obstruct",
@@ -5556,7 +5570,8 @@
         "power": 65,
         "accuracy": 100,
         "description": "The user attacks everything around it. The user's HP is restored by half the damage taken by those hit.",
-        "target": "all-adj"
+        "target": "all-adj",
+        "absorbent": true
     },
     "Parting Shot": {
         "name": "Parting Shot",
@@ -7422,7 +7437,8 @@
         "pp": 20,
         "power": 0,
         "accuracy": 90,
-        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered."
+        "description": "This move can't be used. It's recommended that this move is forgotten. Once forgotten, this move can't be remembered.",
+        "exact_damage": 20
     },
     "Soul-Stealing 7-Star Strike": {
         "name": "Soul-Stealing 7-Star Strike",
