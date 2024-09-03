@@ -143,6 +143,9 @@ class Move:
             "priority": self.priority, "target": self.target, "contact": self.contact, **self.attributes
         }
 
+    def base(self):
+        return find_move(self.name)
+
     def clone(self, overwrites: dict[str] = ()):
         return Move.from_json(self.json() | {k: v for k, v in dict(overwrites).items() if k != "condition"})
 
@@ -197,7 +200,7 @@ fixed_moves = {fix(g): g for g in all_moves}
 
 def find_move(s: str) -> Move:
     try:
-        return copy(fixed_moves[fix(s)])
+        return copy(all_moves[fixed_moves[fix(s)]])
     except KeyError:
         raise ValueError(f"Invalid move: {s}")
 

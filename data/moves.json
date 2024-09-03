@@ -276,7 +276,8 @@
         "power": 15,
         "accuracy": 100,
         "description": "The user attacks the target with open-palmed arm thrusts. This move hits two to five times in a row.",
-        "contact": true
+        "contact": true,
+        "strikes": "variable"
     },
     "Armor Cannon": {
         "name": "Armor Cannon",
@@ -487,7 +488,8 @@
         "pp": 20,
         "power": 15,
         "accuracy": 85,
-        "description": "Round objects are hurled at the target to strike two to five times in a row."
+        "description": "Round objects are hurled at the target to strike two to five times in a row.",
+        "strikes": "variable"
     },
     "Barrier": {
         "name": "Barrier",
@@ -811,7 +813,8 @@
         "pp": 10,
         "power": 25,
         "accuracy": 90,
-        "description": "The user attacks by striking the target with a hard bone. This move hits two to five times in a row."
+        "description": "The user attacks by striking the target with a hard bone. This move hits two to five times in a row.",
+        "strikes": "variable"
     },
     "Bonemerang": {
         "name": "Bonemerang",
@@ -820,7 +823,8 @@
         "pp": 10,
         "power": 50,
         "accuracy": 90,
-        "description": "The user throws the bone it holds. The bone loops around to damage the target twice-coming and going."
+        "description": "The user throws the bone it holds. The bone loops around to damage the target twice-coming and going.",
+        "strikes": 2
     },
     "Boomburst": {
         "name": "Boomburst",
@@ -1005,7 +1009,8 @@
         "pp": 30,
         "power": 25,
         "accuracy": 100,
-        "description": "The user attacks by forcefully shooting seeds at the target. This move hits two to five times in a row."
+        "description": "The user attacks by forcefully shooting seeds at the target. This move hits two to five times in a row.",
+        "strikes": "variable"
     },
     "Burn Up": {
         "name": "Burn Up",
@@ -1308,7 +1313,8 @@
         "power": 18,
         "accuracy": 85,
         "description": "The target is hit with a flurry of punches that strike two to five times in a row.",
-        "contact": true
+        "contact": true,
+        "strikes": "variable"
     },
     "Comeuppance": {
         "name": "Comeuppance",
@@ -1819,7 +1825,8 @@
         "power": 35,
         "accuracy": 90,
         "description": "The user slams the target with a tail or the like. The target is hit twice in a row.",
-        "contact": true
+        "contact": true,
+        "strikes": 2
     },
     "Double Iron Bash": {
         "name": "Double Iron Bash",
@@ -1830,7 +1837,8 @@
         "accuracy": 100,
         "description": "The user uses the hex nut in its chest as an axis to spin, striking the target with its arms twice in a row. This may also make the target flinch.",
         "contact": true,
-        "flinch": 30
+        "flinch": 30,
+        "strikes": 2
     },
     "Double Kick": {
         "name": "Double Kick",
@@ -1840,7 +1848,8 @@
         "power": 30,
         "accuracy": 100,
         "description": "The user attacks by kicking the target twice in a row using two feet.",
-        "contact": true
+        "contact": true,
+        "strikes": 2
     },
     "Double Shock": {
         "name": "Double Shock",
@@ -1860,7 +1869,8 @@
         "power": 15,
         "accuracy": 85,
         "description": "The target is slapped repeatedly, back and forth, two to five times in a row.",
-        "contact": true
+        "contact": true,
+        "strikes": "variable"
     },
     "Double Team": {
         "name": "Double Team",
@@ -1955,7 +1965,9 @@
         "pp": 10,
         "power": 50,
         "accuracy": 100,
-        "description": "The user attacks twice using Dreepy. If there are two opposing Pok\u00e9mon, this move hits each of them once."
+        "description": "The user attacks twice using Dreepy. If there are two opposing Pok\u00e9mon, this move hits each of them once.",
+        "strikes": 2,
+		"strikes_change_target": true
     },
     "Dragon Energy": {
         "name": "Dragon Energy",
@@ -2088,7 +2100,8 @@
         "power": 40,
         "accuracy": 90,
         "description": "The user attacks its target by hitting it with brutal strikes. The target is hit twice in a row.",
-        "contact": true
+        "contact": true,
+        "strikes": 2
     },
     "Dual Wingbeat": {
         "name": "Dual Wingbeat",
@@ -2098,7 +2111,8 @@
         "power": 40,
         "accuracy": 90,
         "description": "The user slams the target with its wings to inflict damage. The target is hit twice in a row.",
-        "contact": true
+        "contact": true,
+        "strikes": 2
     },
     "Dynamax Cannon": {
         "name": "Dynamax Cannon",
@@ -3005,7 +3019,8 @@
         "power": 15,
         "accuracy": 85,
         "description": "The user attacks by jabbing the target with a horn, a beak, or the like. This move hits two to five times in a row.",
-        "contact": true
+        "contact": true,
+        "strikes": "variable"
     },
     "Fury Cutter": {
         "name": "Fury Cutter",
@@ -3025,7 +3040,8 @@
         "power": 18,
         "accuracy": 80,
         "description": "The user attacks by raking the target with claws, scythes, or the like. This move hits two to five times in a row.",
-        "contact": true
+        "contact": true,
+        "strikes": "variable"
     },
     "Fusion Bolt": {
         "name": "Fusion Bolt",
@@ -3072,7 +3088,8 @@
         "power": 50,
         "accuracy": 85,
         "description": "The user attacks by throwing steel gears at the target twice in a row.",
-        "contact": true
+        "contact": true,
+        "strikes": 2
     },
     "Gear Up": {
         "name": "Gear Up",
@@ -3952,7 +3969,8 @@
         "pp": 30,
         "power": 25,
         "accuracy": 100,
-        "description": "The user attacks by launching sharp icicles at the target. This move hits two to five times in a row."
+        "description": "The user attacks by launching sharp icicles at the target. This move hits two to five times in a row.",
+        "strikes": "variable"
     },
     "Icy Wind": {
         "name": "Icy Wind",
@@ -5678,7 +5696,8 @@
         "pp": 20,
         "power": 25,
         "accuracy": 95,
-        "description": "The user attacks by shooting sharp spikes at the target. This move hits two to five times in a row."
+        "description": "The user attacks by shooting sharp spikes at the target. This move hits two to five times in a row.",
+        "strikes": "variable"
     },
     "Plasma Fists": {
         "name": "Plasma Fists",
@@ -5827,7 +5846,9 @@
         "power": 20,
         "accuracy": 90,
         "description": "The user's fellows gather in droves to perform a combo attack that hits the target one to ten times in a row.",
-        "contact": true
+        "contact": true,
+		"strikes": 10,
+		"accuracy_dependent": true
     },
     "Pounce": {
         "name": "Pounce",
@@ -6488,7 +6509,8 @@
         "pp": 10,
         "power": 25,
         "accuracy": 90,
-        "description": "The user attacks by hurling hard rocks at the target. This move hits two to five times in a row."
+        "description": "The user attacks by hurling hard rocks at the target. This move hits two to five times in a row.",
+        "strikes": "variable"
     },
     "Rock Climb": {
         "name": "Rock Climb",
@@ -6749,7 +6771,8 @@
         "pp": 20,
         "power": 25,
         "accuracy": 90,
-        "description": "The user attacks by shooting scales two to five times in a row. This move boosts the user's Speed stat but lowers its Defense stat."
+        "description": "The user attacks by shooting scales two to five times in a row. This move boosts the user's Speed stat but lowers its Defense stat.",
+        "strikes": "variable"
     },
     "Scary Face": {
         "name": "Scary Face",
@@ -7537,7 +7560,8 @@
         "pp": 15,
         "power": 20,
         "accuracy": 100,
-        "description": "Sharp spikes are shot at the target in rapid succession. They hit two to five times in a row."
+        "description": "Sharp spikes are shot at the target in rapid succession. They hit two to five times in a row.",
+        "strikes": "variable"
     },
     "Spikes": {
         "name": "Spikes",
@@ -8040,7 +8064,8 @@
         "accuracy": 100,
         "description": "The user, having mastered the Water style, strikes the target with a flowing motion three times in a row. This move always lands a critical hit.",
         "always_crits": true,
-        "contact": true
+        "contact": true,
+        "strikes": 3
     },
     "Swagger": {
         "name": "Swagger",
@@ -8153,7 +8178,8 @@
         "pp": 10,
         "power": 50,
         "accuracy": 0,
-        "description": "The user attacks by launching particle blades at the target twice in a row. This attack never misses."
+        "description": "The user attacks by launching particle blades at the target twice in a row. This attack never misses.",
+        "strikes": 2
     },
     "Tackle": {
         "name": "Tackle",
@@ -8183,7 +8209,8 @@
         "power": 25,
         "accuracy": 85,
         "description": "The user attacks by striking the target with its hard tail. This move hits two to five times in a row.",
-        "contact": true
+        "contact": true,
+        "strikes": "variable"
     },
     "Tail Whip": {
         "name": "Tail Whip",
@@ -8718,7 +8745,10 @@
         "power": 20,
         "accuracy": 90,
         "description": "A consecutive three-kick attack that becomes more powerful with each successful hit.",
-        "contact": true
+        "contact": true,
+		"strikes": 3,
+		"accuracy_dependent": true,
+		"scaling_strikes": true
     },
     "Triple Dive": {
         "name": "Triple Dive",
@@ -8728,7 +8758,8 @@
         "power": 30,
         "accuracy": 95,
         "description": "The user performs a perfectly timed triple dive, hitting the target with splashes of water three times in a row.",
-        "contact": true
+        "contact": true,
+        "strikes": 3
     },
     "Triple Kick": {
         "name": "Triple Kick",
@@ -8738,7 +8769,10 @@
         "power": 10,
         "accuracy": 90,
         "description": "A consecutive three-kick attack that becomes more powerful with each successful hit.",
-        "contact": true
+        "contact": true,
+		"strikes": 3,
+		"accuracy_dependent": true,
+		"scaling_strikes": true
     },
     "Trop Kick": {
         "name": "Trop Kick",
@@ -8767,7 +8801,8 @@
         "pp": 10,
         "power": 40,
         "accuracy": 100,
-        "description": "The user shoots mystical beams from its eyes to inflict damage. The target is hit twice in a row."
+        "description": "The user shoots mystical beams from its eyes to inflict damage. The target is hit twice in a row.",
+        "strikes": 2
     },
     "Twineedle": {
         "name": "Twineedle",
@@ -8780,7 +8815,8 @@
         "status": {
             "condition": "poison",
             "chance": 20
-        }
+        },
+        "strikes": 2
     },
     "Twinkle Tackle": {
         "name": "Twinkle Tackle",
@@ -8989,7 +9025,8 @@
         "pp": 20,
         "power": 15,
         "accuracy": 100,
-        "description": "The user hits the target with throwing stars two to five times in a row. This move always goes first."
+        "description": "The user hits the target with throwing stars two to five times in a row. This move always goes first.",
+        "strikes": "variable"
     },
     "Water Sport": {
         "name": "Water Sport",

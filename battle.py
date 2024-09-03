@@ -286,7 +286,12 @@ class Battle:
 
         return True
 
-    def move_modifications(self, attacker: FieldMon, defender: FieldMon, move: Move):
+    def move_modifications(self, attacker: FieldMon, defender: FieldMon, move: Move, strike_no: int = 0):
+        if move["scaling_strikes"]:
+            base_power = move.base().power * (strike_no + 1)
+        else:
+            base_power = move.base().power
+
         power_multipliers = []  # https://bulbapedia.bulbagarden.net/wiki/Power#Generation_IX
         if self.field.terrain == misty_terrain and move.type == dragon and self.field.is_grounded(defender):
             power_multipliers.append(0.5)
@@ -297,7 +302,7 @@ class Battle:
         elif self.field.terrain == psychic_terrain and move.type == psychic and self.field.is_grounded(attacker):
             power_multipliers.append(1.3)
 
-        move.power = round(move.power * product(power_multipliers))
+        move.power = round(base_power * product(power_multipliers))
 
     def apply_stat_change(self, mon: FieldMon, stat_change: StatChange | dict):
         changes = mon.apply(stat_change)
@@ -468,36 +473,58 @@ class Battle:
         else:
             attacker.failed_last_attack = False
 
-        self.move_modifications(attacker, defender, move)
-
         self.pre_hit_effects(attacker, defender, move)
 
         attacker.has_landed_move = True
 
-        if move.category != status:
-            damage = self.field.damage_roll(attacker, defender, move)
+        if move["strikes"] == "variable":
+            strikes = random.choices([2, 3, 4, 5], weights=[7, 7, 3, 3])[0]
+        elif isinstance(move["strikes"], int):
+            strikes = move["strikes"]
+        else:
+            strikes = 1
 
-            if damage.get("crit"):
-                self.output(
-                    f"A critical hit on {self.name(defender, False)}!"
-                    if len(attacker.targets) > 1 else "A critical hit!"
-                )
+        strikes_landed = 0
 
-            if damage.get("effectiveness", 1) > 1:
-                self.output(
-                    f"It's super effective on {self.name(defender, False)}!"
-                    if len(attacker.targets) > 1 else "It's super effective!"
-                )
-            elif damage.get("effectiveness", 1) < 1:
-                self.output(
-                    f"It's not very effective on {self.name(defender, False)}..."
-                    if len(attacker.targets) > 1 else "It's not very effective..."
-                )
+        for n in range(strikes):
+            strikes_landed += 1
 
-            self.damage(defender, damage["damage"])
-            defender["last_damage_taken"] = damage["damage"]
+            self.move_modifications(attacker, defender, move, n)
 
-        self.move_effects(attacker, defender, move)
+            if move.category != status:
+                damage = self.field.damage_roll(attacker, defender, move)
+
+                if damage.get("crit"):
+                    self.output(
+                        f"A critical hit on {self.name(defender, False)}!"
+                        if len(attacker.targets) > 1 else "A critical hit!"
+                    )
+
+                if n == 0:
+                    if damage.get("effectiveness", 1) > 1:
+                        self.output(
+                            f"It's super effective on {self.name(defender, False)}!"
+                            if len(attacker.targets) > 1 else "It's super effective!"
+                        )
+                    elif damage.get("effectiveness", 1) < 1:
+                        self.output(
+                            f"It's not very effective on {self.name(defender, False)}..."
+                            if len(attacker.targets) > 1 else "It's not very effective..."
+                        )
+
+                self.damage(defender, damage["damage"])
+                defender["last_damage_taken"] = damage["damage"]
+
+            if attacker.fainted or defender.fainted:
+                break
+
+            self.move_effects(attacker, defender, move)
+
+            if move["accuracy_dependent"] and not self.accuracy_check(attacker, defender, move):
+                break  # check at end of previous loop, since the first accuracy check happens elsewhere
+
+        if strikes != 1:
+            self.output(f"Hit {strikes_landed} time{'s' if strikes_landed > 1 else ''}!")
 
     def individual_end_of_turn(self, mon: FieldMon):
         if not mon.fainted:
